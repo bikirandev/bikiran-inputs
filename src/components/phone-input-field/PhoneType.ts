@@ -26,4 +26,5 @@ export  type TAnimateInputField = TInputField & {
     currency?: string;
     readOnly?: boolean;
     required?: boolean;
+    hasCountry?: boolean;
   };
