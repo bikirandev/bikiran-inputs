@@ -1,6 +1,6 @@
 {
-  "name": "bik-button",
-  "version": "1.9.0",
+  "name": "bik-inputs",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -29,12 +29,12 @@
   "description": "A simple and reusable React button component library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bikirandev/bikiran-buttons.git"
+    "url": "https://github.com/bikirandev/7501NPM-Bikiran-Inputs.git"
   },
   "bugs": {
-    "url": "https://github.com/bikirandev/bikiran-buttons/issues"
+    "url": "https://github.com/bikirandev/7501NPM-Bikiran-Inputs/issues"
   },
-  "homepage": "https://github.com/bikirandev/bikiran-buttons#readme",
+  "homepage": "https://github.com/bikirandev/7501NPM-Bikiran-Inputs#readme",
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -54,7 +54,6 @@
     "vitest": "^1.0.4"
   },
   "dependencies": {
-    "bik-button": "^1.2.0",
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.0.1"
   }
