@@ -1,38 +1,44 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils/cn";
-import { Loader2 } from "lucide-react";
-import iconTick from "./icons/icon-tick.svg";
-import iconAlert from "./icons/icon-alert.svg";
 import {
   TAnimateInputField,
   TInputChangeEvent,
 } from "../../lib/types/InputType";
+import { iconAlert, iconLoading, iconTick } from "./icons/Icons";
 
 const ValidationCheck: FC<{
   loading?: boolean | undefined;
   valid?: boolean | undefined;
   className?: string;
-}> = ({ loading, valid, className }) => {
+  loadingIcon?: string;
+  alertIcon?: string;
+  tickIcon?: string;
+}> = ({ loading, valid, className, tickIcon, alertIcon, loadingIcon }) => {
   return (
     <div className={cn("absolute", className)}>
-      {loading ? (
-        <Loader2 className="size-4 animate-spin" />
-      ) : (
-        loading !== undefined && (
-          <Image
-            src={valid ? iconTick : iconAlert}
-            alt="valid-check"
-            width={16}
-            height={16}
-          />
-        )
-      )}
+      {loading
+        ? loadingIcon
+          ? loadingIcon
+          : iconLoading()
+        : loading !== undefined &&
+          (valid
+            ? tickIcon
+              ? tickIcon
+              : iconTick()
+            : alertIcon
+            ? alertIcon
+            : iconAlert())}
     </div>
   );
 };
 
+type TDomainField = TAnimateInputField & {
+  loadingIcon?: string;
+  alertIcon?: string;
+  tickIcon?: string;
+};
 // InputField component with TS types
-const DomainInputField: FC<TAnimateInputField> = (props) => {
+const DomainInputField: FC<TDomainField> = (props) => {
   const [focused, setFocused] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement>(null);
 
@@ -50,7 +56,9 @@ const DomainInputField: FC<TAnimateInputField> = (props) => {
     readOnly,
     loading,
     valid,
-    show,
+    loadingIcon,
+    alertIcon,
+    tickIcon,
   } = props;
 
   const handleFocus = () => {
@@ -127,6 +135,9 @@ const DomainInputField: FC<TAnimateInputField> = (props) => {
           loading={loading}
           valid={valid}
           className="top-1/2 right-2 flex items-center space-x-2 transform -translate-y-1/2"
+          loadingIcon={loadingIcon}
+          tickIcon={tickIcon}
+          alertIcon={alertIcon}
         />
       </div>
     </div>
