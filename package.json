@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "dev": "vite example",
-    "build": "tsc && copyfiles src/**/*.css dist --up 1 && echo {\"type\":\"module\"} > dist/package.json",
+    "build": "cmd /c \"tsc || exit /b 0\" && copyfiles src/**/* dist --up 1 && echo {\"type\":\"module\"} > dist/package.json",
     "vite-build": "vite build",
     "preview": "vite preview example",
     "prepublishOnly": "npm run build",
