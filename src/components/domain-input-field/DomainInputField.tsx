@@ -1,5 +1,8 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils/cn";
+import { Loader2 } from "lucide-react";
+import iconTick from "./icons/icon-tick.svg";
+import iconAlert from "./icons/icon-alert.svg";
 import {
   TAnimateInputField,
   TInputChangeEvent,
@@ -13,17 +16,15 @@ const ValidationCheck: FC<{
   return (
     <div className={cn("absolute", className)}>
       {loading ? (
-        // <Loader2 className="size-4 animate-spin" />
-        <div></div>
+        <Loader2 className="size-4 animate-spin" />
       ) : (
         loading !== undefined && (
-          //   <Image
-          //     src={valid ? iconTick : iconAlert}
-          //     alt="valid-check"
-          //     width={16}
-          //     height={16}
-          //   />
-          <div></div>
+          <Image
+            src={valid ? iconTick : iconAlert}
+            alt="valid-check"
+            width={16}
+            height={16}
+          />
         )
       )}
     </div>
