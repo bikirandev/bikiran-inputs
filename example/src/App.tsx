@@ -1,4 +1,3 @@
-import { Button } from "bik-button";
 import React from "react";
 
 function App() {
@@ -7,18 +6,14 @@ function App() {
       <h1>Bikiran Buttons Demo</h1>
 
       <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
-        <Button
-          variant="green-outline"
-          title="Default Button"
-          onClick={() => alert("Clicked!")}
-          className="w-[300px]"
-        />
-        <Button title="Disabled Button" disabled={true} />
-        <Button
-          title="Custom Style"
-          className="custom-button"
-          onClick={() => alert("Custom button clicked!")}
-        />
+        <h2>Hello world</h2>
+        {/* <DomainInputField
+          label="Type something"
+          name="domain"
+          formData={{ domain: "" }}
+          onChange={() => {}}
+          valid
+        /> */}
       </div>
     </div>
   );
