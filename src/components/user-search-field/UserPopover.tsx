@@ -14,12 +14,7 @@ const UserInformation: FC<{
           onClick={() => setSelectedUser(item)}
         >
           <div className="size-9 flex-shrink-0">
-            {/* <Avatar className="relative !size-full mb-3 group">
-              <AvatarImage src={item?.photoUrl} />
-              <AvatarFallback className="uppercase bg-secondary-300">
-                X
-              </AvatarFallback>
-            </Avatar> */}
+            <img src={item?.photoUrl} alt="" className="rounded-full" />
           </div>
 
           <div className="flex flex-col">

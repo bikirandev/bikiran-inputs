@@ -4,8 +4,8 @@ import { FC, useEffect } from "react";
 import UserPopover from "./UserPopover";
 import UserDetailsComp from "./UserDetailsComp";
 import UserSkeletonComp from "./UserSkeletonComp";
-import AnimateInputField from "../animated-input-field/AnimatedInputField";
 import { TInputChangeEvent, TState } from "../../lib/types/InputType";
+import AnimatedInputField from "../animated-input-field/AnimatedInputField";
 
 type TProps = {
   selectedUser: any;
@@ -53,7 +53,7 @@ const UserSearchField: FC<TProps> = ({
   return (
     <div>
       <div className="relative mt-3">
-        <AnimateInputField
+        <AnimatedInputField
           formData={formData}
           label={label}
           name="user"
@@ -62,7 +62,7 @@ const UserSearchField: FC<TProps> = ({
           onChange={handleOnChange}
           className=""
         />
-        <div className="absolute top-20 w-full z-10">
+        <div className="absolute top-[50px] w-full z-10">
           <UserPopover
             data={userData}
             show={formData?.["user"]?.length > 2 && userData.length > 0}

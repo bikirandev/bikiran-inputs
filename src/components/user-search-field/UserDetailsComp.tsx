@@ -16,12 +16,7 @@ const UserDetailsComp = ({
         )}
       >
         <div className="size-10 overflow-hidden">
-          {/* <Avatar className="relative !size-full mb-3 group">
-            <AvatarImage src={data?.photoUrl} />
-            <AvatarFallback className="uppercase bg-secondary-300">
-              X
-            </AvatarFallback>
-          </Avatar> */}
+          <img src={data?.photoUrl} alt="" className="rounded-full" />
         </div>
 
         <div className="flex flex-col">
