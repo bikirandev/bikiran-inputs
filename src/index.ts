@@ -4,3 +4,4 @@ export {default as CalculationInputField} from "./components/calculation-input-f
 export {default as EmailInputField} from "./components/email-input-field/EmailInputField"
 export {default as AnimatedTextArea} from "./components/animated-text-area/AnimatedTextArea"
 export {default as ValidationInputField} from "./components/validation-input-field/ValidationInputField"
+export {default as UserSearchField} from "./components/user-search-field/UserSearchField"
