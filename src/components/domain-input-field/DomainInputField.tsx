@@ -1,12 +1,37 @@
 import { FC, useEffect, useRef, useState } from "react";
+import { cn } from "../../lib/utils/cn";
 import {
   TAnimateInputField,
   TInputChangeEvent,
 } from "../../lib/types/InputType";
-import { cn } from "../../lib/utils/cn";
+
+const ValidationCheck: FC<{
+  loading?: boolean | undefined;
+  valid?: boolean | undefined;
+  className?: string;
+}> = ({ loading, valid, className }) => {
+  return (
+    <div className={cn("absolute", className)}>
+      {loading ? (
+        // <Loader2 className="size-4 animate-spin" />
+        <div></div>
+      ) : (
+        loading !== undefined && (
+          //   <Image
+          //     src={valid ? iconTick : iconAlert}
+          //     alt="valid-check"
+          //     width={16}
+          //     height={16}
+          //   />
+          <div></div>
+        )
+      )}
+    </div>
+  );
+};
 
 // InputField component with TS types
-const PhoneInputField: FC<TAnimateInputField> = (props) => {
+const DomainInputField: FC<TAnimateInputField> = (props) => {
   const [focused, setFocused] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement>(null);
 
@@ -22,7 +47,9 @@ const PhoneInputField: FC<TAnimateInputField> = (props) => {
     disabled = false,
     required = false,
     readOnly,
-    hasCountry,
+    loading,
+    valid,
+    show,
   } = props;
 
   const handleFocus = () => {
@@ -39,11 +66,10 @@ const PhoneInputField: FC<TAnimateInputField> = (props) => {
   };
 
   const handleChange = (ev: TInputChangeEvent) => {
-    if (!ev.target) return;
-    const cleanedValue = ev.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+    const trimmedValue = ev.target.value.replace(/\s+/g, "");
     if (onChange) {
       onChange({
-        target: { name, value: cleanedValue }, // Ensure correct event structure
+        target: { name, value: trimmedValue }, // Ensure correct event structure
       } as TInputChangeEvent);
     }
   };
@@ -59,16 +85,7 @@ const PhoneInputField: FC<TAnimateInputField> = (props) => {
   const isValue = inputValue !== "";
 
   return (
-    <div
-      className={cn(
-        "animate-input w-full flex border items-center rounded-[8px]",
-        {
-          "border-secondary-700 caret-current": focused,
-        }
-      )}
-    >
-      {/* TODO: if need to add country add here  */}
-      {hasCountry && <div className="w-16 bg-red-300 h-1"></div>}
+    <div className="animate-input w-full">
       <div
         className={cn("w-full h-[45px] relative overflow-visible", className)}
         onClick={handleFocus}
@@ -98,11 +115,20 @@ const PhoneInputField: FC<TAnimateInputField> = (props) => {
           disabled={disabled}
           readOnly={readOnly}
           className={cn(
-            "block w-full h-full px-2.5 caret-white rounded-8 text-base outline-none disabled:grayscale transition-colors"
+            "block w-full h-full px-2.5 caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors",
+            {
+              "border-secondary-700 caret-current": focused,
+            }
           )}
+        />
+        {/* Loading and validation icons */}
+        <ValidationCheck
+          loading={loading}
+          valid={valid}
+          className="top-1/2 right-2 flex items-center space-x-2 transform -translate-y-1/2"
         />
       </div>
     </div>
   );
 };
-export default PhoneInputField;
+export default DomainInputField;

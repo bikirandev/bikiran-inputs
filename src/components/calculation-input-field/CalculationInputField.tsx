@@ -1,12 +1,13 @@
 import { FC, useEffect, useRef, useState } from "react";
+import { cn } from "../../lib/utils/cn";
 import {
   TAnimateInputField,
   TInputChangeEvent,
 } from "../../lib/types/InputType";
-import { cn } from "../../lib/utils/cn";
+import { evaluate } from "../../lib/utils/math";
 
 // InputField component with TS types
-const PhoneInputField: FC<TAnimateInputField> = (props) => {
+const CalculationInputField: FC<TAnimateInputField> = (props) => {
   const [focused, setFocused] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement>(null);
 
@@ -14,6 +15,7 @@ const PhoneInputField: FC<TAnimateInputField> = (props) => {
     label,
     type = "text",
     autoComplete = "off",
+    calculate = false,
     name,
     formData,
     onChange,
@@ -21,8 +23,9 @@ const PhoneInputField: FC<TAnimateInputField> = (props) => {
     className = "",
     disabled = false,
     required = false,
+    unit,
+    currency,
     readOnly,
-    hasCountry,
   } = props;
 
   const handleFocus = () => {
@@ -39,13 +42,17 @@ const PhoneInputField: FC<TAnimateInputField> = (props) => {
   };
 
   const handleChange = (ev: TInputChangeEvent) => {
-    if (!ev.target) return;
-    const cleanedValue = ev.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-    if (onChange) {
-      onChange({
-        target: { name, value: cleanedValue }, // Ensure correct event structure
-      } as TInputChangeEvent);
+    if (!calculate) {
+      return onChange(ev);
     }
+
+    const calculatedValue = evaluate(ev.target.value);
+    onChange({
+      target: {
+        name: ev.target.name,
+        value: calculatedValue,
+      },
+    });
   };
 
   // Focus the input when `focused` is set to true
@@ -59,16 +66,7 @@ const PhoneInputField: FC<TAnimateInputField> = (props) => {
   const isValue = inputValue !== "";
 
   return (
-    <div
-      className={cn(
-        "animate-input w-full flex border items-center rounded-[8px]",
-        {
-          "border-secondary-700 caret-current": focused,
-        }
-      )}
-    >
-      {/* TODO: if need to add country add here  */}
-      {hasCountry && <div className="w-16 bg-red-300 h-1"></div>}
+    <div className="animate-input w-full">
       <div
         className={cn("w-full h-[45px] relative overflow-visible", className)}
         onClick={handleFocus}
@@ -98,11 +96,24 @@ const PhoneInputField: FC<TAnimateInputField> = (props) => {
           disabled={disabled}
           readOnly={readOnly}
           className={cn(
-            "block w-full h-full px-2.5 caret-white rounded-8 text-base outline-none disabled:grayscale transition-colors"
+            "block w-full h-full px-2.5 caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors",
+            {
+              "border-secondary-700 caret-current": focused,
+              "pr-12": unit,
+            }
           )}
         />
+
+        {/* Currency and unit */}
+        {currency && (focused || isValue) && !disabled && (
+          <div className="absolute top-1/2 right-2 flex items-center space-x-2 transform -translate-y-1/2">
+            <div className="text-[10px] text-primary-700">
+              {unit && currency ? `${currency}/${unit}` : unit || currency}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
-export default PhoneInputField;
+export default CalculationInputField;
