@@ -1,8 +1,8 @@
 export const iconTick = () => {
   return (
     <svg
-      width="28"
-      height="28"
+      width="14"
+      height="14"
       viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -19,15 +19,15 @@ export const iconTick = () => {
 export const iconAlert = () => {
   return (
     <svg
-      width="24"
-      height="22"
+      width="12"
+      height="11"
       viewBox="0 0 24 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M15.1401 2.15974C13.7193 -0.213402 10.2807 -0.213401 8.85985 2.15974L0.52546 16.0798C-0.935157 18.5193 0.822257 21.6198 3.6656 21.6198H20.3344C23.1777 21.6198 24.9352 18.5193 23.4745 16.0798L15.1401 2.15974ZM11.4535 13.819C11.4925 14.3135 11.7333 14.5608 12.1757 14.5608C12.6051 14.5608 12.8394 14.3135 12.8784 13.819L13.425 6.63572C13.464 6.23231 13.3599 5.89396 13.1127 5.62069C12.8654 5.34741 12.5466 5.21077 12.1562 5.21077C11.7658 5.21077 11.447 5.34741 11.1997 5.62069C10.9655 5.89396 10.8614 6.23231 10.8874 6.63572L11.4535 13.819ZM11.1607 18.5818C11.3689 18.777 11.6617 18.8746 12.0391 18.8746H12.2928C12.6702 18.8746 12.9565 18.777 13.1517 18.5818C13.3599 18.3736 13.464 18.0808 13.464 17.7034V17.3716C13.464 16.9942 13.3599 16.7079 13.1517 16.5127C12.9565 16.3045 12.6702 16.2004 12.2928 16.2004H12.0391C11.6617 16.2004 11.3689 16.3045 11.1607 16.5127C10.9655 16.7079 10.8679 16.9942 10.8679 17.3716V17.7034C10.8679 18.0808 10.9655 18.3736 11.1607 18.5818Z"
         fill="#F24A17"
       />
@@ -38,14 +38,14 @@ export const iconLoading = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="12"
+      height="12"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="lucide lucide-loader-circle"
     >
       <path d="M21 12a9 9 0 1 1-6.219-8.56">

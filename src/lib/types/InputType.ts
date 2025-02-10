@@ -28,3 +28,12 @@ export  type TAnimateInputField = TInputField & {
     required?: boolean;
     hasCountry?: boolean;
   };
+
+  export type TValidationField = TInputField & {
+    required?: boolean;
+    readOnly?: boolean;
+    loadingIcon?: any;
+    alertIcon?: any;
+    tickIcon?: any;
+  };
+
