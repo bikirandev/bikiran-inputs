@@ -1,9 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils/cn";
-import {
-  TAnimateInputField,
-  TInputChangeEvent,
-} from "../../lib/types/InputType";
+import { TInputChangeEvent, TValidationField } from "../../lib/types/InputType";
 import { iconAlert, iconLoading, iconTick } from "./icons/Icons";
 
 const ValidationCheck: FC<{
@@ -32,13 +29,8 @@ const ValidationCheck: FC<{
   );
 };
 
-type TDomainField = TAnimateInputField & {
-  loadingIcon?: string;
-  alertIcon?: string;
-  tickIcon?: string;
-};
 // InputField component with TS types
-const DomainInputField: FC<TDomainField> = (props) => {
+const ValidationInputField: FC<TValidationField> = (props) => {
   const [focused, setFocused] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement>(null);
 
@@ -143,4 +135,4 @@ const DomainInputField: FC<TDomainField> = (props) => {
     </div>
   );
 };
-export default DomainInputField;
+export default ValidationInputField;

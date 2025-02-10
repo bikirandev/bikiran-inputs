@@ -28,3 +28,22 @@ export  type TAnimateInputField = TInputField & {
     required?: boolean;
     hasCountry?: boolean;
   };
+
+  export type TValidationField = {
+    label: any;
+    type?: string;
+    autoComplete?: string;
+    name: string;
+    formData: Record<string, any>;
+    onChange: (e: TInputChangeEvent | any) => void;
+    onBlur?: (e: TInputChangeEvent) => void;
+    className?: string;
+    disabled?: boolean;
+    required?: boolean;
+    readOnly?: boolean;
+    loading?: boolean;
+    valid?: boolean;
+    loadingIcon?: any;
+    alertIcon?: any;
+    tickIcon?: any;
+  };
