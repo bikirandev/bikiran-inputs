@@ -6,7 +6,7 @@ import {
 } from "../../lib/types/InputType";
 
 // InputField component with TS types
-const AnimateInputField: FC<TAnimateInputField> = (props) => {
+const EmailInputField: FC<TAnimateInputField> = (props) => {
   const [focused, setFocused] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement>(null);
 
@@ -99,4 +99,4 @@ const AnimateInputField: FC<TAnimateInputField> = (props) => {
     </div>
   );
 };
-export default AnimateInputField;
+export default EmailInputField;

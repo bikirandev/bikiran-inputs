@@ -7,9 +7,9 @@ const ValidationCheck: FC<{
   loading?: boolean | undefined;
   valid?: boolean | undefined;
   className?: string;
-  loadingIcon?: string;
-  alertIcon?: string;
-  tickIcon?: string;
+  loadingIcon?: any;
+  alertIcon?: any;
+  tickIcon?: any;
 }> = ({ loading, valid, className, tickIcon, alertIcon, loadingIcon }) => {
   return (
     <div className={cn("absolute", className)}>
