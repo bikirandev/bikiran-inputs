@@ -5,3 +5,4 @@ export {default as EmailInputField} from "./components/email-input-field/EmailIn
 export {default as AnimatedTextArea} from "./components/animated-text-area/AnimatedTextArea"
 export {default as ValidationInputField} from "./components/validation-input-field/ValidationInputField"
 export {default as UserSearchField} from "./components/user-search-field/UserSearchField"
+export {default as OTPInputField} from "./components/otp-input-field/OTPInputField"

@@ -1,6 +1,6 @@
 {
   "name": "bik-inputs",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "tailwind-merge": "^3.0.1"
+    "tailwind-merge": "^3.0.1",
+    "input-otp": "^1.4.2"
   }
 }
