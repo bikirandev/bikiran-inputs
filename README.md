@@ -1,17 +1,17 @@
-# Button Component
+# Input Components
 
-A reusable, customizable, and accessible button component for React applications. Supports multiple variants, loading states, and additional customizations.
+A reusable, customizable, and accessible input component library for React applications. Supports multiple input types with various customizations.
 
 ## 📦 Installation
 
 ```sh
-npm install bik-button
+npm install bik-inputs
 ```
 
 or
 
 ```sh
-yarn add bik-button
+yarn add bik-inputs
 ```
 
 ---
@@ -22,12 +22,12 @@ yarn add bik-button
 
 ```tsx
 import React from "react";
-import { Button } from "bik-button";
+import { PhoneInputField } from "bik-inputs";
 
 const App = () => {
   return (
     <div>
-      <Button title="Click Me" onClick={() => alert("Button Clicked")} />
+      <PhoneInputField placeholder="Enter your phone number" />
     </div>
   );
 };
@@ -35,84 +35,66 @@ const App = () => {
 export default App;
 ```
 
-### **Using Variants**
+### **Available Input Fields**
 
 ```tsx
-<Button variant="primary">Primary</Button>
-<Button variant="primary-line">Primary Line</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="secondary-line">Secondary Line</Button>
-<Button variant="blue">Blue</Button>
-<Button variant="red">Red</Button>
-<Button variant="green">Green</Button>
-<Button variant="yellow-outline">Yellow Outline</Button>
-```
-
-### **Button with Icon**
-
-```tsx
-<Button variant="primary">
-  <span>🚀 Launch</span>
-</Button>
-```
-
-### **Loading State**
-
-```tsx
-<Button variant="primary" loading>
-  Loading...
-</Button>
-```
-
-### **Disabled State**
-
-```tsx
-<Button variant="primary" disabled>
-  Disabled
-</Button>
+<PhoneInputField placeholder="Enter your phone number" />
+<AnimatedInputField placeholder="Animated Input" />
+<CalculationInputField placeholder="Calculation Input" />
+<EmailInputField placeholder="Enter your email" />
+<AnimatedTextArea placeholder="Animated Text Area" />
+<ValidationInputField placeholder="Validation Input" />
+<UserSearchField placeholder="Search User" />
+<OTPInputField value="" handleOnChange={(val) => console.log(val)} disabled={false} />
 ```
 
 ---
 
-## 🎨 **Variants**
+## 🎨 **Input Field Variants**
 
-The button supports multiple styles. Use the `variant` prop to define a style.
+This package provides multiple input fields for different use cases.
 
-| Variant                   | Description                    |
-| ------------------------- | ------------------------------ |
-| `primary`                 | Solid primary button (default) |
-| `primary-line`            | Outlined primary button        |
-| `secondary`               | Solid secondary button         |
-| `secondary-line`          | Outlined secondary button      |
-| `secondary-line-bordered` | Bordered secondary button      |
-| `blue`                    | Solid blue button              |
-| `blue-line`               | Outlined blue button           |
-| `blue-line-bordered`      | Bordered blue button           |
-| `red`                     | Solid red button               |
-| `red-line`                | Outlined red button            |
-| `red-line-bordered`       | Bordered red button            |
-| `pink`                    | Solid pink button              |
-| `pink-outline`            | Outlined pink button           |
-| `pink-outline-bordered`   | Bordered pink button           |
-| `green`                   | Solid green button             |
-| `green-outline`           | Outlined green button          |
-| `gray`                    | Gray button                    |
-| `yellow-outline`          | Outlined yellow button         |
+| Component               | Description                         |
+| ----------------------- | ----------------------------------- |
+| `PhoneInputField`       | Input field for phone numbers       |
+| `AnimatedInputField`    | Input field with animations         |
+| `CalculationInputField` | Input for calculations              |
+| `EmailInputField`       | Input for email addresses           |
+| `AnimatedTextArea`      | Animated text area                  |
+| `ValidationInputField`  | Input with validation support       |
+| `UserSearchField`       | Search field for users              |
+| `OTPInputField`         | One-time password (OTP) input field |
 
 ---
 
 ## Props
 
-| Prop        | Type                                          | Default     | Description                       |
-| ----------- | --------------------------------------------- | ----------- | --------------------------------- |
-| `title`     | `string`                                      | `""`        | Text inside the button            |
-| `children`  | `ReactNode`                                   | `null`      | Any React element inside button   |
-| `type`      | `"button" \| "submit" \| "reset"`             | `"button"`  | Button type                       |
-| `variant`   | `TVariant`                                    | `"primary"` | Button style (see variants table) |
-| `onClick`   | `(ev: MouseEvent<HTMLButtonElement>) => void` | `undefined` | Click event handler               |
-| `className` | `string`                                      | `""`        | Additional CSS classes            |
-| `disabled`  | `boolean`                                     | `false`     | Disables the button               |
-| `loading`   | `boolean`                                     | `false`     | Shows loading spinner             |
+### **Common Props**
+
+| Prop          | Type                      | Default     | Description              |
+| ------------- | ------------------------- | ----------- | ------------------------ |
+| `value`       | `string`                  | `""`        | Input value              |
+| `placeholder` | `string`                  | `""`        | Placeholder text         |
+| `onChange`    | `(value: string) => void` | `undefined` | Change event handler     |
+| `className`   | `string`                  | `""`        | Additional CSS classes   |
+| `disabled`    | `boolean`                 | `false`     | Disables the input field |
+
+### **PhoneInputField Props**
+
+| Prop           | Type                              | Default     | Description                    |
+| -------------- | --------------------------------- | ----------- | ------------------------------ |
+| `label`        | `string`                          | `""`        | Label for the input field      |
+| `type`         | `string`                          | `"text"`    | Input type                     |
+| `autoComplete` | `string`                          | `""`        | Autocomplete attribute         |
+| `name`         | `string`                          | `""`        | Input name                     |
+| `formData`     | `Record<string, string>`          | `{}`        | Form data storage              |
+| `onChange`     | `(ev: TInputChangeEvent) => void` | `undefined` | Change event handler           |
+| `onBlur`       | `() => void`                      | `undefined` | Blur event handler             |
+| `className`    | `string`                          | `""`        | Additional CSS classes         |
+| `disabled`     | `boolean`                         | `false`     | Disables the input field       |
+| `required`     | `boolean`                         | `false`     | Marks the field as required    |
+| `readOnly`     | `boolean`                         | `false`     | Sets the field as read-only    |
+| `hasCountry`   | `boolean`                         | `false`     | Enables country code selection |
 
 ---
 
@@ -121,7 +103,7 @@ The button supports multiple styles. Use the `variant` prop to define a style.
 You can override styles using the `className` prop.
 
 ```tsx
-<Button className="custom-button">Custom Styled Button</Button>
+<PhoneInputField className="custom-input" />
 ```
 
 ---

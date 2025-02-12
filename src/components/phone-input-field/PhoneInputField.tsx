@@ -1,12 +1,24 @@
 import { FC, useEffect, useRef, useState } from "react";
-import {
-  TAnimateInputField,
-  TInputChangeEvent,
-} from "../../lib/types/InputType";
+import { TInputChangeEvent } from "../../lib/types/InputType";
 import { cn } from "../../lib/utils/cn";
 
+type TPhoneInputField = {
+  label: string;
+  type: string;
+  autoComplete: string;
+  name: string;
+  formData: Record<string, string>;
+  onChange: (ev: TInputChangeEvent) => void;
+  onBlur?: () => void;
+  className?: string;
+  disabled?: boolean;
+  required?: boolean;
+  readOnly?: boolean;
+  hasCountry?: boolean;
+};
+
 // InputField component with TS types
-const PhoneInputField: FC<TAnimateInputField> = (props) => {
+const PhoneInputField: FC<TPhoneInputField> = (props) => {
   const [focused, setFocused] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement>(null);
 
