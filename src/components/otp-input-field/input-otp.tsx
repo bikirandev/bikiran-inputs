@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { OTPInput, OTPInputContext } from "input-otp";
-import { DotIcon } from "./DotIcon";
 import { cn } from "../../lib/utils/cn";
+import { iconDot } from "./icon";
 
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
@@ -62,7 +62,7 @@ const InputOTPSeparator = React.forwardRef<
   React.ComponentPropsWithoutRef<"div">
 >(({ ...props }, ref) => (
   <div ref={ref} role="separator" {...props}>
-    <DotIcon />
+    {iconDot()}
   </div>
 ));
 InputOTPSeparator.displayName = "InputOTPSeparator";
