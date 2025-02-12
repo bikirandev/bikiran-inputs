@@ -97,7 +97,8 @@ const ValidationInputField: FC<TValidationField> = (props) => {
             {
               "-top-2 left-4 translate-x-0 translate-y-0":
                 (focused || isValue) && !disabled,
-              "text-secondary-700": focused || isValue,
+              "text-secondary-700": focused,
+              "text-primary": isValue && !focused,
             }
           )}
         >
@@ -118,7 +119,7 @@ const ValidationInputField: FC<TValidationField> = (props) => {
           className={cn(
             "block w-full h-full px-2.5 caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors",
             {
-              "border-secondary-700 caret-current": focused,
+              "border-secondary-700 caret-current": focused || isValue,
             }
           )}
         />

@@ -60,7 +60,8 @@ const AnimatedTextArea: FC<AnimatedTextArea> = (props) => {
             "text-sm font-medium text-primary-700 bg-transparent absolute top-[15px] left-2.5 -translate-y-1/2 transition-all duration-300",
             {
               "-top-2 left-4 translate-x-0 translate-y-0": focused || isValue,
-              "text-secondary-700": focused || isValue,
+              "text-secondary-700": focused,
+              "text-primary": isValue && !focused,
             }
           )}
         >
