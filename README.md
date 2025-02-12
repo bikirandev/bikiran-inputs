@@ -27,7 +27,115 @@ import { PhoneInputField } from "bik-inputs";
 const App = () => {
   return (
     <div>
-      <PhoneInputField placeholder="Enter your phone number" />
+      <PhoneInputField
+        label="Phone Number"
+        type="tel" // optional
+        autoComplete="off" // optional
+        name="phone"
+        formData={formData}
+        onChange={(ev) => setFormData({ ...formData, phone: ev.target.value })}
+        onBlur={handleBlur} // optional
+        className="input-phone"
+        disabled={false} // optional
+        required={true} // optional
+        readOnly={false} // optional
+        placeholder="Enter your phone number"
+      />
+      <AnimatedInputField
+        label="Username"
+        type="text" // optional
+        autoComplete="off" // optional
+        name="username"
+        formData={formData}
+        onChange={(ev) =>
+          setFormData({ ...formData, username: ev.target.value })
+        }
+        onBlur={handleBlur} // optional
+        className="animated-input"
+        disabled={false} // optional
+        required={true} // optional
+        readOnly={false} // optional
+        placeholder="Animated Input"
+      />
+      <CalculationInputField
+        label="Promo Code"
+        type="text" // optional
+        autoComplete="off" // optional
+        name="promoCode"
+        formData={formData}
+        onChange={(ev) => calculateDiscount(ev.target.value)}
+        onBlur={handleBlur} // optional
+        className="input-calculation"
+        disabled={false} // optional
+        required={true} // optional
+        readOnly={false} // optional
+        placeholder="Calculation Input"
+      />
+      <EmailInputField
+        label="Email Address"
+        type="email" // optional
+        autoComplete="email" // optional
+        name="email"
+        formData={formData}
+        onChange={(ev) => setFormData({ ...formData, email: ev.target.value })}
+        onBlur={handleBlur} // optional
+        className="input-email"
+        disabled={false} // optional
+        required={true} // optional
+        readOnly={false} // optional
+        placeholder="Enter your email"
+      />
+      <AnimatedTextArea
+        label="Your Feedback"
+        name="feedback"
+        formData={formData}
+        onChange={(ev) =>
+          setFormData({ ...formData, feedback: ev.target.value })
+        }
+        onBlur={handleBlur} // optional
+        className="animated-textarea"
+        disabled={false} // optional
+        required={true} // optional
+        readOnly={false} // optional
+        placeholder="Animated Text Area"
+      />
+      <ValidationInputField
+        label="Password"
+        type="password" // optional
+        autoComplete="new-password" // optional
+        name="password"
+        formData={formData}
+        onChange={(ev) =>
+          setFormData({ ...formData, password: ev.target.value })
+        }
+        onBlur={handleBlur} // optional
+        className="input-password"
+        disabled={false} // optional
+        required={true} // optional
+        readOnly={false} // optional
+        placeholder="Enter a strong password"
+      />
+      <UserSearchField
+        label="Search User"
+        type="text" // optional
+        autoComplete="off" // optional
+        name="userSearch"
+        formData={formData}
+        onChange={(ev) => searchUser(ev.target.value)}
+        onBlur={handleBlur} // optional
+        className="input-user-search"
+        disabled={false} // optional
+        required={false} // optional
+        readOnly={false} // optional
+        placeholder="Search User"
+      />
+      <OTPInputField
+        value={otp}
+        handleOnChange={(val) => setOtp(val)}
+        disabled={false} // optional
+        reSend={handleResendOTP} // optional
+        placeholder="Enter OTP"
+      />
     </div>
   );
 };
@@ -96,7 +204,76 @@ This package provides multiple input fields for different use cases.
 | `readOnly`     | `boolean`                         | `false`     | Sets the field as read-only    |
 | `hasCountry`   | `boolean`                         | `false`     | Enables country code selection |
 
----
+### **AnimatedInputField Props**
+
+| Prop           | Type                     | Default     | Description                 |
+| -------------- | ------------------------ | ----------- | --------------------------- |
+| `label`        | `string`                 | `""`        | Label for the input field   |
+| `type`         | `string`                 | `undefined` | Input type                  |
+| `autoComplete` | `string`                 | `undefined` | Autocomplete attribute      |
+| `name`         | `string`                 | `""`        | Input name                  |
+| `formData`     | `Record<string, string>` | `{}`        | Form data storage           |
+| `onChange`     | `(ev: any) => void`      | `undefined` | Change event handler        |
+| `onBlur`       | `() => void`             | `undefined` | Blur event handler          |
+| `className`    | `string`                 | `""`        | Additional CSS classes      |
+| `disabled`     | `boolean`                | `false`     | Disables the input field    |
+| `required`     | `boolean`                | `false`     | Marks the field as required |
+| `readOnly`     | `boolean`                | `false`     | Sets the field as read-only |
+
+### **AnimatedTextArea Props**
+
+| Prop        | Type                     | Default     | Description               |
+| ----------- | ------------------------ | ----------- | ------------------------- |
+| `label`     | `string`                 | `""`        | Label for the input field |
+| `name`      | `string`                 | `""`        | Input name                |
+| `formData`  | `Record<string, string>` | `{}`        | Form data storage         |
+| `onChange`  | `(ev: any) => void`      | `undefined` | Change event handler      |
+| `className` | `string`                 | `""`        | Additional CSS classes    |
+| `disabled`  | `boolean`                | `false`     | Disables the input field  |
+
+### **CalculationInputField Props**
+
+| Prop           | Type                     | Default     | Description                    |
+| -------------- | ------------------------ | ----------- | ------------------------------ |
+| `label`        | `string`                 | `""`        | Label for the input field      |
+| `type`         | `string`                 | `"text"`    | Input type                     |
+| `autoComplete` | `string`                 | `"off"`     | Autocomplete attribute         |
+| `calculate`    | `boolean`                | `false`     | Enables calculation mode       |
+| `name`         | `string`                 | `""`        | Input name                     |
+| `formData`     | `Record<string, string>` | `{}`        | Form data storage              |
+| `onChange`     | `(ev: any) => void`      | `undefined` | Change event handler           |
+| `onBlur`       | `() => void`             | `undefined` | Blur event handler             |
+| `className`    | `string`                 | `""`        | Additional CSS classes         |
+| `disabled`     | `boolean`                | `false`     | Disables the input field       |
+| `required`     | `boolean`                | `false`     | Marks the field as required    |
+| `readOnly`     | `boolean`                | `false`     | Sets the field as read-only    |
+| `unit`         | `string`                 | `""`        | Unit to display (e.g., kg, cm) |
+| `currency`     | `string`                 | `""`        | Currency symbol (e.g., $, €)   |
+
+### **OtpInputField Props**
+
+| Prop             | Type                      | Default     | Description                           |
+| ---------------- | ------------------------- | ----------- | ------------------------------------- |
+| `disabled`       | `boolean`                 | `false`     | Disables the OTP input field          |
+| `value`          | `string`                  | `""`        | The value of the OTP input            |
+| `handleOnChange` | `(value: string) => void` | `undefined` | Handler for OTP input changes         |
+| `reSend`         | `() => void`              | `undefined` | Callback for resending OTP (optional) |
+
+### **EmailInputField Props**
+
+| Prop           | Type                     | Default     | Description                                    |
+| -------------- | ------------------------ | ----------- | ---------------------------------------------- |
+| `label`        | `string`                 | `""`        | Label for the email input field                |
+| `type`         | `string`                 | `"text"`    | Input type (should be `email` for email input) |
+| `autoComplete` | `string`                 | `"off"`     | Autocomplete attribute                         |
+| `name`         | `string`                 | `""`        | Input name                                     |
+| `formData`     | `Record<string, string>` | `{}`        | Form data storage                              |
+| `onChange`     | `(ev: any) => void`      | `undefined` | Change event handler                           |
+| `onBlur`       | `() => void`             | `undefined` | Blur event handler                             |
+| `className`    | `string`                 | `""`        | Additional CSS classes                         |
+| `disabled`     | `boolean`                | `false`     | Disables the input field                       |
+| `required`     | `boolean`                | `false`     | Marks the field as required                    |
+| `readOnly`     | `boolean`                | `false`     | Sets the field as read-only                    |
 
 ## 🛠 **Custom Styles**
 

@@ -21,12 +21,8 @@ export type TInputField = {
   type TPassword = "account";
 
 export  type TAnimateInputField = TInputField & {
-    passwordType?: TPassword;
-    calculate?: boolean;
-    currency?: string;
     readOnly?: boolean;
     required?: boolean;
-    hasCountry?: boolean;
   };
 
   export type TValidationField = TInputField & {

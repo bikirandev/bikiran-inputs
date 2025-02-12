@@ -1,9 +1,17 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils/cn";
-import { TAnimateInputField } from "../../lib/types/InputType";
+
+type AnimatedTextArea = {
+  label: string;
+  name: string;
+  formData: Record<string, string>;
+  onChange: (ev: any) => void;
+  className?: string;
+  disabled?: boolean;
+};
 
 // InputField component with TS types
-const AnimatedTextArea: FC<TAnimateInputField> = (props) => {
+const AnimatedTextArea: FC<AnimatedTextArea> = (props) => {
   const [focused, setFocused] = useState<boolean>(false);
   const ref = useRef<HTMLTextAreaElement>(null);
 

@@ -6,8 +6,14 @@ import {
 } from "../../lib/types/InputType";
 import { evaluate } from "../../lib/utils/math";
 
+type TCalculationInputField = TAnimateInputField & {
+  calculate?: boolean;
+  unit?: string;
+  currency?: string;
+};
+
 // InputField component with TS types
-const CalculationInputField: FC<TAnimateInputField> = (props) => {
+const CalculationInputField: FC<TCalculationInputField> = (props) => {
   const [focused, setFocused] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement>(null);
 

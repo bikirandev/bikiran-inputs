@@ -1,4 +1,5 @@
 import React from "react";
+import AnimatedInputField from "../../src/components/animated-input-field/AnimatedInputField";
 
 function App() {
   return (
@@ -7,13 +8,6 @@ function App() {
 
       <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
         <h2>Hello world</h2>
-        {/* <DomainInputField
-          label="Type something"
-          name="domain"
-          formData={{ domain: "" }}
-          onChange={() => {}}
-          valid
-        /> */}
       </div>
     </div>
   );

@@ -1,6 +1,19 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils/cn";
-import { TAnimateInputField } from "../../lib/types/InputType";
+
+type TAnimateInputField = {
+  label: string;
+  type?: string;
+  autoComplete?: string;
+  name: string;
+  formData: Record<string, string>;
+  onChange: (ev: any) => void;
+  onBlur?: () => void;
+  className?: string;
+  disabled?: boolean;
+  required?: boolean;
+  readOnly?: boolean;
+};
 
 // InputField component with TS types
 const AnimatedInputField: FC<TAnimateInputField> = (props) => {
