@@ -69,7 +69,7 @@ const AnimatedInputField: FC<TAnimateInputField> = (props) => {
             {
               "-top-2 left-4 translate-x-0 translate-y-0":
                 (focused || isValue) && !disabled,
-              "text-secondary-700": focused,
+              "text-secondary-700": focused || isValue,
             }
           )}
         >

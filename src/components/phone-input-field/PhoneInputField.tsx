@@ -4,8 +4,8 @@ import { cn } from "../../lib/utils/cn";
 
 type TPhoneInputField = {
   label: string;
-  type: string;
-  autoComplete: string;
+  type?: string;
+  autoComplete?: string;
   name: string;
   formData: Record<string, string>;
   onChange: (ev: TInputChangeEvent) => void;
@@ -50,14 +50,10 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
     }
   };
 
-  const handleChange = (ev: TInputChangeEvent) => {
-    if (!ev.target) return;
-    const cleanedValue = ev.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-    if (onChange) {
-      onChange({
-        target: { name, value: cleanedValue }, // Ensure correct event structure
-      } as TInputChangeEvent);
-    }
+  const handleOnChange = (ev: TInputChangeEvent) => {
+    const value = ev.target.value.replace(/\D/g, ""); // Remove non-digit characters
+    ev.target.value = value;
+    onChange(ev);
   };
 
   // Focus the input when `focused` is set to true
@@ -87,10 +83,10 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
       >
         <label
           className={cn(
-            "text-sm font-medium text-primary-300 leading-5 bg-white absolute top-1/2 left-2.5 -translate-y-1/2 transition-all duration-300 focus:bg-white",
+            "text-sm font-medium text-primary-300 leading-5 bg-transparent absolute top-1/2 left-2.5 -translate-y-1/2 transition-all duration-300 focus:bg-transparent",
             {
               "-top-2 left-4 translate-x-0 translate-y-0": focused || isValue,
-              "text-secondary-700": focused,
+              "text-secondary-700": focused || isValue,
             }
           )}
         >
@@ -103,13 +99,13 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
           required={required}
           name={name}
           value={inputValue}
-          onChange={handleChange}
+          onChange={handleOnChange}
           onBlur={onBlur || handleBlur}
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}
           className={cn(
-            "block w-full h-full px-2.5 caret-white rounded-8 text-base outline-none disabled:grayscale transition-colors"
+            "block w-full h-full px-2.5 caret-current rounded-8 text-base outline-none disabled:grayscale transition-colors"
           )}
         />
       </div>

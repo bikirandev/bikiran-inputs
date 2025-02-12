@@ -6,6 +6,7 @@ import UserDetailsComp from "./UserDetailsComp";
 import UserSkeletonComp from "./UserSkeletonComp";
 import { TInputChangeEvent, TState } from "../../lib/types/InputType";
 import AnimatedInputField from "../animated-input-field/AnimatedInputField";
+import { InputField } from "../input-field/InputField";
 
 type TProps = {
   selectedUser: any;
@@ -53,7 +54,7 @@ const UserSearchField: FC<TProps> = ({
   return (
     <div>
       <div className="relative mt-3">
-        <AnimatedInputField
+        <InputField
           formData={formData}
           label={label}
           name="user"
