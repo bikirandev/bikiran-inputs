@@ -93,7 +93,7 @@ const ValidationInputField: FC<TValidationField> = (props) => {
       >
         <label
           className={cn(
-            "text-sm font-medium text-primary-300 leading-5 bg-white absolute top-1/2 left-2.5 -translate-y-1/2 transition-all duration-300 focus:bg-white",
+            "text-sm font-medium text-primary-300 leading-5 px-1 bg-white absolute top-1/2 left-2.5 -translate-y-1/2 transition-all duration-300 focus:bg-white",
             {
               "-top-2.5 left-4 translate-x-0 translate-y-0":
                 (focused || isValue) && !disabled,
@@ -120,7 +120,7 @@ const ValidationInputField: FC<TValidationField> = (props) => {
             "block w-full h-full px-2.5 caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors",
             {
               "border-secondary-700 caret-current": focused,
-              "border-primary": isValue,
+              "border-primary": isValue && !focused,
             }
           )}
         />

@@ -3,32 +3,33 @@ import { InputOTPGroup, InputOTPSlot, InputOTP } from "./input-otp";
 import { iconGenerate, iconGenerateFill } from "./icon";
 
 type TProps = {
-  disabled: boolean;
+  disabled?: boolean;
   value: string;
   handleOnChange: (value: string) => void;
   reSend?: () => void;
+  maxLength?: number;
 };
 const OTPInputField: FC<TProps> = ({
-  disabled,
+  disabled = false,
   value,
   handleOnChange,
   reSend,
+  maxLength = 6,
 }) => {
+  const slots = Array.from({ length: maxLength }, (_, index) => index);
+
   return (
     <div className="flex gap-1">
       <InputOTP
-        maxLength={6}
+        maxLength={maxLength}
         value={value}
         onChange={handleOnChange}
         disabled={disabled}
       >
         <InputOTPGroup className="otp-input-grp">
-          <InputOTPSlot index={0} className="h-11" />
-          <InputOTPSlot index={1} className="h-11" />
-          <InputOTPSlot index={2} className="h-11" />
-          <InputOTPSlot index={3} className="h-11" />
-          <InputOTPSlot index={4} className="h-11" />
-          <InputOTPSlot index={5} className="h-11" />
+          {slots.map((index) => (
+            <InputOTPSlot key={index} index={index} className="h-11" />
+          ))}
         </InputOTPGroup>
       </InputOTP>
       {reSend && (

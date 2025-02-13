@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { OTPInput, OTPInputContext } from "input-otp";
-import { cn } from "../../lib/utils/cn";
 import { iconDot } from "./icon";
+import { cn } from "../../lib/utils/cn";
 
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
