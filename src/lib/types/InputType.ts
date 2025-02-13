@@ -36,7 +36,7 @@ export type TCalculationInputField = TInputField & {
 export type TAnimatedTextArea = {
   label: string;
   name: string;
-  formData: Record<string, string>;
+  formData: Record<string, any>;
   onChange: (ev: any) => void;
   className?: string;
   disabled?: boolean;
@@ -47,7 +47,7 @@ export type TAnimateInputField = {
   type?: string;
   autoComplete?: string;
   name: string;
-  formData: Record<string, string>;
+  formData: Record<string, any>;
   onChange: (ev: any) => void;
   onBlur?: () => void;
   className?: string;

@@ -3,7 +3,7 @@ import { cn } from "../../lib/utils/cn";
 import { TInputField } from "../../lib/types/InputType";
 
 // InputField component with TS types
-export const InputField: FC<TInputField> = ({
+const InputField: FC<TInputField> = ({
   label,
   type = "text",
   placeholder = "",
@@ -37,3 +37,4 @@ export const InputField: FC<TInputField> = ({
     </div>
   );
 };
+export default InputField;
