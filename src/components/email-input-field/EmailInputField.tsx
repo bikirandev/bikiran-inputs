@@ -67,7 +67,7 @@ const EmailInputField: FC<TAnimateInputField> = (props) => {
       >
         <label
           className={cn(
-            "text-sm font-medium text-primary-300 leading-5 px-1 bg-white absolute top-1/2 left-2.5 -translate-y-1/2 transition-all duration-300 focus:bg-white",
+            "text-sm font-medium text-primary-300 leading-5 px-1 bg-white absolute top-1/2 left-2.5 -translate-y-1/2 transition-all duration-300 focus:bg-white z-10",
             {
               "-top-2.5 left-4 translate-x-0 translate-y-0": focused || isValue,
               "text-secondary-700": focused,

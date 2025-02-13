@@ -62,7 +62,7 @@ const UserSearchField: FC<TProps> = ({
           onChange={handleOnChange}
           className=""
         />
-        <div className="absolute top-[80px] w-full z-10">
+        <div className="absolute top-21 w-full z-10">
           <UserPopover
             data={userData}
             show={formData?.["user"]?.length > 2 && userData.length > 0}

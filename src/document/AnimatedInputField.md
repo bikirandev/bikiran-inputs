@@ -43,18 +43,18 @@ Each component has its own set of props for customization. Check the documentati
 
 ### **Common Props**
 
-| Prop        | Type                     | Default     | Description                 | Required? |
-| ----------- | ------------------------ | ----------- | --------------------------- | --------- |
-| `label`     | `string`                 | `""`        | Label for the input field   | ✅ Yes    |
-| `type`      | `string`                 | `"text"`    | Input type                  | ❌ No     |
-| `name`      | `string`                 | `""`        | Input name                  | ✅ Yes    |
-| `formData`  | `Record<string, string>` | `{}`        | Form data storage           | ✅ Yes    |
-| `onChange`  | `(ev: any) => void`      | `undefined` | Change event handler        | ✅ Yes    |
-| `onBlur`    | `() => void`             | `undefined` | Blur event handler          | ❌ No     |
-| `className` | `string`                 | `""`        | Additional CSS classes      | ❌ No     |
-| `disabled`  | `boolean`                | `false`     | Disables the input field    | ❌ No     |
-| `required`  | `boolean`                | `false`     | Marks the field as required | ❌ No     |
-| `readOnly`  | `boolean`                | `false`     | Sets the field as read-only | ❌ No     |
+| Prop        | Type                  | Default     | Description                 | Required? |
+| ----------- | --------------------- | ----------- | --------------------------- | --------- |
+| `label`     | `string`              | `""`        | Label for the input field   | ✅ Yes    |
+| `type`      | `string`              | `"text"`    | Input type                  | ❌ No     |
+| `name`      | `string`              | `""`        | Input name                  | ✅ Yes    |
+| `formData`  | `Record<string, any>` | `{}`        | Form data storage           | ✅ Yes    |
+| `onChange`  | `(ev: any) => void`   | `undefined` | Change event handler        | ✅ Yes    |
+| `onBlur`    | `() => void`          | `undefined` | Blur event handler          | ❌ No     |
+| `className` | `string`              | `""`        | Additional CSS classes      | ❌ No     |
+| `disabled`  | `boolean`             | `false`     | Disables the input field    | ❌ No     |
+| `required`  | `boolean`             | `false`     | Marks the field as required | ❌ No     |
+| `readOnly`  | `boolean`             | `false`     | Sets the field as read-only | ❌ No     |
 
 ---
 
