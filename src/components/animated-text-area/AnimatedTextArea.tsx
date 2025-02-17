@@ -49,7 +49,7 @@ const AnimatedTextArea: FC<TAnimatedTextArea> = (props) => {
       >
         <label
           className={cn(
-            "text-sm font-medium text-primary-700 bg-white px-1 absolute top-[15px] left-2.5 -translate-y-1/2 transition-all duration-300 z-10",
+            "text-sm font-medium text-primary-300 bg-white px-1 absolute top-[15px] left-2.5 -translate-y-1/2 transition-all duration-300 z-10",
             {
               "-top-2.5 left-4 translate-x-0 translate-y-0": focused || isValue,
               "text-secondary-700": focused,

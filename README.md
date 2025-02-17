@@ -16,6 +16,12 @@ yarn add bik-inputs
 
 ---
 
+## Dependencies
+
+**clsx**
+**Tailwind CSS**
+**input-otp**
+
 ## 📌 Note:
 
 This library utilizes Tailwind CSS for styling. The colors displayed in the input fields can be customized by modifying the primary and secondary colors in your Tailwind configuration file. To ensure proper styling, make sure to define primary and secondary-700 in your Tailwind theme settings.

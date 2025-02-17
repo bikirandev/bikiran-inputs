@@ -14,7 +14,7 @@ import UserSearchField from "./UserSearchField";
 
 const Example = () => {
   const [selectedUser, setSelectedUser] = useState(null);
-  const [formData, setFormData] = useState({ user: "" });
+  const [formData, setFormData] = useState({ user: "" }); // must add a formData.user
   const [debouncedValue, setDebouncedValue] = useState("");
   const [userData, setUserData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
