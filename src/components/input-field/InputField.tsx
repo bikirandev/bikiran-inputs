@@ -13,11 +13,13 @@ const InputField: FC<TInputField> = ({
   onChange,
   onBlur,
   className = "",
+  required = false,
   disabled = false,
 }) => {
   return (
     <div>
       <label className="text-base font-medium text-primary">{label}</label>
+      {required && <span className="text-error opacity-75">*</span>}
       <div className="w-full h-[45px] relative">
         <input
           type={type}
@@ -25,6 +27,7 @@ const InputField: FC<TInputField> = ({
           value={formData[name] || ""}
           onChange={onChange}
           onBlur={onBlur}
+          required={required}
           autoComplete={autoComplete}
           placeholder={placeholder}
           disabled={disabled}
