@@ -21,6 +21,8 @@ yarn add bik-inputs
 **clsx**
 **Tailwind CSS**
 **input-otp**
+**react-datepicker**
+**dayjs**
 
 ## 📌 Note:
 
@@ -66,6 +68,7 @@ export default App;
 <ValidationInputField placeholder="Validation Input" />
 <UserSearchField placeholder="Search User" />
 <OTPInputField value="" handleOnChange={handleOnChange} />
+<DateInputField />
 ```
 
 ---

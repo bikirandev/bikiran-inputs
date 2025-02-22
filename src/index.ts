@@ -7,3 +7,4 @@ export {default as ValidationInputField} from "./components/validation-input-fie
 export {default as UserSearchField} from "./components/user-search-field/UserSearchField"
 export {default as OTPInputField} from "./components/otp-input-field/OTPInputField"
 export {default as InputField} from "./components/input-field/InputField"
+export {default as DateInputField} from "./components/date-input-field/DateInputField"
