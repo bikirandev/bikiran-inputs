@@ -34,7 +34,7 @@ const InputField: FC<TInputField> = ({
         placeholder={placeholder}
         disabled={disabled}
         className={cn(
-          "block w-full h-[45x] px-2.5 mt-1 border rounded-[8px] text-base outline-none disabled:grayscale ",
+          "block w-full h-[45px] px-2.5 mt-1 border rounded-[8px] text-base outline-none disabled:grayscale ",
           className
         )}
       />
