@@ -15,10 +15,10 @@ const InputField: FC<TInputField> = ({
   className = "",
   required = false,
   disabled = false,
-  inputClassName = "",
+  parentClassName = "",
 }) => {
   return (
-    <div className={cn("w-full h-[45px] relative", className)}>
+    <div className={cn("w-full", parentClassName)}>
       <div>
         <label className="text-base font-medium text-primary">{label}</label>
         {required && <span className="text-error opacity-75">*</span>}
@@ -34,8 +34,8 @@ const InputField: FC<TInputField> = ({
         placeholder={placeholder}
         disabled={disabled}
         className={cn(
-          "block w-full h-full px-2.5 mt-1 border rounded-[8px] text-base outline-none disabled:grayscale ",
-          inputClassName
+          "block w-full h-[45x] px-2.5 mt-1 border rounded-[8px] text-base outline-none disabled:grayscale ",
+          className
         )}
       />
     </div>
