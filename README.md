@@ -108,6 +108,10 @@ You can override styles using the `className` prop.
 
 For more details, visit the [GitHub repository](https://github.com/bikirandev/Bikiran-Inputs/wiki).
 
+## 🔗 **Development**
+
+[How to Contribute](https://github.com/bikirandev/Bikiran-Inputs/wiki/Contributing.md)
+
 ---
 
 ## 🔗 **License**
