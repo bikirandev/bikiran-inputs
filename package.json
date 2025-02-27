@@ -1,6 +1,6 @@
 {
   "name": "bik-inputs",
-  "version": "1.23.8",
+  "version": "1.24.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -8,14 +8,14 @@
   ],
   "scripts": {
     "dev": "vite example",
-    "build": "tsc || true && copyfiles src/**/* dist --up 1 && echo '{\"type\":\"module\"}' > dist/package.json",
+    "build": "tsc && copyfiles src/**/* dist --up 1 && echo {\"type\":\"module\"} > dist/package.json && npx tailwindcss -i ./src/global.css -o ./dist/output.css --minify",
     "vite-build": "vite build",
     "preview": "vite preview example",
     "prepublishOnly": "npm run build",
     "pack-local": "npm run build && npm pack",
     "clean": "node clean.js",
     "test": "vitest",
-    "build:tailwind": "npm exec tailwindcss -i src/tailwind.css -o dist/output.css --minify"
+    "build:css": "npx tailwindcss -i ./src/global.css -o ./dist/output.css --minify"
   },
   "keywords": [
     "react",
@@ -45,10 +45,13 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
     "copyfiles": "^2.4.1",
     "jsdom": "^23.0.1",
+    "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",
     "vitest": "^1.0.4"
