@@ -42,14 +42,15 @@ The `AnimatedTextArea` component provides various props for customization.
 
 ### **Common Props**
 
-| Prop        | Type                                                   | Default            | Description                     | Required? |
-| ----------- | ------------------------------------------------------ | ------------------ | ------------------------------- | --------- |
-| `label`     | `string`                                               | `"Type something"` | Label for the input field       | ✅ Yes    |
-| `name`      | `string`                                               | `""`               | Name attribute for the textarea | ✅ Yes    |
-| `formData`  | `Record<string, any>`                                  | `{}`               | Form data object                | ✅ Yes    |
-| `onChange`  | `(ev: React.ChangeEvent<HTMLTextAreaElement>) => void` | `undefined`        | Change event handler            | ✅ Yes    |
-| `className` | `string`                                               | `""`               | Additional CSS classes          | ❌ No     |
-| `disabled`  | `boolean`                                              | `false`            | Disables the textarea           | ❌ No     |
+| Prop           | Type                                                   | Default            | Description                     | Required? |
+| -------------- | ------------------------------------------------------ | ------------------ | ------------------------------- | --------- |
+| `label`        | `string`                                               | `"Type something"` | Label for the input field       | ✅ Yes    |
+| `name`         | `string`                                               | `""`               | Name attribute for the textarea | ✅ Yes    |
+| `formData`     | `Record<string, any>`                                  | `{}`               | Form data object                | ✅ Yes    |
+| `onChange`     | `(ev: React.ChangeEvent<HTMLTextAreaElement>) => void` | `undefined`        | Change event handler            | ✅ Yes    |
+| `className`    | `string`                                               | `""`               | Additional CSS classes          | ❌ No     |
+| `disabled`     | `boolean`                                              | `false`            | Disables the textarea           | ❌ No     |
+| `autoComplete` | `string`                                               | `off`              | Sets the auto complete off      | ❌ No     |
 
 ---
 

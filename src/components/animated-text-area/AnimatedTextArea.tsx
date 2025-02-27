@@ -49,9 +49,10 @@ const AnimatedTextArea: FC<TAnimatedTextArea> = (props) => {
       >
         <label
           className={cn(
-            "text-sm font-medium text-primary-300 bg-white px-1 absolute top-[15px] left-2.5 -translate-y-1/2 transition-all duration-300 z-10",
+            "text-sm font-medium text-primary-300 bg-white px-1 absolute top-[15px] left-[10px] -translate-y-1/2 transition-all duration-300 z-10",
             {
-              "-top-2.5 left-4 translate-x-0 translate-y-0": focused || isValue,
+              "-top-[10px] left-4 translate-x-0 translate-y-0":
+                focused || isValue,
               "text-secondary-700": focused,
               "text-primary": isValue && !focused,
             }
@@ -68,7 +69,7 @@ const AnimatedTextArea: FC<TAnimatedTextArea> = (props) => {
           onBlur={handleBlur}
           disabled={disabled}
           className={cn(
-            "block w-full h-full p-2.5 caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors",
+            "block w-full h-full p-[10px] caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors",
             {
               "border-secondary-700 caret-current": focused,
               "border-primary": isValue && !focused,
