@@ -1,5 +1,3 @@
-import "../dist/output.css"; // Ensure this path is correct
-
 export { default as PhoneInputField } from "./components/phone-input-field/PhoneInputField";
 export { default as AnimatedInputField } from "./components/animated-input-field/AnimatedInputField";
 export { default as CalculationInputField } from "./components/calculation-input-field/CalculationInputField";
