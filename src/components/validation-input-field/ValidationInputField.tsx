@@ -2,6 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils/cn";
 import { TInputChangeEvent, TValidationField } from "../../lib/types/InputType";
 import { iconAlert, iconLoading, iconTick } from "./icons/Icons";
+import style from "../../style/style.module.css";
 
 const ValidationCheck: FC<{
   loading?: boolean | undefined;
@@ -87,19 +88,12 @@ const ValidationInputField: FC<TValidationField> = (props) => {
 
   return (
     <div className="animate-input w-full">
-      <div
-        className={cn("w-full h-[45px] relative overflow-visible", className)}
-        onClick={handleFocus}
-      >
+      <div className={cn(style.wrapper, className)} onClick={handleFocus}>
         <label
           className={cn(
-            "text-sm font-medium text-primary-300 leading-5 px-1 bg-white absolute top-1/2 left-[10px] -translate-y-1/2 transition-all duration-300 focus:bg-white z-10",
-            {
-              "-top-[10px] left-4 translate-x-0 translate-y-0":
-                focused || isValue,
-              "text-secondary-700": focused,
-              "text-primary-700 ": isValue && !focused,
-            }
+            style.label,
+            focused || isValue ? style.labelFocused : "",
+            isValue && !focused ? style.labelHasValue : ""
           )}
         >
           {label || "Type something"}
@@ -117,11 +111,9 @@ const ValidationInputField: FC<TValidationField> = (props) => {
           disabled={disabled}
           readOnly={readOnly}
           className={cn(
-            "block w-full h-full px-[10px] caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors",
-            {
-              "border-secondary-700 caret-current": focused,
-              "border-primary": isValue && !focused,
-            }
+            style.calculationInput,
+            focused ? style.calculationInputFocus : "",
+            isValue && !focused ? style.calculationInputHasUnit : ""
           )}
         />
         {/* Loading and validation icons */}

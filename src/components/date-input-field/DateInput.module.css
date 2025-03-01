@@ -1,5 +1,5 @@
 .wrapper {
-  @apply [&_.react-datepicker-wrapper]:w-full !min-h-[45px],;
+  @apply [&_.react-datepicker-wrapper]:w-full !min-h-[45px];
 }
 
 .disabled {

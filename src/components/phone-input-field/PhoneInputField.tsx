@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { TInputChangeEvent } from "../../lib/types/InputType";
 import { cn } from "../../lib/utils/cn";
+import style from "./PhoneInput.module.css";
 
 type TPhoneInputField = {
   label: string;
@@ -69,11 +70,8 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
   return (
     <div
       className={cn(
-        "animate-input w-full flex border items-center rounded-[8px]",
-        {
-          "border-secondary-700 caret-current": focused || isValue,
-          "border-primary": isValue && !focused,
-        }
+        focused || isValue ? "border-secondary-700 caret-current" : "",
+        isValue && !focused ? "border-primary-700" : ""
       )}
     >
       {/* TODO: if need to add country add here  */}
@@ -83,19 +81,12 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
           <div>code</div>
         </div>
       )} */}
-      <div
-        className={cn("w-full h-[45px] relative overflow-visible", className)}
-        onClick={handleFocus}
-      >
+      <div className={cn(style.wrapper, className)} onClick={handleFocus}>
         <label
           className={cn(
-            "text-sm font-medium text-primary-300 leading-5 px-1 bg-white absolute top-1/2 left-[10px] -translate-y-1/2 transition-all duration-300 focus:bg-white z-10",
-            {
-              "-top-[10px] left-4 translate-x-0 translate-y-0":
-                focused || isValue,
-              "text-secondary-700": focused,
-              "text-primary ": isValue && !focused,
-            }
+            style.label,
+            focused || isValue ? style.labelFocused : "",
+            isValue && !focused ? style.labelHasValue : ""
           )}
         >
           {label || "Type something"}
@@ -112,9 +103,7 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}
-          className={cn(
-            "block w-full h-full px-[10px] caret-current rounded-8 text-base outline-none disabled:grayscale transition-colors"
-          )}
+          className={cn(style.input)}
         />
       </div>
     </div>
