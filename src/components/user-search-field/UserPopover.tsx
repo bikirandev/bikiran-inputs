@@ -1,16 +1,18 @@
 import { FC } from "react";
 import { TState } from "../../lib/types/InputType";
+import style from "./UserSearch.module.css";
+import { cn } from "../../lib/utils/cn";
 
 const UserInformation: FC<{
   data: any[];
   setSelectedUser: TState<any>;
 }> = ({ data, setSelectedUser }) => {
   return (
-    <div className="flex flex-col justify-between items-start py-2 px-3 gap-3 overflow-y-auto">
+    <div className={cn(style.userInfoContainer)}>
       {data.map((item) => (
         <div
           key={item.id}
-          className="flex items-center gap-[14px] hover:bg-secondary-100 px-1 py-3  rounded-8 cursor-pointer w-full"
+          className={style.userWrapper}
           onClick={() => setSelectedUser(item)}
         >
           <div className="size-9 flex-shrink-0">
@@ -44,9 +46,9 @@ const UserPopover = ({
 }) => {
   return (
     <div
-      className={`w-full h-auto bg-white shadow-lg rounded-15 transition-[max-height] duration-300 ${
-        show ? "max-h-[500px] border border-primary-100" : "max-h-0"
-      }`}
+      className={
+        (style.popOverContainer, show ? style.popOverShow : style.popOverHide)
+      }
     >
       {/* {loading && <UserSkeletonComp />} */}
       {!loading && data.length > 0 && (

@@ -47,7 +47,7 @@ const DateInputField: FC<TInputDateProps> = ({
         placeholderText="Select Date"
         disabled={disabled}
         wrapperClassName="size-full"
-        className={style.datePicker}
+        className={cn(style.datePicker, "react-datepicker-input")}
       />
     </div>
   );

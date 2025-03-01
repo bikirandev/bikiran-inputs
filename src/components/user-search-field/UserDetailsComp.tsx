@@ -1,4 +1,5 @@
 import { cn } from "../../lib/utils/cn";
+import style from "./UserSearch.module.css";
 
 const UserDetailsComp = ({
   data,
@@ -8,24 +9,15 @@ const UserDetailsComp = ({
   className?: any;
 }) => {
   return (
-    <div className="flex flex-col justify-between items-start overflow-y-auto">
-      <div
-        className={cn(
-          `flex items-center gap-[14px] py-3 px-3 w-full`,
-          className
-        )}
-      >
-        <div className="size-10 overflow-hidden">
+    <div className={cn(style.container)}>
+      <div className={cn(style.wrapper, className)}>
+        <div className={style.photo}>
           <img src={data?.photoUrl} alt="" className="rounded-full" />
         </div>
 
-        <div className="flex flex-col">
-          <div className="full-name text-primary text-start text-base font-medium">
-            {data?.displayName}
-          </div>
-          <div className="full-name text-primary-700  text-start text-sm font-normal">
-            {data?.email}
-          </div>
+        <div className={style.infoContainer}>
+          <div className={style.displayName}>{data?.displayName}</div>
+          <div className={style.email}>{data?.email}</div>
         </div>
       </div>
     </div>
