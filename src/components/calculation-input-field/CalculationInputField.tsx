@@ -3,6 +3,7 @@ import {
   TCalculationInputField,
   TInputChangeEvent,
 } from "../../lib/types/InputType";
+import styles from "./CalculationInput.module.css";
 import { evaluate } from "../../lib/utils/math";
 import { cn } from "../../lib/utils/cn";
 
@@ -66,61 +67,52 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
   const isValue = inputValue !== "";
 
   return (
-    <div className="animate-input w-full">
-      <div
-        className={cn("w-full h-[45px] relative overflow-visible", className)}
-        onClick={handleFocus}
+    // <div className="animate-input w-full">
+    <div className={cn(styles.wrapper, className)} onClick={handleFocus}>
+      <label
+        className={cn(
+          styles.label,
+          focused || isValue ? styles.labelFocused : "",
+          isValue && !focused ? styles.labelHasValue : ""
+        )}
       >
-        <label
-          className={cn(
-            "text-sm font-medium text-primary-300 leading-5 px-1 bg-white absolute top-1/2 left-[10px] -translate-y-1/2 transition-all duration-300 focus:bg-white z-10",
-            {
-              "-top-[10px] left-4 translate-x-0 translate-y-0":
-                focused || isValue,
-              "text-secondary-700": focused,
-              "text-primary": isValue && !focused,
-            }
-          )}
-        >
-          {label || "Type something"}
-          {required && <span className="text-error opacity-75">*</span>}
-        </label>
-        <input
-          ref={ref}
-          type={type}
-          required={required}
-          name={name}
-          value={inputValue}
-          onChange={handleChange}
-          onBlur={onBlur || handleBlur}
-          autoComplete={autoComplete}
-          disabled={disabled}
-          readOnly={readOnly}
-          className={cn(
-            "block w-full h-full px-[10px] caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors",
-            {
-              "border-secondary-700 caret-current": focused,
-              "border-primary": isValue && !focused,
-              "pr-12": unit,
-            }
-          )}
-        />
-        {unit && !currency && (
-          <div className="absolute top-1/2 right-2 flex items-center space-x-2 transform -translate-y-1/2">
-            <div className="text-[10px] text-primary-700">{unit}</div>
-          </div>
+        {label || "Type something"}
+        {required && <span className="text-error opacity-75">*</span>}
+      </label>
+      <input
+        ref={ref}
+        type={type}
+        required={required}
+        name={name}
+        value={inputValue}
+        onChange={handleChange}
+        onBlur={onBlur || handleBlur}
+        autoComplete={autoComplete}
+        disabled={disabled}
+        readOnly={readOnly}
+        className={cn(
+          styles.calculationInput,
+          focused ? styles.calculationInputFocus : "",
+          isValue && !focused ? styles.calculationInputHasUnit : "",
+          unit ? styles.calculationInputHasUnit : ""
         )}
+      />
+      {unit && !currency && (
+        <div className={cn(styles.showUnit)}>
+          <div className={cn(styles.unitText)}>{unit}</div>
+        </div>
+      )}
 
-        {/* Currency and unit */}
-        {currency && (
-          <div className="absolute top-1/2 right-2 flex items-center space-x-2 transform -translate-y-1/2">
-            <div className="text-[10px] text-primary-700">
-              {unit && currency ? `${currency}/${unit}` : unit || currency}
-            </div>
+      {/* Currency and unit */}
+      {currency && (
+        <div className={cn(styles.showUnit)}>
+          <div className={cn(styles.unitText)}>
+            {unit && currency ? `${currency}/${unit}` : unit || currency}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
+    // </div>
   );
 };
 export default CalculationInputField;

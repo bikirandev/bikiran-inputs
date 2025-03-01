@@ -1,0 +1,33 @@
+.wrapper {
+  @apply w-full h-[45px] relative overflow-visible;
+}
+r .label {
+  @apply text-sm font-medium text-primary-300 leading-5 px-1 bg-white absolute top-1/2 left-[10px] -translate-y-1/2 transition-all duration-300 focus:bg-white z-10;
+}
+.labelFocused {
+  @apply -top-[10px] left-4 translate-x-0 translate-y-0;
+}
+.labelHasValue {
+  @apply text-primary-700;
+}
+
+.calculationInput {
+  @apply block w-full h-full px-[10px] caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors;
+}
+.calculationInputFocus {
+  @apply border-secondary-700 caret-current;
+}
+.calculationInputHasValue {
+  @apply border-primary-700;
+}
+.calculationInputHasUnit {
+  @apply pr-12;
+}
+
+.showUnit {
+  @apply absolute top-1/2 right-2 flex items-center space-x-2 transform -translate-y-1/2;
+}
+
+.unitText {
+  @apply text-[10px] text-primary-700;
+}
