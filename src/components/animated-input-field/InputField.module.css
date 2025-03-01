@@ -7,7 +7,7 @@
 }
 
 .label {
-  @apply text-sm text-primary-300 font-medium leading-5 px-1 bg-white absolute top-1/2 left-[10px] transform -translate-x-1/2 transition-all duration-300 z-10;
+  @apply text-sm font-medium text-primary-300 leading-5 px-1 bg-white absolute top-1/2 left-[10px] -translate-y-1/2 transition-all duration-300 focus:bg-white z-10;
 }
 
 .labelFocused {

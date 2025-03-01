@@ -1,6 +1,6 @@
 {
   "name": "bik-inputs",
-  "version": "1.24.4",
+  "version": "1.24.5",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -57,7 +57,6 @@
     "vitest": "^1.0.4"
   },
   "dependencies": {
-    "bik-inputs": "file:bik-inputs-1.24.3.tgz",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "input-otp": "^1.4.2",
