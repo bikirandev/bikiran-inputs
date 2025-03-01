@@ -603,18 +603,6 @@ bidi-js@^1.0.3:
   dependencies:
     require-from-string "^2.0.2"
 
-"bik-inputs@file:bik-inputs-1.23.8.tgz":
-  version "1.23.8"
-  resolved "file:bik-inputs-1.23.8.tgz"
-  integrity sha512-x2XVa+9fzcNs2uGEFBJKN0nv/uOeIJkBJ3wOR3o/rwVv0e8Eh3hw07dANhhlb8TBqlAMU9mi7+BNcrmHbov79w==
-  dependencies:
-    bik-inputs "file:bik-inputs-1.23.8.tgz"
-    clsx "^2.1.1"
-    dayjs "^1.11.13"
-    input-otp "^1.4.2"
-    react-datepicker "^8.1.0"
-    tailwind-merge "^3.0.1"
-
 binary-extensions@^2.0.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.3.0.tgz"
