@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import styles from "./InputField.module.css";
 import { cn } from "../../lib/utils/cn";
+import { TInputChangeEvent } from "../../lib/types/InputType";
 
 type TAnimateInputField = {
   label: string;
@@ -9,7 +10,7 @@ type TAnimateInputField = {
   name: string;
   formData: Record<string, any>;
   onChange: (ev: any) => void;
-  onBlur?: () => void;
+  onBlur?: (ev: any) => void;
   className?: string;
   disabled?: boolean;
   required?: boolean;
@@ -42,7 +43,10 @@ const AnimatedInputField: FC<TAnimateInputField> = (props) => {
     }
   };
 
-  const handleBlur = () => {
+  const handleBlur = (ev: TInputChangeEvent) => {
+    if (onBlur) {
+      onBlur(ev);
+    }
     if (ref.current) {
       setFocused(false);
     }
@@ -77,7 +81,7 @@ const AnimatedInputField: FC<TAnimateInputField> = (props) => {
           name={name}
           value={inputValue}
           onChange={onChange}
-          onBlur={onBlur || handleBlur}
+          onBlur={handleBlur}
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}
