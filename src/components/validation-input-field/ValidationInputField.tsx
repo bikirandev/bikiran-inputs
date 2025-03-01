@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils/cn";
 import { TInputChangeEvent, TValidationField } from "../../lib/types/InputType";
 import { iconAlert, iconLoading, iconTick } from "./icons/Icons";
-import style from "../../style/style.module.css";
+import style from "../../style/global.module.css";
 
 const ValidationCheck: FC<{
   loading?: boolean | undefined;

@@ -5,7 +5,7 @@ import {
 } from "../../lib/types/InputType";
 import { cn } from "../../lib/utils/cn";
 
-import style from "../../style/style.module.css";
+import style from "../../style/global.module.css";
 
 // InputField component with TS types
 const EmailInputField: FC<TAnimateInputField> = (props) => {
