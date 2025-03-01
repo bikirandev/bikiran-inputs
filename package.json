@@ -1,14 +1,15 @@
 {
   "name": "bik-inputs",
-  "version": "1.25.0",
+  "version": "1.25.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "dist/**/*.css"
   ],
   "scripts": {
     "dev": "vite example",
-    "build": "tsc && copyfiles src/**/* dist --up 1 && echo {\"type\":\"module\"} > dist/package.json",
+    "build": "tsc && copyfiles src/**/*.css dist --up 1 && echo {\"type\":\"module\"} > dist/package.json",
     "vite-build": "vite build",
     "preview": "vite preview example",
     "prepublishOnly": "npm run build",
