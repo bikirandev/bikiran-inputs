@@ -70,6 +70,7 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
   return (
     <div
       className={cn(
+        "animate-input",
         style.container,
         focused || isValue ? style.containerFocus : "",
         isValue && !focused ? style.containerHasValue : ""

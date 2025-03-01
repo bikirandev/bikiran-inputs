@@ -8,10 +8,10 @@
   @apply size-10 overflow-hidden;
 }
 .displayName {
-  @apply full-name text-primary text-start text-base font-medium;
+  @apply text-primary text-start text-base font-medium;
 }
 .email {
-  @apply full-name text-primary-700  text-start text-sm font-normal;
+  @apply text-primary-700  text-start text-sm font-normal;
 }
 .infoContainer {
   @apply flex flex-col;
