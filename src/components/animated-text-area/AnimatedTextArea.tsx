@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils/cn";
 import { TAnimatedTextArea } from "../../lib/types/InputType";
+import style from "./AnimatedTextArea.module.css";
 
 // InputField component with TS types
 const AnimatedTextArea: FC<TAnimatedTextArea> = (props) => {
@@ -44,18 +45,14 @@ const AnimatedTextArea: FC<TAnimatedTextArea> = (props) => {
   return (
     <div className="animate-input">
       <div
-        className={cn("w-full h-24 relative overflow-visible", className)}
+        className={cn(style.wrapper, className)}
         onClick={() => setFocused(true)}
       >
         <label
           className={cn(
-            "text-sm font-medium text-primary-300 bg-white px-1 absolute top-[15px] left-[10px] -translate-y-1/2 transition-all duration-300 z-10",
-            {
-              "-top-[10px] left-4 translate-x-0 translate-y-0":
-                focused || isValue,
-              "text-secondary-700": focused,
-              "text-primary": isValue && !focused,
-            }
+            style.label,
+            focused || isValue ? style.labelFocused : "",
+            isValue && !focused ? style.labelHasValue : ""
           )}
         >
           {label || "Type something"}
@@ -69,11 +66,9 @@ const AnimatedTextArea: FC<TAnimatedTextArea> = (props) => {
           onBlur={handleBlur}
           disabled={disabled}
           className={cn(
-            "block w-full h-full p-[10px] caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors",
-            {
-              "border-secondary-700 caret-current": focused,
-              "border-primary": isValue && !focused,
-            }
+            style.input,
+            focused ? style.inputIsFocused : "",
+            isValue && !focused ? style.inputHasValue : ""
           )}
         />
       </div>
