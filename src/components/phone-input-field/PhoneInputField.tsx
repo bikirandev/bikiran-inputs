@@ -70,8 +70,9 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
   return (
     <div
       className={cn(
-        focused || isValue ? "border-secondary-700 caret-current" : "",
-        isValue && !focused ? "border-primary-700" : ""
+        style.container,
+        focused || isValue ? style.containerFocus : "",
+        isValue && !focused ? style.containerHasValue : ""
       )}
     >
       {/* TODO: if need to add country add here  */}

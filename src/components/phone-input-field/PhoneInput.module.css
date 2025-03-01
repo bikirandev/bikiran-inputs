@@ -1,5 +1,5 @@
 .container {
-  @apply animate-input w-full flex border items-center rounded-[8px];
+  @apply w-full flex border items-center rounded-[8px];
 }
 .containerFocus {
   @apply border-secondary-700 caret-current;
