@@ -5,11 +5,12 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "dist/**/*.css"
+    "dist/**/*.css",
+    "dist/package.json"
   ],
   "scripts": {
     "dev": "vite example",
-    "build": "tsc && copyfiles src/**/*.css dist --up 1 && printf '{\"type\":\"module\"}' > dist/package.json",
+    "build": "tsc && copyfiles src/**/*.css dist --up 1 && node writePackageJson.cjs",
     "vite-build": "vite build",
     "preview": "vite preview example",
     "prepublishOnly": "npm run build",
