@@ -3,6 +3,7 @@ import { TInputChangeEvent } from "../../lib/types/InputType";
 import { cn } from "../../lib/utils/cn";
 import dayjs from "dayjs";
 import DatePicker from "react-datepicker";
+import style from "./DateInput.module.css";
 
 type TInputDateProps = {
   name: string;
@@ -37,13 +38,7 @@ const DateInputField: FC<TInputDateProps> = ({
 
   return (
     <div
-      className={cn(
-        "[&_.react-datepicker-wrapper]:w-full !min-h-[45px]",
-        className,
-        {
-          "pointer-events-none opacity-50": disabled,
-        }
-      )}
+      className={cn(style.wrapper, className, disabled ? style.disabled : "")}
     >
       <DatePicker
         selected={date}
@@ -52,7 +47,7 @@ const DateInputField: FC<TInputDateProps> = ({
         placeholderText="Select Date"
         disabled={disabled}
         wrapperClassName="size-full"
-        className="react-datepicker-input size-full bg-transparent rounded-8 block outline-none border px-2 md:px-3 text-primary text-sm leading-6 font-normal"
+        className={style.datePicker}
       />
     </div>
   );

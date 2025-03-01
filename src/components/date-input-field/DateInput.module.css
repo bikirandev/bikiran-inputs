@@ -1,0 +1,11 @@
+.wrapper {
+  @apply [&_.react-datepicker-wrapper]:w-full !min-h-[45px],;
+}
+
+.disabled {
+  @apply pointer-events-none opacity-50;
+}
+
+.datePicker {
+  @apply react-datepicker-input size-full bg-transparent rounded-8 block outline-none border px-2 md:px-3 text-primary text-sm leading-6 font-normal;
+}
