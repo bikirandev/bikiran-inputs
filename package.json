@@ -1,6 +1,6 @@
 {
   "name": "bik-inputs",
-  "version": "1.24.3",
+  "version": "1.24.4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "dev": "vite example",
-    "build": "tsc && copyfiles src/**/* dist --up 1 && echo '{\"type\":\"module\"}' > dist/package.json",
+    "build": "tsc && copyfiles src/**/* dist --up 1 && echo {\"type\":\"module\"} > dist/package.json",
     "vite-build": "vite build",
     "preview": "vite preview example",
     "prepublishOnly": "npm run build",
@@ -57,6 +57,7 @@
     "vitest": "^1.0.4"
   },
   "dependencies": {
+    "bik-inputs": "file:bik-inputs-1.24.3.tgz",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "input-otp": "^1.4.2",

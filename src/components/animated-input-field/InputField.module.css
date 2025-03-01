@@ -1,0 +1,35 @@
+.container {
+  @apply w-full;
+}
+
+.inputWrapper {
+  @apply w-full h-[45px] relative overflow-visible cursor-pointer;
+}
+
+.label {
+  @apply text-sm text-primary-300 font-medium leading-5 px-1 bg-white absolute top-1/2 left-[10px] transform -translate-x-1/2 transition-all duration-300 z-10;
+}
+
+.labelFocused {
+  @apply text-secondary-700 -top-[10px] left-4 transform translate-x-0 translate-y-0;
+}
+
+.labelHasValue {
+  @apply text-primary;
+}
+
+.input {
+  @apply block w-full h-full px-[10px] border rounded-[8px] text-base outline-none transition-colors;
+}
+
+.inputFocused {
+  @apply border-secondary-700 caret-current;
+}
+
+.inputHasValue {
+  @apply border-primary;
+}
+
+.inputDisabled {
+  @apply grayscale cursor-not-allowed;
+}

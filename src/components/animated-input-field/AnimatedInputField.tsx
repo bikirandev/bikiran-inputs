@@ -1,4 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
+import styles from "./InputField.module.css";
 import { cn } from "../../lib/utils/cn";
 
 type TAnimateInputField = {
@@ -47,7 +48,6 @@ const AnimatedInputField: FC<TAnimateInputField> = (props) => {
     }
   };
 
-  // Focus the input when `focused` is set to true
   useEffect(() => {
     if (focused && ref.current) {
       ref.current.focus();
@@ -58,20 +58,13 @@ const AnimatedInputField: FC<TAnimateInputField> = (props) => {
   const isValue = inputValue !== "";
 
   return (
-    <div className="animate-input w-full">
-      <div
-        className={cn("w-full h-[45px] relative overflow-visible", className)}
-        onClick={handleFocus}
-      >
+    <div className={cn(styles.container, "animate-input")}>
+      <div className={cn(styles.inputWrapper, className)} onClick={handleFocus}>
         <label
           className={cn(
-            "text-sm font-medium text-primary-300 leading-5 px-1 bg-white absolute top-1/2 left-[10px] -translate-y-1/2 transition-all duration-300 focus:bg-white z-10",
-            {
-              "-top-[10px] left-4 translate-x-0 translate-y-0":
-                focused || isValue,
-              "text-secondary-700": focused,
-              "text-primary": isValue && !focused,
-            }
+            styles.label,
+            focused || isValue ? styles.labelFocused : "",
+            isValue && !focused ? styles.labelHasValue : ""
           )}
         >
           {label || "Type something"}
@@ -89,15 +82,15 @@ const AnimatedInputField: FC<TAnimateInputField> = (props) => {
           disabled={disabled}
           readOnly={readOnly}
           className={cn(
-            "block w-full h-full px-[10px] caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors",
-            {
-              "border-secondary-700 caret-current": focused,
-              "border-primary": isValue && !focused,
-            }
+            styles.input,
+            focused ? styles.inputFocused : "",
+            isValue && !focused ? styles.inputHasValue : "",
+            disabled ? styles.inputDisabled : ""
           )}
         />
       </div>
     </div>
   );
 };
+
 export default AnimatedInputField;

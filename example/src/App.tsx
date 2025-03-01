@@ -1,5 +1,5 @@
+import { AnimatedInputField } from "bik-inputs";
 import React from "react";
-import { AnimatedInputField, InputField } from "bik-inputs";
 
 function App() {
   return (
