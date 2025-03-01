@@ -1,6 +1,6 @@
 {
   "name": "bik-inputs",
-  "version": "1.25.8",
+  "version": "1.25.9",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "dev": "vite example",
-    "build": "tsc && copyfiles src/**/*.css dist --up 1 && node writePackageJson.cjs",
+    "build": "node build.cjs",
     "vite-build": "vite build",
     "preview": "vite preview example",
     "prepublishOnly": "npm run build",
