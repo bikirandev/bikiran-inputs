@@ -46,9 +46,10 @@ const UserPopover = ({
 }) => {
   return (
     <div
-      className={
-        (style.popOverContainer, show ? style.popOverShow : style.popOverHide)
-      }
+      className={cn(
+        style.popOverContainer,
+        show ? style.popOverShow : style.popOverHide
+      )}
     >
       {/* {loading && <UserSkeletonComp />} */}
       {!loading && data.length > 0 && (
