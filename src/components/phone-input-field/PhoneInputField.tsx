@@ -105,7 +105,12 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}
-          className={cn(style.input)}
+          className={cn(
+            style.input,
+            focused ? style.inputFocused : "",
+            isValue && !focused ? style.inputHasValue : "",
+            disabled ? style.inputDisabled : ""
+          )}
         />
       </div>
     </div>

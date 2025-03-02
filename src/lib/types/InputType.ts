@@ -8,6 +8,7 @@ export type TInputField = {
   placeholder?: string;
   name: string;
   formData: Record<string, any>;
+  onFocus?: (e:TInputChangeEvent| any ) => void;
   onChange: (e: TInputChangeEvent | any) => void;
   onBlur?: (e: TInputChangeEvent | any) => void;
   className?: string;

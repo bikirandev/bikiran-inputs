@@ -10,7 +10,6 @@
 .labelHasValue {
   @apply text-primary-700;
 }
-
 .calculationInput {
   @apply block w-full h-full px-[10px] caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors;
 }
@@ -18,7 +17,7 @@
   @apply border-secondary-700 caret-current;
 }
 .calculationInputHasValue {
-  @apply border-primary-700;
+  @apply border-primary-300;
 }
 .calculationInputHasUnit {
   @apply pr-12;

@@ -12,6 +12,7 @@ const InputField: FC<TInputField> = ({
   autoComplete = "off",
   formData,
   onChange,
+  onFocus,
   onBlur,
   className = "",
   required = false,
@@ -30,6 +31,7 @@ const InputField: FC<TInputField> = ({
         value={formData[name] || ""}
         onChange={onChange}
         onBlur={onBlur}
+        onFocus={onFocus}
         required={required}
         autoComplete={autoComplete}
         placeholder={placeholder}

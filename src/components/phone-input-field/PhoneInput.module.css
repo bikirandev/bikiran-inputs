@@ -26,3 +26,13 @@
 .input {
   @apply block w-full h-full px-[10px] caret-current rounded-8 text-base outline-none disabled:grayscale transition-colors;
 }
+
+.inputHasValue {
+  @apply border-primary-300;
+}
+.inputFocused {
+  @apply border-secondary-700 caret-current;
+}
+.inputDisabled {
+  @apply grayscale cursor-not-allowed;
+}

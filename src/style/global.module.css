@@ -18,5 +18,5 @@
   @apply border-secondary-700 caret-current;
 }
 .inputHasValue {
-  @apply border-primary-700;
+  @apply border-primary-300;
 }
