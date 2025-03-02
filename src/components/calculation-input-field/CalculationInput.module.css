@@ -1,11 +1,11 @@
 .wrapper {
   @apply w-full h-[45px] relative overflow-visible;
 }
-r .label {
+.label {
   @apply text-sm font-medium text-primary-300 leading-5 px-1 bg-white absolute top-1/2 left-[10px] -translate-y-1/2 transition-all duration-300 focus:bg-white z-10;
 }
 .labelFocused {
-  @apply -top-[10px] left-4 translate-x-0 translate-y-0 text-primary-700;
+  @apply -top-[10px] left-4 translate-x-0 translate-y-0 text-secondary-700;
 }
 .labelHasValue {
   @apply text-primary-700;
