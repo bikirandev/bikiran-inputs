@@ -17,7 +17,7 @@
 }
 
 .labelFocused {
-  @apply -top-[10px] left-4 translate-x-0 translate-y-0 text-primary-700;
+  @apply -top-[10px] left-4 translate-x-0 translate-y-0 text-secondary-700;
 }
 .labelHasValue {
   @apply text-primary-700;
