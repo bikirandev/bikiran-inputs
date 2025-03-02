@@ -17,7 +17,7 @@
   @apply border-secondary-700 caret-current;
 }
 .calculationInputHasValue {
-  @apply border-primary-300;
+  @apply border-primary-500;
 }
 .calculationInputHasUnit {
   @apply pr-12;
