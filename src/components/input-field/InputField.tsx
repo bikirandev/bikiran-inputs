@@ -11,6 +11,7 @@ const InputField: FC<TInputField> = ({
   name,
   autoComplete = "off",
   formData,
+  error = false,
   onChange,
   onFocus,
   onBlur,
@@ -36,7 +37,7 @@ const InputField: FC<TInputField> = ({
         autoComplete={autoComplete}
         placeholder={placeholder}
         disabled={disabled}
-        className={cn(style.input, className)}
+        className={cn(style.input, className, error ? style.inputError : "")}
       />
     </div>
   );

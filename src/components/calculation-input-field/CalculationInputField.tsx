@@ -93,7 +93,7 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
         className={cn(
           styles.calculationInput,
           focused ? styles.calculationInputFocus : "",
-          isValue && !focused ? styles.calculationInputHasUnit : "",
+          isValue && !focused ? styles.calculationInputHasValue : "",
           unit ? styles.calculationInputHasUnit : ""
         )}
       />

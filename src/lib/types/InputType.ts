@@ -16,6 +16,7 @@ export type TInputField = {
   loading?: boolean | undefined;
   required?: boolean;
   parentClassName?: string;
+  error?:boolean
 };
 
 
