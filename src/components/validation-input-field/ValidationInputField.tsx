@@ -111,9 +111,9 @@ const ValidationInputField: FC<TValidationField> = (props) => {
           disabled={disabled}
           readOnly={readOnly}
           className={cn(
-            style.calculationInput,
-            focused ? style.calculationInputFocus : "",
-            isValue && !focused ? style.calculationInputHasUnit : ""
+            style.input,
+            focused ? style.inputFocus : "",
+            isValue && !focused ? style.inputHasValue : ""
           )}
         />
         {/* Loading and validation icons */}
