@@ -1,9 +1,10 @@
-import { FC, useState } from "react";
-import { TInputChangeEvent } from "../../lib/types/InputType";
-import { cn } from "../../lib/utils/cn";
+import { FC, useEffect, useState } from "react";
+
 import dayjs from "dayjs";
 import DatePicker from "react-datepicker";
 import style from "./DateInput.module.css";
+import { TInputChangeEvent } from "../../lib/types/InputType";
+import { cn } from "../../lib/utils/cn";
 
 type TInputDateProps = {
   name: string;
@@ -35,6 +36,10 @@ const DateInputField: FC<TInputDateProps> = ({
     } as React.ChangeEvent<HTMLInputElement>;
     onChange(event);
   };
+  // Sync the local state with formData when it changes
+  useEffect(() => {
+    setDate(formData[name] ? new Date(formData[name]) : null);
+  }, [formData[name]]);
 
   return (
     <div
