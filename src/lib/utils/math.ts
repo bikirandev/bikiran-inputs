@@ -19,7 +19,7 @@ export const evaluate = (val: any) => {
   return output;
 };
 
-export const round = (value: number, decimals: number = 6) => {
+export const round = (value: number, decimals: number = 4) => {
   return Number(Math.round(Number(value + "e" + decimals)) + "e-" + decimals);
 };
 

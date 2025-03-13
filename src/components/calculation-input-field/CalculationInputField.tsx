@@ -1,9 +1,9 @@
 import { FC, useEffect, useRef, useState } from "react";
+import styles from "./CalculationInput.module.css";
 import {
   TCalculationInputField,
   TInputChangeEvent,
 } from "../../lib/types/InputType";
-import styles from "./CalculationInput.module.css";
 import { evaluate } from "../../lib/utils/math";
 import { cn } from "../../lib/utils/cn";
 
@@ -43,11 +43,15 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
   };
 
   const handleChange = (ev: TInputChangeEvent) => {
+    const value = ev.target.value;
     if (!calculate) {
       return onChange(ev);
     }
-
-    const calculatedValue = evaluate(ev.target.value);
+    // Ensure the input value is a number
+    if (isNaN(Number(value))) {
+      return;
+    }
+    const calculatedValue = evaluate(value);
     onChange({
       target: {
         name: ev.target.name,
@@ -97,20 +101,22 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
           unit ? styles.calculationInputHasUnit : ""
         )}
       />
-      {unit && !currency && (
-        <div className={cn(styles.showUnit)}>
-          <div className={cn(styles.unitText)}>{unit}</div>
-        </div>
-      )}
-
-      {/* Currency and unit */}
-      {currency && (
-        <div className={cn(styles.showUnit)}>
-          <div className={cn(styles.unitText)}>
-            {unit && currency ? `${currency}/${unit}` : unit || currency}
+      <div className={cn(styles.unit)}>
+        {unit && !currency && (
+          <div className={cn(styles.showUnit)}>
+            <div className={cn(styles.unitText)}>{unit}</div>
           </div>
-        </div>
-      )}
+        )}
+
+        {/* Currency and unit */}
+        {currency && (
+          <div className={cn(styles.showUnit)}>
+            <div className={cn(styles.unitText)}>
+              {unit && currency ? `${currency}/${unit}` : unit || currency}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
     // </div>
   );

@@ -11,7 +11,7 @@
   @apply text-primary-700;
 }
 .calculationInput {
-  @apply block w-full h-full px-[10px] caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors;
+  @apply block w-full h-full pl-[10px] pr-[30px] caret-white border rounded-[8px] text-base outline-none disabled:grayscale transition-colors;
 }
 .calculationInputFocus {
   @apply border-secondary-700 caret-current;
@@ -29,4 +29,8 @@
 
 .unitText {
   @apply text-[10px] text-primary-700;
+}
+
+.unit {
+  @apply absolute inset-y-0 right-0;
 }
