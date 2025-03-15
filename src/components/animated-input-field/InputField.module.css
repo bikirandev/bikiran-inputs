@@ -27,7 +27,7 @@
 }
 
 .inputHasValue {
-  @apply border-[#5a577a];
+  @apply border-[#d0cfd9];
 }
 
 .inputDisabled {

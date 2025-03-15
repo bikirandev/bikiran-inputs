@@ -28,7 +28,7 @@
 }
 
 .inputHasValue {
-  @apply border-[#5a577a];
+  @apply border-[#d0cfd9];
 }
 .inputFocused {
   @apply border-secondary-700 caret-current;

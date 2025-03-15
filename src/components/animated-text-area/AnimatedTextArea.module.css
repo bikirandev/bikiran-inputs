@@ -17,7 +17,7 @@
 }
 
 .inputHasValue {
-  @apply border-primary-700;
+  @apply border-[#d0cfd9];
 }
 .wrapper {
   @apply w-full h-24 relative overflow-visible;
