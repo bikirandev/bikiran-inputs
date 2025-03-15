@@ -15,7 +15,7 @@
 }
 
 .labelHasValue {
-  @apply text-primary-700;
+  @apply text-[#5a577a];
 }
 
 .input {
@@ -27,7 +27,7 @@
 }
 
 .inputHasValue {
-  @apply border-primary-500;
+  @apply border-[#5a577a];
 }
 
 .inputDisabled {
