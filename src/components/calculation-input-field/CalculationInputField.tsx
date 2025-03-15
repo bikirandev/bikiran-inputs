@@ -19,6 +19,7 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
     calculate = false,
     name,
     formData,
+    placeholder,
     onChange,
     onBlur,
     className = "",
@@ -94,6 +95,7 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
         autoComplete={autoComplete}
         disabled={disabled}
         readOnly={readOnly}
+        placeholder={focused ? placeholder : ""}
         className={cn(
           styles.calculationInput,
           focused ? styles.calculationInputFocus : "",

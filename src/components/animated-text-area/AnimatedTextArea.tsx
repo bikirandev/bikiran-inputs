@@ -15,6 +15,7 @@ const AnimatedTextArea: FC<TAnimatedTextArea> = (props) => {
     className = "",
     disabled = false,
     onChange,
+    placeholder,
   } = props;
 
   const handleFocus = () => {
@@ -65,6 +66,7 @@ const AnimatedTextArea: FC<TAnimatedTextArea> = (props) => {
           onFocus={handleFocus}
           onBlur={handleBlur}
           disabled={disabled}
+          placeholder={focused ? placeholder : ""}
           className={cn(
             style.input,
             focused ? style.inputIsFocused : "",

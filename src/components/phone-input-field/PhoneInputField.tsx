@@ -15,6 +15,7 @@ type TPhoneInputField = {
   disabled?: boolean;
   required?: boolean;
   readOnly?: boolean;
+  placeholder?: string;
   // hasCountry?: boolean;
 };
 
@@ -32,6 +33,7 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
     onChange,
     onBlur,
     className = "",
+    placeholder,
     disabled = false,
     required = false,
     readOnly,
@@ -105,6 +107,7 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}
+          placeholder={focused ? placeholder : ""}
           className={cn(
             style.input,
             focused ? style.inputFocused : "",

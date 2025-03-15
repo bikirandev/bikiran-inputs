@@ -19,6 +19,7 @@ const ValidationCheck: FC<{
           ? loadingIcon
           : iconLoading()
         : loading !== undefined &&
+          valid !== undefined &&
           (valid
             ? tickIcon
               ? tickIcon
@@ -26,6 +27,7 @@ const ValidationCheck: FC<{
             : alertIcon
             ? alertIcon
             : iconAlert())}
+      {loading === undefined && valid === undefined && null}
     </div>
   );
 };
@@ -43,6 +45,7 @@ const ValidationInputField: FC<TValidationField> = (props) => {
     formData,
     onChange,
     onBlur,
+    placeholder,
     className = "",
     disabled = false,
     required = false,
@@ -110,6 +113,7 @@ const ValidationInputField: FC<TValidationField> = (props) => {
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}
+          placeholder={focused ? placeholder : ""}
           className={cn(
             style.input,
             focused ? style.inputFocus : "",

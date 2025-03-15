@@ -22,6 +22,7 @@ const EmailInputField: FC<TAnimateInputField> = (props) => {
     className = "",
     disabled = false,
     required = false,
+    placeholder,
     onChange,
     readOnly,
   } = props;
@@ -85,6 +86,7 @@ const EmailInputField: FC<TAnimateInputField> = (props) => {
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}
+          placeholder={focused ? placeholder : ""}
           className={cn(
             style.input,
             focused ? style.inputFocus : "",

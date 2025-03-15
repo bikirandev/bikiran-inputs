@@ -11,6 +11,7 @@ type TAnimateInputField = {
   formData: Record<string, any>;
   onChange: (ev: any) => void;
   onBlur?: (ev: any) => void;
+  placeholder?: string;
   className?: string;
   disabled?: boolean;
   required?: boolean;
@@ -28,6 +29,7 @@ const AnimatedInputField: FC<TAnimateInputField> = (props) => {
     autoComplete = "off",
     name,
     formData,
+    placeholder,
     onBlur,
     className = "",
     disabled = false,
@@ -85,6 +87,7 @@ const AnimatedInputField: FC<TAnimateInputField> = (props) => {
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}
+          placeholder={focused ? placeholder : ""}
           className={cn(
             styles.input,
             focused ? styles.inputFocused : "",

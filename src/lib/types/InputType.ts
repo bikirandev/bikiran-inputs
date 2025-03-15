@@ -8,7 +8,7 @@ export type TInputField = {
   placeholder?: string;
   name: string;
   formData: Record<string, any>;
-  onFocus?: (e:TInputChangeEvent| any ) => void;
+  onFocus?: (e: TInputChangeEvent | any) => void;
   onChange: (e: TInputChangeEvent | any) => void;
   onBlur?: (e: TInputChangeEvent | any) => void;
   className?: string;
@@ -16,9 +16,8 @@ export type TInputField = {
   loading?: boolean | undefined;
   required?: boolean;
   parentClassName?: string;
-  error?:boolean
+  error?: boolean;
 };
-
 
 export type TValidationField = TInputField & {
   required?: boolean;
@@ -27,6 +26,7 @@ export type TValidationField = TInputField & {
   alertIcon?: any;
   tickIcon?: any;
   valid?: boolean | undefined;
+  placeholder?: string;
 };
 
 export type TCalculationInputField = TInputField & {
@@ -34,6 +34,7 @@ export type TCalculationInputField = TInputField & {
   currency?: string;
   required?: boolean;
   readOnly?: boolean;
+  placeholder?: string;
   unit?: string;
 };
 
@@ -44,6 +45,7 @@ export type TAnimatedTextArea = {
   onChange: (ev: any) => void;
   className?: string;
   disabled?: boolean;
+  placeholder?: string;
 };
 
 export type TAnimateInputField = {
@@ -58,4 +60,5 @@ export type TAnimateInputField = {
   disabled?: boolean;
   required?: boolean;
   readOnly?: boolean;
+  placeholder?: string;
 };
