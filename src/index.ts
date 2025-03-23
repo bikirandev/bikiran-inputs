@@ -8,3 +8,4 @@ export { default as UserSearchField } from "./components/user-search-field/UserS
 export { default as OTPInputField } from "./components/otp-input-field/OTPInputField";
 export { default as InputField } from "./components/input-field/InputField";
 export { default as DateInputField } from "./components/date-input-field/DateInputField";
+export { default as Select } from "./components/select-field/Select";
