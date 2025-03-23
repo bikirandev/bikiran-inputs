@@ -1,8 +1,8 @@
-import { cn } from "@/bik-lib/utils/cn";
 import { FC, useState } from "react";
 import { ArrowIcon, CheckIcon } from "./Icons";
 import style from "./Select.module.css";
 import { useEffect, useRef } from "react";
+import { cn } from "../../lib/utils/cn";
 
 type TProps = {
   name: string;
