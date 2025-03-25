@@ -3,7 +3,6 @@ import { ArrowIcon, CheckIcon } from "./Icons";
 import style from "./Select.module.css";
 import { useEffect, useRef } from "react";
 import { cn } from "../../lib/utils/cn";
-
 type TProps = {
   name: string;
   onChange: (value: any) => void;
@@ -96,6 +95,7 @@ const Select: FC<TProps> = ({
           className={cn(
             "select-option-container",
             style.selectOptionContainer,
+            style.customScrollbar,
             show ? `${style.show} show` : ""
           )}
         >

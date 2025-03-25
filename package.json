@@ -1,6 +1,6 @@
 {
   "name": "bik-inputs",
-  "version": "1.27.9",
+  "version": "1.28.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
