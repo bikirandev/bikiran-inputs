@@ -12,6 +12,7 @@ type TProps = {
   placeholder?: string;
   className?: string;
   containerClassname?: string;
+  label: string;
 };
 
 type TSelectOption = {
@@ -28,6 +29,7 @@ const Select: FC<TProps> = ({
   name,
   onChange,
   formData,
+  label,
   options,
   placeholder,
   containerClassname,
@@ -68,6 +70,9 @@ const Select: FC<TProps> = ({
       ref={ref}
       className={cn("container", style.container, containerClassname)}
     >
+      <div>
+        <label className={cn(style.label)}>{label}</label>
+      </div>
       <div
         className={cn(
           "valueWrapper",
@@ -89,7 +94,6 @@ const Select: FC<TProps> = ({
           <ArrowIcon />
         </div>
       </div>
-
       <div
         className={cn(
           "select-option-container",

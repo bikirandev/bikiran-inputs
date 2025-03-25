@@ -1,6 +1,9 @@
 .container {
   @apply w-full relative p-0;
 }
+.label {
+  @apply text-base font-medium text-primary;
+}
 .valueWrapper {
   @apply w-full h-[45px] text-sm border border-[#e5e7eb] rounded-[8px] px-[10px] flex items-center justify-between cursor-pointer;
 }

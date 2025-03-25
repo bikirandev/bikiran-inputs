@@ -16,7 +16,7 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
     label,
     type = "text",
     autoComplete = "off",
-    calculate = false,
+    calculate = true,
     name,
     formData,
     placeholder,
@@ -48,8 +48,9 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
     if (!calculate) {
       return onChange(ev);
     }
-    // Ensure the input value is a number
-    if (isNaN(Number(value))) {
+    // Allow arithmetic operations in the input value
+    const validInput = /^[0-9+\-*/().\s]*$/.test(value);
+    if (!validInput) {
       return;
     }
     const calculatedValue = evaluate(value);

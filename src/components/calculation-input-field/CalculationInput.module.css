@@ -28,7 +28,7 @@
 }
 
 .unitText {
-  @apply text-[10px] text-[#8987a0];
+  @apply text-[10px] text-[#8987a0] whitespace-nowrap;
 }
 
 .unit {
