@@ -66,76 +66,77 @@ const Select: FC<TProps> = ({
   const value = isValue ? formData[name] : placeholder;
 
   return (
-    <div
-      ref={ref}
-      className={cn("container", style.container, containerClassname)}
-    >
+    <div ref={ref} className={containerClassname}>
       <div>
         <label className={cn(style.label)}>{label}</label>
       </div>
-      <div
-        className={cn(
-          "valueWrapper",
-          style.valueWrapper,
-          isValue ? style.isValue : "",
-          className
-        )}
-        onClick={() => setShow((prev) => !prev)}
-      >
+      <div className={cn("container", style.container)}>
         <div
           className={cn(
-            "value",
-            value === placeholder ? style.placeholder : style.value
+            "valueWrapper",
+            style.valueWrapper,
+            isValue ? style.isValue : "",
+            className
           )}
+          onClick={() => setShow((prev) => !prev)}
         >
-          {value}
-        </div>
-        <div className={cn(style.iconWrapper, "iconWrapper")}>
-          <ArrowIcon />
-        </div>
-      </div>
-      <div
-        className={cn(
-          "select-option-container",
-          style.selectOptionContainer,
-          show ? `${style.show} show` : ""
-        )}
-      >
-        <div className={cn(style.placeholderContainer, "placeholderContainer")}>
           <div
             className={cn(
-              "select-option-placeholder",
-              style.selectOptionPlaceholder,
-              !isValue ? `${style.notIsValue} notIsValue` : ""
+              "value",
+              value === placeholder ? style.placeholder : style.value
             )}
-            onClick={() => handleSelect("")}
           >
-            <div className={cn(style.checkIcon, "checkIcon")}>
-              {!isValue && <CheckIcon />}
-            </div>
-            {placeholder || "Select an option"}
+            {value}
           </div>
-          {options.map((option: TSelectOption) => {
-            const isActive: boolean = formData[name] === option.value;
-            return (
-              <div
-                key={option.id}
-                className={cn(
-                  "select-option",
-                  style.selectOption,
-                  isActive ? `${style.isActive} isActive` : ""
-                )}
-                onClick={() => handleSelect(option.value)}
-              >
-                <div className={cn(style.optionTitle, "optionTitle")}>
-                  <div className={cn(style.checkIcon, "checkIcon")}>
-                    {isActive && <CheckIcon />}
-                  </div>
-                  {option.title}
-                </div>
+          <div className={cn(style.iconWrapper, "iconWrapper")}>
+            <ArrowIcon />
+          </div>
+        </div>
+        <div
+          className={cn(
+            "select-option-container",
+            style.selectOptionContainer,
+            show ? `${style.show} show` : ""
+          )}
+        >
+          <div
+            className={cn(style.placeholderContainer, "placeholderContainer")}
+          >
+            <div
+              className={cn(
+                "select-option-placeholder",
+                style.selectOptionPlaceholder,
+                !isValue ? `${style.notIsValue} notIsValue` : ""
+              )}
+              onClick={() => handleSelect("")}
+            >
+              <div className={cn(style.checkIcon, "checkIcon")}>
+                {!isValue && <CheckIcon />}
               </div>
-            );
-          })}
+              {placeholder || "Select an option"}
+            </div>
+            {options.map((option: TSelectOption) => {
+              const isActive: boolean = formData[name] === option.value;
+              return (
+                <div
+                  key={option.id}
+                  className={cn(
+                    "select-option",
+                    style.selectOption,
+                    isActive ? `${style.isActive} isActive` : ""
+                  )}
+                  onClick={() => handleSelect(option.value)}
+                >
+                  <div className={cn(style.optionTitle, "optionTitle")}>
+                    <div className={cn(style.checkIcon, "checkIcon")}>
+                      {isActive && <CheckIcon />}
+                    </div>
+                    {option.title}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@
   @apply w-3 opacity-50;
 }
 .selectOptionContainer {
-  @apply absolute top-14 z-50 max-h-0 overflow-hidden w-full bg-white border border-transparent rounded-[8px] shadow-md transition-all;
+  @apply absolute top-10 z-50 max-h-[0] overflow-hidden w-full bg-white border border-transparent rounded-[8px] shadow-md transition-all;
 }
 .show {
   @apply max-h-40 border-[#e5e7eb];
