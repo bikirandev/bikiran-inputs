@@ -48,8 +48,7 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
     if (!calculate) {
       return onChange(ev);
     }
-    // Allow arithmetic operations in the input value
-    const validInput = /^[0-9+\-*/().\s]*$/.test(value);
+    const validInput = /^[0-9+\-*/().=%^\s]*$/.test(value);
     if (!validInput) {
       return;
     }
