@@ -4,6 +4,8 @@ import dayjs from "dayjs";
 import DatePicker from "react-datepicker";
 import style from "./DateInput.module.css";
 import { TInputChangeEvent } from "../../lib/types/InputType";
+import "react-datepicker/dist/react-datepicker.css";
+
 import { cn } from "../../lib/utils/cn";
 
 type TInputDateProps = {
