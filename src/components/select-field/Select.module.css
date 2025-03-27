@@ -20,10 +20,10 @@
   @apply w-3 opacity-50;
 }
 .selectOptionContainer {
-  @apply absolute top-12 z-50 max-h-[0] overflow-y-scroll w-full bg-white rounded-[8px] shadow-md transition-all;
+  @apply absolute top-12 z-50 max-h-[0] overflow-auto w-full bg-white rounded-[8px] shadow-md transition-all;
 }
 .show {
-  @apply max-h-[145px] border border-[#e5e7eb];
+  @apply max-h-[150px] border border-[#e5e7eb];
 }
 .placeholderContainer {
   @apply p-1;

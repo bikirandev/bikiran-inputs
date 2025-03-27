@@ -3,6 +3,7 @@ import { ArrowIcon, CheckIcon } from "./Icons";
 import style from "./Select.module.css";
 import { useEffect, useRef } from "react";
 import { cn } from "../../lib/utils/cn";
+
 type TProps = {
   name: string;
   onChange: (value: any) => void;
@@ -62,7 +63,9 @@ const Select: FC<TProps> = ({
   };
 
   const isValue = formData[name]?.length > 0;
-  const value = isValue ? formData[name] : placeholder;
+  const value = isValue
+    ? options.find((option) => option.value === formData[name])?.title
+    : placeholder;
 
   return (
     <div ref={ref} className={containerClassname}>
@@ -96,7 +99,7 @@ const Select: FC<TProps> = ({
             "select-option-container",
             style.selectOptionContainer,
             style.customScrollbar,
-            show ? `${style.show} show` : ""
+            show ? `${style.show}  show` : ""
           )}
         >
           <div
