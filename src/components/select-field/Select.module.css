@@ -23,7 +23,7 @@
   @apply absolute top-12 z-50 max-h-[0] overflow-y-scroll w-full bg-white rounded-[8px] shadow-md transition-all;
 }
 .show {
-  @apply max-h-[145px] border-[#e5e7eb];
+  @apply max-h-[145px] border border-[#e5e7eb];
 }
 .placeholderContainer {
   @apply p-1;
