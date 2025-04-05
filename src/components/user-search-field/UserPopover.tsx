@@ -1,6 +1,7 @@
 import { FC } from "react";
-import { TState } from "../../lib/types/InputType";
 import style from "./UserSearch.module.css";
+import UserSkeletonComp from "./UserSkeletonComp";
+import { TState } from "../../lib/types/InputType";
 import { cn } from "../../lib/utils/cn";
 
 const UserInformation: FC<{
@@ -52,14 +53,16 @@ const UserPopover = ({
       )}
     >
       {/* {loading && <UserSkeletonComp />} */}
-      {!loading && data.length > 0 && (
-        <div className={show ? "block" : "hidden"}>
+      {!loading && data.length > 0 && show && (
+        <div>
           <UserInformation data={data} setSelectedUser={setSelectedUser} />
         </div>
       )}
-      {!loading && data.length === 0 && (
-        <div className={`py-6 px-3 text-center ${show ? "block" : "hidden"}`}>
-          No User Found
+      {loading && show && (
+        <div>
+          {Array.from({ length: 2 }).map((_, index) => (
+            <UserSkeletonComp key={index} />
+          ))}
         </div>
       )}
     </div>

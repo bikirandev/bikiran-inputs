@@ -14,7 +14,6 @@ const UserDetailsComp = ({
         <div className={style.photo}>
           <img src={data?.photoUrl} alt="" className="rounded-full" />
         </div>
-
         <div className={style.infoContainer}>
           <div className={style.displayName}>{data?.displayName}</div>
           <div className={style.email}>{data?.email}</div>

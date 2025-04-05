@@ -5,7 +5,7 @@ import UserPopover from "./UserPopover";
 import UserDetailsComp from "./UserDetailsComp";
 import UserSkeletonComp from "./UserSkeletonComp";
 import { TInputChangeEvent, TState } from "../../lib/types/InputType";
-import InputField from "../input-field/InputField";
+import ValidationInputField from "../validation-input-field/ValidationInputField";
 
 type TProps = {
   selectedUser: any;
@@ -16,6 +16,7 @@ type TProps = {
   setDebouncedValue: (value: string) => void;
   userData: any[];
   loading: boolean;
+  btnClick: () => void;
 };
 
 const UserSearchField: FC<TProps> = ({
@@ -27,6 +28,7 @@ const UserSearchField: FC<TProps> = ({
   setDebouncedValue,
   userData,
   loading,
+  btnClick,
 }) => {
   const handleOnChange = (ev: TInputChangeEvent) => {
     const { name, value } = ev.target;
@@ -50,10 +52,28 @@ const UserSearchField: FC<TProps> = ({
     }
   }, [selectedUser]);
 
+  useEffect(() => {
+    if (userData.length === 0) {
+      setSelectedUser(undefined);
+    }
+  });
+
+  const valid = () => {
+    if (userData.length > 0) {
+      return true;
+    }
+    if (userData.length === 0 && formData?.["user"]?.length > 2) {
+      return false;
+    }
+    return undefined;
+  };
+
   return (
     <div>
       <div className="relative mt-3">
-        <InputField
+        <ValidationInputField
+          valid={valid()}
+          loading={formData?.["user"]?.length > 2 && loading}
           formData={formData}
           label={label}
           name="user"
@@ -62,10 +82,10 @@ const UserSearchField: FC<TProps> = ({
           onChange={handleOnChange}
           className=""
         />
-        <div className="absolute w-full" style={{ top: "84px", zIndex: 1000 }}>
+        <div className="absolute w-full" style={{ top: "50px", zIndex: 1000 }}>
           <UserPopover
             data={userData}
-            show={formData?.["user"]?.length > 2 && userData.length > 0}
+            show={formData?.["user"]?.length > 2 && userData?.length > 0}
             setSelectedUser={setSelectedUser}
             loading={loading}
           />
@@ -88,6 +108,18 @@ const UserSearchField: FC<TProps> = ({
               />
             </svg>
           </div>
+        </div>
+      ) : userData.length === 0 && formData?.user?.length > 2 && !loading ? (
+        <div className="flex justify-between items-center px-3 py-4">
+          <span className="text-primary text-sm font-medium">
+            No user found
+          </span>
+          <button
+            className="text-white font-medium bg-secondary px-3 py-[6px] rounded-8"
+            onClick={btnClick}
+          >
+            Add User
+          </button>
         </div>
       ) : (
         <UserSkeletonComp />
