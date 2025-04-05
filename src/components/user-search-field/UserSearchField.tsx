@@ -110,15 +110,13 @@ const UserSearchField: FC<TProps> = ({
           </div>
         </div>
       ) : userData.length === 0 && formData?.user?.length > 2 && !loading ? (
-        <div className="flex justify-between items-center px-3 py-4">
-          <span className="text-primary text-sm font-medium">
-            No user found
-          </span>
+        <div className="flex justify-between items-center py-3">
+          <span className="text-primary text-sm ">No user found</span>
           <button
-            className="text-white font-medium bg-secondary px-3 py-[6px] rounded-8"
+            className="text-secondary font-medium bg-secondary-100 px-[15px] py-[10px] rounded-8 hover:bg-secondary hover:text-white transition-colors duration-300"
             onClick={btnClick}
           >
-            Add User
+            Create New User
           </button>
         </div>
       ) : (
