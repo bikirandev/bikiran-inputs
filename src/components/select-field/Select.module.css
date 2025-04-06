@@ -5,7 +5,7 @@
   @apply text-base font-medium text-primary;
 }
 .valueWrapper {
-  @apply w-full h-[45px] text-sm border border-[#e5e7eb] rounded-[8px] px-[10px] flex items-center justify-between cursor-pointer;
+  @apply w-full h-[45px] text-sm border rounded-[8px] px-[10px] flex items-center justify-between cursor-pointer overflow-visible;
 }
 .isValue {
   @apply border-[#d0cfd9];
@@ -14,7 +14,7 @@
   @apply flex-1 font-medium;
 }
 .placeholder {
-  @apply flex-1 !text-[#b9b7c6] font-medium;
+  @apply font-medium absolute  left-[10px] px-[1px] z-10 text-sm bg-white transition-all duration-300;
 }
 .iconWrapper {
   @apply w-3 opacity-50;

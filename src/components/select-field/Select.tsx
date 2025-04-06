@@ -1,8 +1,8 @@
+import { cn } from "../../lib/utils/cn";
 import { FC, useState } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowIcon, CheckIcon } from "./Icons";
 import style from "./Select.module.css";
-import { useEffect, useRef } from "react";
-import { cn } from "../../lib/utils/cn";
 
 type TProps = {
   name: string;
@@ -23,6 +23,87 @@ type TSelectOption = {
 
 export const addOption = (id: any, title: any, value: any) => {
   return { id, title, value };
+};
+
+const Option: FC<{
+  option: TSelectOption;
+  isActive: boolean;
+  handleSelect: (val: any) => void;
+}> = ({ option, isActive, handleSelect }) => {
+  return (
+    <div
+      key={option.id}
+      className={cn(
+        "select-option",
+        style.selectOption,
+        isActive ? `${style.isActive} isActive` : ""
+      )}
+      onClick={() => handleSelect(option.value)}
+    >
+      <div className={cn(style.optionTitle, "optionTitle")}>
+        <div className={cn(style.checkIcon, "checkIcon")}>
+          {isActive && <CheckIcon />}
+        </div>
+        {option.title}
+      </div>
+    </div>
+  );
+};
+
+const SelectOptionArea: FC<{
+  options: TSelectOption[];
+  handleSelect: (val: any) => void;
+  formData: Record<string, any>;
+  name: string;
+  show: boolean;
+  isValue: boolean;
+  placeholder?: string;
+}> = ({
+  options,
+  handleSelect,
+  formData,
+  name,
+  show,
+  isValue,
+  placeholder,
+}) => {
+  return (
+    <div
+      className={cn(
+        "select-option-container",
+        style.selectOptionContainer,
+        style.customScrollbar,
+        show ? `${style.show}  show` : ""
+      )}
+    >
+      <div className={cn(style.placeholderContainer, "placeholderContainer")}>
+        <div
+          className={cn(
+            "select-option-placeholder",
+            style.selectOptionPlaceholder,
+            !isValue ? `${style.notIsValue} notIsValue` : ""
+          )}
+          onClick={() => handleSelect("")}
+        >
+          <div className={cn(style.checkIcon, "checkIcon")}>
+            {!isValue && <CheckIcon />}
+          </div>
+          {placeholder || "Select an option"}
+        </div>
+        {options?.map((option: TSelectOption) => {
+          const isActive: boolean = formData?.[name] === option?.value;
+          return (
+            <Option
+              key={option.id}
+              option={option}
+              isActive={isActive}
+              handleSelect={handleSelect}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 const Select: FC<TProps> = ({
@@ -69,78 +150,46 @@ const Select: FC<TProps> = ({
 
   return (
     <div ref={ref} className={containerClassname}>
-      <div>
-        <label className={cn(style.label)}>{label}</label>
-      </div>
       <div className={cn("container", style.container)}>
         <div
           className={cn(
-            "valueWrapper",
+            "valueWrapper relative border-[#e5e7eb]",
             style.valueWrapper,
             isValue ? style.isValue : "",
-            className
+            className,
+            {
+              "!border-secondary": show,
+            }
           )}
           onClick={() => setShow((prev) => !prev)}
         >
-          <div
-            className={cn(
-              "value",
-              value === placeholder ? style.placeholder : style.value
-            )}
-          >
-            {value}
-          </div>
+          <div className={cn("value", style.value)}>{isValue && value}</div>
           <div className={cn(style.iconWrapper, "iconWrapper")}>
             <ArrowIcon />
           </div>
-        </div>
-        <div
-          className={cn(
-            "select-option-container",
-            style.selectOptionContainer,
-            style.customScrollbar,
-            show ? `${style.show}  show` : ""
-          )}
-        >
+
           <div
-            className={cn(style.placeholderContainer, "placeholderContainer")}
+            className={cn(
+              "text-[#b9b7c6] top-1/2 transform -translate-y-1/2",
+              style.placeholder,
+              {
+                "-top-3 transform-none": isValue,
+                "text-secondary": show,
+              }
+            )}
           >
-            <div
-              className={cn(
-                "select-option-placeholder",
-                style.selectOptionPlaceholder,
-                !isValue ? `${style.notIsValue} notIsValue` : ""
-              )}
-              onClick={() => handleSelect("")}
-            >
-              <div className={cn(style.checkIcon, "checkIcon")}>
-                {!isValue && <CheckIcon />}
-              </div>
-              {placeholder || "Select an option"}
-            </div>
-            {options.map((option: TSelectOption) => {
-              const isActive: boolean = formData[name] === option.value;
-              return (
-                <div
-                  key={option.id}
-                  className={cn(
-                    "select-option",
-                    style.selectOption,
-                    isActive ? `${style.isActive} isActive` : ""
-                  )}
-                  onClick={() => handleSelect(option.value)}
-                >
-                  <div className={cn(style.optionTitle, "optionTitle")}>
-                    <div className={cn(style.checkIcon, "checkIcon")}>
-                      {isActive && <CheckIcon />}
-                    </div>
-                    {option.title}
-                  </div>
-                </div>
-              );
-            })}
+            {placeholder}
           </div>
         </div>
+        <SelectOptionArea
+          options={options}
+          handleSelect={handleSelect}
+          formData={formData}
+          name={name}
+          show={show}
+          isValue={isValue}
+          placeholder={placeholder}
+        />
       </div>
     </div>
   );
