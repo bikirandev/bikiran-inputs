@@ -6,6 +6,7 @@ import UserDetailsComp from "./UserDetailsComp";
 import UserSkeletonComp from "./UserSkeletonComp";
 import { TInputChangeEvent, TState } from "../../lib/types/InputType";
 import ValidationInputField from "../validation-input-field/ValidationInputField";
+import { IconRefresh } from "./icon";
 
 type TProps = {
   selectedUser: any;
@@ -17,6 +18,7 @@ type TProps = {
   userData: any[];
   loading: boolean;
   btnClick: () => void;
+  reload: () => void;
 };
 
 const UserSearchField: FC<TProps> = ({
@@ -29,6 +31,7 @@ const UserSearchField: FC<TProps> = ({
   userData,
   loading,
   btnClick,
+  reload,
 }) => {
   const handleOnChange = (ev: TInputChangeEvent) => {
     const { name, value } = ev.target;
@@ -117,6 +120,13 @@ const UserSearchField: FC<TProps> = ({
             onClick={btnClick}
           >
             Create New User
+          </button>
+          <button
+            type="button"
+            className={`size-full relative cursor-pointer`}
+            onClick={reload}
+          >
+            <IconRefresh />
           </button>
         </div>
       ) : (
