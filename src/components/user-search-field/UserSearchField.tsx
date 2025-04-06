@@ -115,19 +115,21 @@ const UserSearchField: FC<TProps> = ({
       ) : userData.length === 0 && formData?.user?.length > 2 && !loading ? (
         <div className="flex justify-between items-center py-3">
           <span className="text-primary text-sm ">No user found</span>
-          <button
-            className="text-secondary font-medium bg-secondary-100 px-[15px] py-[10px] rounded-8 hover:bg-secondary hover:text-white transition-colors duration-300"
-            onClick={btnClick}
-          >
-            Create New User
-          </button>
-          <button
-            type="button"
-            className={`size-full relative cursor-pointer`}
-            onClick={reload}
-          >
-            <IconRefresh />
-          </button>
+          <div className="flex gap-2">
+            <button
+              className="text-secondary font-medium bg-secondary-100 px-[15px] py-2 rounded-8 hover:bg-secondary hover:text-white transition-colors duration-300 flex-shrink-0"
+              onClick={btnClick}
+            >
+              Create New User
+            </button>
+            <button
+              type="button"
+              className={`size-full relative cursor-pointer`}
+              onClick={reload}
+            >
+              <IconRefresh />
+            </button>
+          </div>
         </div>
       ) : (
         <UserSkeletonComp />
