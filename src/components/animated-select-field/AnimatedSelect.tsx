@@ -173,7 +173,7 @@ const AnimatedSelect: FC<TProps> = ({
               "text-[#b9b7c6] top-1/2 transform -translate-y-1/2",
               style.placeholder,
               {
-                "-top-3 transform-none": isValue,
+                "-top-3 transform-none !text-[#5a577a]": isValue,
                 "text-secondary": show,
               }
             )}
