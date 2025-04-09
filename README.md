@@ -1,125 +1,169 @@
 # bik-inputs
 
-A reusable, customizable, and accessible input component library for React applications. Supports multiple input types with various customizations.
+## Overview
 
-## 📦 Installation
+bik-inputs is a reusable, customizable, and accessible input component library for React applications. It supports multiple input types with built-in animations and enhanced UX features, styled using Tailwind CSS.
 
-```sh
-npm install bik-inputs
+⚠️ Important Note: This library uses Tailwind CSS for styling. To ensure proper theming, define primary and secondary color palettes (especially primary-700 and secondary-700) in your Tailwind configuration.
+
+## Features
+
+- Support for multiple input types (email, phone, date, OTP, etc.)
+
+- Animated labels and textareas
+
+- Easily customizable via Tailwind CSS
+
+- Validation and calculation-ready input fields
+
+- Built-in accessibility support
+
+## Available Components
+
+Each input type is available as an independent component:
+
+1. [AnimatedInputField]()
+2. [AnimatedSelectField]()
+3. [AnimatedTextField]()
+4. [CalculationInputField]()
+5. [DateInputField]()
+6. [EmailInputField]()
+7. [InputField]()
+8. [OTPInputField]()
+9. [PhoneInputField]()
+10. [Select]()
+11. [UserSearchField]()
+12. [ValidationInputField]()
+
+## Props
+
+Each component may have its own specific props, but the following are common across many of them:
+
+Prop | Type | Description
+label | string | label for the input field
+name | string | label for the input field
+formData | Record<string, any> | label for the input field
+onChange | (e: any) => void | label for the input field
+
+# Getting Started
+
+## Installation
+
+Install the package via _npm_:
+
+```
+npm install @bikiran/inputs
+
 ```
 
-or
+or via _yarn_:
 
-```sh
-yarn add bik-inputs
+```
+yarn add @bikiran/inputs
+
 ```
 
----
+## How It Works
 
-## Dependencies
+This package is designed to seamlessly inherit your project’s Tailwind CSS theme. It automatically uses your existing:
 
-**clsx**
-**Tailwind CSS**
-**input-otp**
-**react-datepicker**
-**dayjs**
+- Primary/secondary colors
+- Font families
+- Spacing scale
+- Other design tokens
 
-## 📌 Note:
+No extra configuration is needed—just ensure your `tailwind.config.js` is properly set up.
 
-This library utilizes Tailwind CSS for styling. The colors displayed in the input fields can be customized by modifying the primary and secondary colors in your Tailwind configuration file. To ensure proper styling, make sure to define primary and secondary-700 in your Tailwind theme settings.
+## Example
 
-## 🚀 Usage
+Your `tailwind.config.js` should define colors using CSS variables like this:
 
-### **Basic Example**
+```
+theme: {
+  extend: {
+    colors: {
+      primary: {
+        DEFAULT: "var(--primary)",
+        50: "var(--primary-50)",
+        100: "var(--primary-100)",
+        200: "var(--primary-200)",
+        300: "var(--primary-300)",
+        500: "var(--primary-500)",
+        700: "var(--primary-700)",
+        900: "var(--primary-900)",
+      },
+      secondary: {
+        DEFAULT: "var(--secondary)",
+        50: "var(--secondary-50)",
+        100: "var(--secondary-100)",
+        300: "var(--secondary-300)",
+        500: "var(--secondary-500)",
+        700: "var(--secondary-700)",
+        900: "var(--secondary-900)",
+      },
+    },
+  },
+}
 
-```tsx
-import React from "react";
-import { AnimatedInputField } from "bik-inputs";
-
-const App = () => {
-  const [formData, setFormData] = useState<Record<string, string>>({});
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-  return (
-    <AnimatedInputField
-      label="Username"
-      name="username"
-      formData={formData}
-      onChange={handleChange}
-    />
-  );
-};
-
-export default App;
 ```
 
----
+This setup allows all components to automatically inherit your color scheme across different shades.
 
-## 🎨 **Available Input Fields**
+## Basic Usage
 
-```tsx
-<PhoneInputField placeholder="Enter your phone number" />
-<AnimatedInputField placeholder="Animated Input" />
-<CalculationInputField placeholder="Calculation Input" />
-<EmailInputField placeholder="Enter your email" />
-<AnimatedTextArea placeholder="Animated Text Area" />
-<ValidationInputField placeholder="Validation Input" />
-<UserSearchField placeholder="Search User" />
-<OTPInputField value="" handleOnChange={handleOnChange} />
-<DateInputField />
+1. Import Components
+
+```
+import {AnimatedInputField} from  "@bikiran/inputs"
+
 ```
 
----
+## Documentation
 
-## 📋 **Props & Customization**
+For complete documentation and usage examples, please see: [Components Documentation](https://github.com/bikirandev/bikiran-inputs/wiki)
 
-Each component has its own set of props for customization. Check the documentation for details on each input field's specific properties.
+Here's just the "How to Contribute" section in Markdown:
 
-### **Common Props**
+## 🤝 How to Contribute
 
-| Prop        | Type                     | Default     | Description                 | Required |
-| ----------- | ------------------------ | ----------- | --------------------------- | -------- |
-| `label`     | `string`                 | `""`        | Label for the input field   | ✅ Yes   |
-| `type`      | `string`                 | `"text"`    | Input type                  | ❌ No    |
-| `name`      | `string`                 | `""`        | Input name                  | ✅ Yes   |
-| `formData`  | `Record<string, string>` | `{}`        | Form data storage           | ✅ Yes   |
-| `onChange`  | `(e: any) => void`       | `undefined` | Change event handler        | ✅ Yes   |
-| `onBlur`    | `() => void`             | `undefined` | Blur event handler          | ❌ No    |
-| `className` | `string`                 | `""`        | Additional CSS classes      | ❌ No    |
-| `disabled`  | `boolean`                | `false`     | Disables the input field    | ❌ No    |
-| `required`  | `boolean`                | `false`     | Marks the field as required | ❌ No    |
-| `readOnly`  | `boolean`                | `false`     | Sets the field as read-only | ❌ No    |
+We welcome contributions! To contribute to the package :
 
----
+1. Fork the repository and clone your fork locally.
+2. Create a new branch for your feature or bugfix:
 
-## 🛠 **Customization & Styling**
+```
+git checkout -b my-feature-name
 
-You can override styles using the `className` prop.
-
-```tsx
-<AnimatedInputField className="custom-input" />
 ```
 
----
+3. Make your changes in supporting files.
+4. If you’re adding a feature or behavior, consider updating the docs or usage example.
+5. Commit your changes:
 
-## 🔗 **More Details**
+```
+git commit -m "feat: add awesome feature"
+```
 
-For more details, visit the [GitHub repository](https://github.com/bikirandev/Bikiran-Inputs/wiki).
+6.Push to your fork:
 
-## 🔗 **Development**
+```
+git push origin my-feature-name
+```
 
-[How to Contribute](https://github.com/bikirandev/Bikiran-Inputs/wiki/Contributing.md)
+7.Open a Pull Request with a clear title and description.
 
----
+## 🧪 Before submitting:
 
-## 🔗 **License**
+- Run and test the component in your app.
+- Check for console errors or style breakages.
+- Use consistent naming and follow the existing code style.
 
-This project is licensed under the MIT License.
+Thanks for your contribution! ❤️
 
----
+## License
 
-## 👨‍💻 **Author**
+MIT License
 
-Created by [bikiran.com](https://bikiran.com/). Feel free to contribute!
+## Author
+
+Develop by [Bikiran](https://www.bikiran.com/)
