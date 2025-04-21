@@ -1,8 +1,8 @@
-import { cn } from "../../lib/utils/cn";
 import { FC, useState } from "react";
 import { useEffect, useRef } from "react";
 import { ArrowIcon, CheckIcon } from "./Icons";
 import style from "./Select.module.css";
+import { cn } from "../../lib/utils/cn";
 
 type TProps = {
   name: string;
@@ -38,7 +38,7 @@ const Option: FC<{
         style.selectOption,
         isActive ? `${style.isActive} isActive` : ""
       )}
-      onClick={() => handleSelect(option.value)}
+      onClick={() => handleSelect(option?.value?.toString())}
     >
       <div className={cn(style.optionTitle, "optionTitle")}>
         <div className={cn(style.checkIcon, "checkIcon")}>
