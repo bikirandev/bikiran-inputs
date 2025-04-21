@@ -33,11 +33,9 @@ const Option: FC<{
   return (
     <div
       key={option.id}
-      className={cn(
-        "select-option",
-        style.selectOption,
-        isActive ? `${style.isActive} isActive` : ""
-      )}
+      className={cn("select-option", style.selectOption, {
+        [`${style.isActive} isActive`]: isActive,
+      })}
       onClick={() => handleSelect(option?.value?.toString())}
     >
       <div className={cn(style.optionTitle, "optionTitle")}>
@@ -73,7 +71,9 @@ const SelectOptionArea: FC<{
         "select-option-container",
         style.selectOptionContainer,
         style.customScrollbar,
-        show ? `${style.show}  show` : ""
+        {
+          [`${style.show} active`]: show,
+        }
       )}
     >
       <div className={cn(style.placeholderContainer, "placeholderContainer")}>
@@ -91,7 +91,8 @@ const SelectOptionArea: FC<{
           {placeholder || "Select an option"}
         </div>
         {options?.map((option: TSelectOption) => {
-          const isActive: boolean = formData?.[name] === option?.value;
+          const isActive: boolean =
+            formData?.[name] === option?.value?.toString();
           return (
             <Option
               key={option.id}
@@ -145,7 +146,8 @@ const AnimatedSelect: FC<TProps> = ({
 
   const isValue = formData[name]?.length > 0;
   const value = isValue
-    ? options.find((option) => option.value === formData[name])?.title
+    ? options.find((option) => option.value?.toString() === formData[name])
+        ?.title
     : placeholder;
 
   return (
@@ -155,10 +157,10 @@ const AnimatedSelect: FC<TProps> = ({
           className={cn(
             "valueWrapper relative border-[#e5e7eb]",
             style.valueWrapper,
-            isValue ? style.isValue : "",
             className,
             {
               "!border-secondary": show,
+              [style.isValue]: isValue,
             }
           )}
           onClick={() => setShow((prev) => !prev)}
@@ -169,16 +171,10 @@ const AnimatedSelect: FC<TProps> = ({
           </div>
 
           <div
-            className={cn(
-              "top-1/2 transform -translate-y-1/2",
-              style.placeholder,
-              isValue
-                ? "-top-3 transform-none text-[#5a577a]"
-                : "text-[#b9b7c6]",
-              {
-                "text-secondary": show,
-              }
-            )}
+            className={cn(style.placeholder, {
+              "text-secondary": show,
+              [style.placeholderActive]: isValue,
+            })}
           >
             {placeholder}
           </div>
