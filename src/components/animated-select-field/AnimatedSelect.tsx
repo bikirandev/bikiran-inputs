@@ -1,104 +1,61 @@
-import { FC, useState } from "react";
-import { useEffect, useRef } from "react";
-import { ArrowIcon, CheckIcon } from "./Icons";
-import style from "./Select.module.css";
+import { FC, useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
+import SelectTrigger from "./SelectTrigger";
+import { TProps, TSelectOption, TSelectPosition } from "./selectTypes";
+import { OptionItem, PlaceholderOption } from "./Option";
 import { cn } from "../../lib/utils/cn";
-
-type TProps = {
-  name: string;
-  onChange: (value: any) => void;
-  formData: Record<string, any>;
-  options: TSelectOption[];
-  placeholder?: string;
-  className?: string;
-  containerClassname?: string;
-  label: string;
-};
-
-type TSelectOption = {
-  id: number;
-  title: string;
-  value: string;
-};
 
 export const addOption = (id: any, title: any, value: any) => {
   return { id, title, value };
 };
 
-const Option: FC<{
-  option: TSelectOption;
-  isActive: boolean;
-  handleSelect: (val: any) => void;
-}> = ({ option, isActive, handleSelect }) => {
-  return (
-    <div
-      key={option.id}
-      className={cn("select-option", style.selectOption, {
-        [`${style.isActive} isActive`]: isActive,
-      })}
-      onClick={() => handleSelect(option?.value?.toString())}
-    >
-      <div className={cn(style.optionTitle, "optionTitle")}>
-        <div className={cn(style.checkIcon, "checkIcon")}>
-          {isActive && <CheckIcon />}
-        </div>
-        {option.title}
-      </div>
-    </div>
-  );
-};
-
-const SelectOptionArea: FC<{
+const SelectOptionsContent: FC<{
+  containerRef: any;
   options: TSelectOption[];
   handleSelect: (val: any) => void;
-  formData: Record<string, any>;
-  name: string;
-  show: boolean;
   isValue: boolean;
-  placeholder?: string;
+  placeholder: string | undefined;
+  position: TSelectPosition;
+  name: string;
+  formData: Record<string, any>;
 }> = ({
+  containerRef,
   options,
   handleSelect,
-  formData,
-  name,
-  show,
   isValue,
   placeholder,
+  position,
+  name,
+  formData,
 }) => {
   return (
     <div
+      ref={containerRef}
       className={cn(
-        "select-option-container",
-        style.selectOptionContainer,
-        style.customScrollbar,
-        {
-          [`${style.show} active`]: show,
-        }
+        "absolute z-[1000] max-h-[250px] bg-white rounded-[8px] shadow-md border border-[#e5e7eb] overflow-auto"
       )}
+      style={{
+        top: position.top + 4,
+        left: position.left,
+        width: position.width,
+        pointerEvents: "auto",
+      }}
+      onClick={(e) => e.stopPropagation()}
     >
-      <div className={cn(style.placeholderContainer, "placeholderContainer")}>
-        <div
-          className={cn(
-            "select-option-placeholder",
-            style.selectOptionPlaceholder,
-            !isValue ? `${style.notIsValue} notIsValue` : ""
-          )}
+      <div className="p-1">
+        <PlaceholderOption
           onClick={() => handleSelect("")}
-        >
-          <div className={cn(style.checkIcon, "checkIcon")}>
-            {!isValue && <CheckIcon />}
-          </div>
-          {placeholder || "Select an option"}
-        </div>
-        {options?.map((option: TSelectOption) => {
-          const isActive: boolean =
-            formData?.[name] === option?.value?.toString();
+          isValue={isValue}
+          placeholder={placeholder}
+        />
+        {options.map((option: TSelectOption) => {
+          const isActive: boolean = formData[name] === option.value?.toString();
           return (
-            <Option
+            <OptionItem
               key={option.id}
+              onClick={() => handleSelect(option.value?.toString())}
               option={option}
               isActive={isActive}
-              handleSelect={handleSelect}
             />
           );
         })}
@@ -113,16 +70,30 @@ const AnimatedSelect: FC<TProps> = ({
   formData,
   label,
   options,
-  placeholder,
+  placeholder = "Select an option",
   containerClassname,
   className,
 }) => {
   const [show, setShow] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>(null);
+  // Position state
+  const [position, setPosition] = useState<TSelectPosition>({
+    top: 0,
+    left: 0,
+    width: 0,
+    height: 0,
+  });
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+
+  // Handle Click Outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node) &&
+        !event.defaultPrevented // Ensure clicks on options don't trigger close
+      ) {
         setShow(false);
       }
     };
@@ -131,10 +102,10 @@ const AnimatedSelect: FC<TProps> = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
+  }, []);
 
+  // Handle Select Option
   const handleSelect = (val: any) => {
-    setShow((prev) => !prev);
     const ev = {
       target: {
         name,
@@ -142,52 +113,77 @@ const AnimatedSelect: FC<TProps> = ({
       },
     };
     onChange(ev);
+    setShow(false); // Close dropdown after selection
   };
 
+  // Check if any value is selected
   const isValue = formData[name]?.length > 0;
+
+  // Selected Option or Placeholder
   const value = isValue
     ? options.find((option) => option.value?.toString() === formData[name])
         ?.title
     : placeholder;
 
-  return (
-    <div ref={ref} className={containerClassname}>
-      <div className={cn("container", style.container)}>
-        <div
-          className={cn(
-            "valueWrapper relative border-[#e5e7eb]",
-            style.valueWrapper,
-            className,
-            {
-              "!border-secondary": show,
-              [style.isValue]: isValue,
-            }
-          )}
-          onClick={() => setShow((prev) => !prev)}
-        >
-          <div className={cn("value", style.value)}>{isValue && value}</div>
-          <div className={cn(style.iconWrapper, "iconWrapper")}>
-            <ArrowIcon />
-          </div>
+  // Update position when triggerRef is available or show changes
+  useEffect(() => {
+    if (triggerRef.current && show) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setPosition({
+        top: rect.bottom + window.scrollY, // Account for scroll
+        left: rect.left + window.scrollX,
+        width: rect.width,
+        height: rect.height,
+      });
+    }
+  }, [show]);
 
-          <div
-            className={cn(style.placeholder, {
-              "text-secondary": show,
-              [style.placeholderActive]: isValue,
-            })}
-          >
-            {placeholder}
-          </div>
-        </div>
-        <SelectOptionArea
-          options={options}
-          handleSelect={handleSelect}
-          formData={formData}
-          name={name}
+  //  Scroll on dropdown
+  useEffect(() => {
+    const dropdown = containerRef.current;
+
+    if (!dropdown) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.stopPropagation();
+    };
+
+    dropdown.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      dropdown.removeEventListener("wheel", handleWheel);
+    };
+  }, [show]);
+
+  return (
+    <div className={containerClassname} id="selectField">
+      <div>
+        <label className="text-base font-medium text-primary">{label}</label>
+      </div>
+      <div className="w-full relative p-0">
+        <SelectTrigger
+          triggerRef={triggerRef}
           show={show}
           isValue={isValue}
+          onClick={() => setShow((prev) => !prev)}
+          value={value}
           placeholder={placeholder}
+          className={className}
         />
+        {show &&
+          createPortal(
+            <SelectOptionsContent
+              containerRef={containerRef}
+              options={options}
+              handleSelect={handleSelect}
+              isValue={isValue}
+              placeholder={placeholder}
+              position={position}
+              name={name}
+              formData={formData}
+            />,
+            document.body
+          )}
       </div>
     </div>
   );
