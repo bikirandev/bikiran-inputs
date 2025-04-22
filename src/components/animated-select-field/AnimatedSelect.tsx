@@ -4,6 +4,7 @@ import SelectTrigger from "./SelectTrigger";
 import { TProps, TSelectOption, TSelectPosition } from "./selectTypes";
 import { OptionItem, PlaceholderOption } from "./Option";
 import { cn } from "../../lib/utils/cn";
+import style from "./Select.module.css";
 
 export const addOption = (id: any, title: any, value: any) => {
   return { id, title, value };
@@ -31,9 +32,7 @@ const SelectOptionsContent: FC<{
   return (
     <div
       ref={containerRef}
-      className={cn(
-        "absolute z-[2000] bg-white rounded-[8px] shadow-md border border-[#e5e7eb] overflow-auto"
-      )}
+      className={cn(style.optionContainer, "option-container")}
       style={{
         top: position.top + 4,
         left: position.left,
@@ -42,7 +41,12 @@ const SelectOptionsContent: FC<{
       }}
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="p-1 max-h-60 overflow-y-auto">
+      <div
+        className={cn(
+          style.placeholderOptionContainer,
+          "placeholder-option-container"
+        )}
+      >
         <PlaceholderOption
           onClick={() => handleSelect("")}
           isValue={isValue}
@@ -158,9 +162,9 @@ const AnimatedSelect: FC<TProps> = ({
   return (
     <div className={containerClassname} id="selectField">
       <div>
-        <label className="text-base font-medium text-primary">{label}</label>
+        <label className={cn(style.label, "label")}>{label}</label>
       </div>
-      <div className="w-full relative p-0">
+      <div className={cn(style.trigger, "trigger")}>
         <SelectTrigger
           triggerRef={triggerRef}
           show={show}

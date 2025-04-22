@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { ArrowIcon } from "./Icons";
 import { cn } from "../../lib/utils/cn";
+import style from "./Select.module.css";
 
 type TProps = {
   show: boolean;
@@ -24,19 +25,15 @@ const SelectTrigger: FC<TProps> = ({
   return (
     <div
       ref={triggerRef}
-      className={cn(
-        "w-full h-[45px] text-sm border border-[#e5e7eb] rounded-[8px] px-[10px] flex items-center justify-between cursor-pointer relative overflow-visible",
-        className,
-        {
-          "border-[#d0cfd9]": isValue,
-          "!border-secondary": show,
-        }
-      )}
+      className={cn(style.triggerContainer, "trigger-container", className, {
+        [style.isValue]: isValue,
+        [style.show]: show,
+      })}
       onClick={onClick}
     >
       {/* Selected Option or Placeholder[By Default] */}
       <div
-        className={cn("flex-1 font-medium", {
+        className={cn(style.value, "value", {
           invisible: value === placeholder,
         })}
       >
@@ -44,19 +41,16 @@ const SelectTrigger: FC<TProps> = ({
       </div>
 
       <div
-        className={cn(
-          "font-medium absolute top-1/2 transform -translate-y-1/2 left-2 text-[#b9b7c6] px-[4px] z-10 text-sm bg-white transition-all duration-300",
-          {
-            "text-secondary": show,
-            "-top-3 left-4 transform-none text-[#5a577a] ": isValue,
-          }
-        )}
+        className={cn(style.placeholder, "placeholder", {
+          [style.placeholderShow]: show,
+          [style.placeholderIsValue]: isValue,
+        })}
       >
         {placeholder}
       </div>
 
       {/* Down Arrow Icon */}
-      <div className="w-3 opacity-50">
+      <div className={cn(style.arrow, "arrow")}>
         <ArrowIcon />
       </div>
     </div>

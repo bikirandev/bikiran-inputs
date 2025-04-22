@@ -2,6 +2,7 @@ import { FC } from "react";
 import { CheckIcon } from "./Icons";
 import { TSelectOption } from "./selectTypes";
 import { cn } from "../../lib/utils/cn";
+import style from "./Select.module.css";
 
 export const OptionItem: FC<{
   onClick: () => void;
@@ -10,19 +11,18 @@ export const OptionItem: FC<{
 }> = ({ onClick, option, isActive }) => {
   return (
     <div
-      className={cn(
-        "w-full rounded-sm px-[10px] py-[7px] flex items-center text-sm hover:bg-[#f3f3f5] transition-colors cursor-pointer",
-        {
-          "bg-[#f7e6f8] hover:bg-[#f7e6f8]": isActive,
-        }
-      )}
+      className={cn(style.optionItem, "option-item", {
+        [style.optionItemIsActive]: isActive,
+      })}
       onClick={(e) => {
         e.stopPropagation(); // Prevent outer div's onClick from firing
         onClick();
       }}
     >
-      <div className={cn("flex items-center gap-2")}>
-        <div className={cn("w-3")}>{isActive && <CheckIcon />}</div>
+      <div className={cn(style.optionTitle, "option-title")}>
+        <div className={cn(style.checkIcon, "check-icon")}>
+          {isActive && <CheckIcon />}
+        </div>
         {option.title}
       </div>
     </div>
@@ -36,18 +36,17 @@ export const PlaceholderOption: FC<{
 }> = ({ onClick, isValue, placeholder }) => {
   return (
     <div
-      className={cn(
-        "w-full rounded-sm px-[10px] py-[7px] flex items-center gap-2 text-sm hover:bg-[#f3f3f5] cursor-pointer",
-        {
-          "bg-[#f7e6f8] hover:bg-[hsl(297,56%,94%)]": !isValue,
-        }
-      )}
+      className={cn(style.option, "option", {
+        [style.optionNotValue]: !isValue,
+      })}
       onClick={(e) => {
         e.stopPropagation(); // Prevent outer div's onClick from firing
         onClick();
       }}
     >
-      <div className={cn("w-3")}>{!isValue && <CheckIcon />}</div>
+      <div className={cn(style.checkIcon, "check-icon")}>
+        {!isValue && <CheckIcon />}
+      </div>
       {placeholder || "Select an option"}
     </div>
   );
