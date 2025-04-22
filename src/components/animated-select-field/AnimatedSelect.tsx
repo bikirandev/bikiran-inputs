@@ -32,7 +32,7 @@ const SelectOptionsContent: FC<{
     <div
       ref={containerRef}
       className={cn(
-        "absolute z-[2000] max-h-60 bg-white rounded-[8px] shadow-md border border-[#e5e7eb] overflow-auto"
+        "absolute z-[2000] bg-white rounded-[8px] shadow-md border border-[#e5e7eb] overflow-auto"
       )}
       style={{
         top: position.top + 4,
@@ -42,7 +42,7 @@ const SelectOptionsContent: FC<{
       }}
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="p-1">
+      <div className="p-1 max-h-60 overflow-y-auto">
         <PlaceholderOption
           onClick={() => handleSelect("")}
           isValue={isValue}
