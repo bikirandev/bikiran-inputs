@@ -32,7 +32,7 @@ const SelectOptionsContent: FC<{
     <div
       ref={containerRef}
       className={cn(
-        "absolute z-[1000] max-h-[250px] bg-white rounded-[8px] shadow-md border border-[#e5e7eb] overflow-auto"
+        "absolute z-[2000] max-h-60 bg-white rounded-[8px] shadow-md border border-[#e5e7eb] overflow-auto"
       )}
       style={{
         top: position.top + 4,
