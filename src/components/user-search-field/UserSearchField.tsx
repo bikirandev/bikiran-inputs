@@ -7,6 +7,8 @@ import UserSkeletonComp from "./UserSkeletonComp";
 import { TInputChangeEvent, TState } from "../../lib/types/InputType";
 import ValidationInputField from "../validation-input-field/ValidationInputField";
 import { IconRefresh } from "./icon";
+import AnimatedInputField from "../animated-input-field/AnimatedInputField";
+import { ValidationCheck } from "../validation-input-field/ValidationCheck";
 
 type TProps = {
   selectedUser: any;
@@ -74,17 +76,22 @@ const UserSearchField: FC<TProps> = ({
   return (
     <div>
       <div className="relative mt-3">
-        <ValidationInputField
-          valid={valid()}
-          loading={formData?.["user"]?.length > 2 && loading}
-          formData={formData}
-          label={label}
-          name="user"
-          placeholder="Username must be at least 3 characters"
-          autoComplete="off"
-          onChange={handleOnChange}
-          className=""
-        />
+        <div>
+          <AnimatedInputField
+            formData={formData}
+            label={label}
+            name="user"
+            placeholder="Username must be at least 3 characters"
+            autoComplete="off"
+            onChange={handleOnChange}
+            className="relative"
+          />
+          <ValidationCheck
+            loading={loading}
+            valid={valid()}
+            className="absolute top-1/2 right-[10px] flex items-center space-x-2 transform -translate-y-1/2"
+          />
+        </div>
         <div className="absolute w-full" style={{ top: "50px", zIndex: 1000 }}>
           <UserPopover
             data={userData}
@@ -113,7 +120,7 @@ const UserSearchField: FC<TProps> = ({
           </div>
         </div>
       ) : userData.length === 0 && formData?.user?.length > 2 && !loading ? (
-        <div className="flex justify-between items-center py-3">
+        <div className="flex justify-between items-center py-[15px]">
           <span className="text-primary text-sm ">No user found</span>
           <div className="flex gap-2">
             <button

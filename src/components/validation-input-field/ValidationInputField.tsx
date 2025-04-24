@@ -3,34 +3,7 @@ import { cn } from "../../lib/utils/cn";
 import { TInputChangeEvent, TValidationField } from "../../lib/types/InputType";
 import { iconAlert, iconLoading, iconTick } from "./icons/Icons";
 import style from "../../style/global.module.css";
-
-const ValidationCheck: FC<{
-  loading?: boolean | undefined;
-  valid?: boolean | undefined;
-  className?: string;
-  loadingIcon?: any;
-  alertIcon?: any;
-  tickIcon?: any;
-}> = ({ loading, valid, className, tickIcon, alertIcon, loadingIcon }) => {
-  return (
-    <div className={cn("absolute", className)}>
-      {loading
-        ? loadingIcon
-          ? loadingIcon
-          : iconLoading()
-        : loading !== undefined &&
-          valid !== undefined &&
-          (valid
-            ? tickIcon
-              ? tickIcon
-              : iconTick()
-            : alertIcon
-            ? alertIcon
-            : iconAlert())}
-      {loading === undefined && valid === undefined && null}
-    </div>
-  );
-};
+import { ValidationCheck } from "./ValidationCheck";
 
 // InputField component with TS types
 const ValidationInputField: FC<TValidationField> = (props) => {
