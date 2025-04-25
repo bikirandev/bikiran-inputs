@@ -31,12 +31,12 @@
   "description": "A simple and reusable React input component library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bikirandev/7501NPM-Bikiran-Inputs.git"
+    "url": "https://github.com/bikirandev/bikiran-inputs.git"
   },
   "bugs": {
-    "url": "https://github.com/bikirandev/7501NPM-Bikiran-Inputs/issues"
+    "url": "https://github.com/bikirandev/bikiran-inputs/issues"
   },
-  "homepage": "https://github.com/bikirandev/7501NPM-Bikiran-Inputs#readme",
+  "homepage": "https://github.com/bikirandev/bikiran-inputs#readme",
   "peerDependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
