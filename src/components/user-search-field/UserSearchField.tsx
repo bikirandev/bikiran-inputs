@@ -57,14 +57,14 @@ const UserSearchField: FC<TProps> = ({
     }
   }, [selectedUser]);
 
-  useEffect(() => {
-    if (userData.length === 0) {
-      setSelectedUser(undefined);
-    }
-  });
+  // useEffect(() => {
+  //   if (userData.length === 0) {
+  //     setSelectedUser(undefined);
+  //   }
+  // });
 
   const valid = () => {
-    if (userData.length > 0) {
+    if (userData.length > 0 && formData?.["user"]?.length > 2) {
       return true;
     }
     if (userData.length === 0 && formData?.["user"]?.length > 2) {
