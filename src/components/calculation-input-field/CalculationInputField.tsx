@@ -45,8 +45,8 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
 
   const handleChange = (ev: TInputChangeEvent) => {
     let value = ev.target.value;
-    // Remove all non-numeric characters except for valid operators and decimal points
-    value = value.replace(/[^0-9+\-*/().=%^\s]/g, "");
+    // Remove all non-numeric characters except for valid operators and decimal points, and remove spaces
+    value = value.replace(/[^0-9+\-*/().=%^]/g, "");
     if (!calculate) {
       return onChange({
         target: {
@@ -55,7 +55,7 @@ const CalculationInputField: FC<TCalculationInputField> = (props) => {
         },
       });
     }
-    const validInput = /^[0-9+\-*/().=%^\s]*$/.test(value);
+    const validInput = /^[0-9+\-*/().=%^]*$/.test(value);
     if (!validInput) {
       return;
     }
