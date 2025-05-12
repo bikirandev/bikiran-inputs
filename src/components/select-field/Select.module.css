@@ -52,17 +52,13 @@
 }
 
 .customScrollbar::-webkit-scrollbar-track {
-  @apply bg-white;
-}
-
-.customScrollbar:hover .customScrollbar::-webkit-scrollbar-track {
   @apply bg-primary-50;
 }
 
 .customScrollbar::-webkit-scrollbar-thumb {
   @apply bg-transparent rounded-5;
 }
-.customScrollbar:hover .customScrollbar::-webkit-scrollbar-thumb {
+.customScrollbar:hover::-webkit-scrollbar-thumb {
   @apply bg-secondary;
 }
 
