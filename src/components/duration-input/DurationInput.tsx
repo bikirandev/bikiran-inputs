@@ -69,6 +69,23 @@ const DurationInput: FC<TAnimateInputField> = (props) => {
   const inputValue = formData[durationName] ?? "";
   const isValue = inputValue !== "";
 
+  const handleOnChange = (ev: TInputChangeEvent) => {
+    let value = ev.target.value.replace(/\s+/g, "");
+    value = value.replace(/[^0-9+\-*/().=%^]/g, "");
+
+    const validInput = /^[0-9+\-*/().=%^]*$/.test(value);
+    if (!validInput) {
+      return;
+    }
+
+    onChange({
+      target: {
+        name: ev.target.name,
+        value: value,
+      },
+    });
+  };
+
   return (
     <div className={cn(styles.container, "animate-input")}>
       <div
@@ -90,11 +107,11 @@ const DurationInput: FC<TAnimateInputField> = (props) => {
         </label>
         <input
           ref={ref}
-          type={type}
+          type="number"
           required={required}
           name={durationName}
           value={inputValue}
-          onChange={onChange}
+          onChange={handleOnChange}
           onBlur={handleBlur}
           autoComplete={autoComplete}
           disabled={disabled}
