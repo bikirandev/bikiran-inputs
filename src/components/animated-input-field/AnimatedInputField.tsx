@@ -83,6 +83,7 @@ const AnimatedInputField: FC<TAnimateInputField> = (props) => {
           name={name}
           value={inputValue}
           onChange={onChange}
+          onFocus={handleFocus}
           onBlur={handleBlur}
           autoComplete={autoComplete}
           disabled={disabled}
