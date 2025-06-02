@@ -82,6 +82,7 @@ const EmailInputField: FC<TAnimateInputField> = (props) => {
           name={name}
           value={inputValue}
           onChange={handleChange}
+          onFocus={handleFocus}
           onBlur={onBlur || handleBlur}
           autoComplete={autoComplete}
           disabled={disabled}

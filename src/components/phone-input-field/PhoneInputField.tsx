@@ -104,6 +104,7 @@ const PhoneInputField: FC<TPhoneInputField> = (props) => {
           value={inputValue}
           onChange={handleOnChange}
           onBlur={onBlur || handleBlur}
+          onFocus={handleFocus}
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}

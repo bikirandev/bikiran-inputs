@@ -113,6 +113,7 @@ const DurationInput: FC<TAnimateInputField> = (props) => {
           value={inputValue}
           onChange={handleOnChange}
           onBlur={handleBlur}
+          onFocus={handleFocus}
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}

@@ -83,6 +83,7 @@ const ValidationInputField: FC<TValidationField> = (props) => {
           value={inputValue}
           onChange={handleChange}
           onBlur={onBlur || handleBlur}
+          onFocus={handleFocus}
           autoComplete={autoComplete}
           disabled={disabled}
           readOnly={readOnly}
