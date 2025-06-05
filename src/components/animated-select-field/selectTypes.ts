@@ -13,6 +13,7 @@ export type TProps = {
   className?: string;
   containerClassname?: string;
   label: string;
+  required?: boolean;
 };
 
 export type TSelectPosition = {

@@ -77,6 +77,7 @@ const AnimatedSelect: FC<TProps> = ({
   placeholder = "Select an option",
   containerClassname,
   className,
+  required = false,
 }) => {
   const [show, setShow] = useState<boolean>(false);
   // Position state
@@ -163,6 +164,7 @@ const AnimatedSelect: FC<TProps> = ({
     <div className={containerClassname} id="selectField">
       <div>
         <label className={cn(style.label, "label")}>{label}</label>
+        {required && <span className="text-error opacity-75">*</span>}
       </div>
       <div className={cn(style.trigger, "trigger")}>
         <SelectTrigger
