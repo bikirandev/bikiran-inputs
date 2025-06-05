@@ -164,7 +164,6 @@ const AnimatedSelect: FC<TProps> = ({
     <div className={containerClassname} id="selectField">
       <div>
         <label className={cn(style.label, "label")}>{label}</label>
-        {required && <span className="text-error opacity-75">*</span>}
       </div>
       <div className={cn(style.trigger, "trigger")}>
         <SelectTrigger
@@ -175,6 +174,7 @@ const AnimatedSelect: FC<TProps> = ({
           value={value}
           placeholder={placeholder}
           className={className}
+          required={required}
         />
         {show &&
           createPortal(

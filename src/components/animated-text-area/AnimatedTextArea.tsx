@@ -16,6 +16,7 @@ const AnimatedTextArea: FC<TAnimatedTextArea> = (props) => {
     disabled = false,
     onChange,
     placeholder,
+    required = false,
   } = props;
 
   const handleFocus = () => {
@@ -57,6 +58,7 @@ const AnimatedTextArea: FC<TAnimatedTextArea> = (props) => {
           )}
         >
           {label || "Type something"}
+          {required && <span className="text-error opacity-75">*</span>}
         </label>
         <textarea
           ref={ref}

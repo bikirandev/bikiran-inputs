@@ -46,6 +46,7 @@ export type TAnimatedTextArea = {
   className?: string;
   disabled?: boolean;
   placeholder?: string;
+  required?: boolean;
 };
 
 export type TAnimateInputField = {

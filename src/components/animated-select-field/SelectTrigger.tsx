@@ -11,6 +11,7 @@ type TProps = {
   placeholder: string | undefined;
   className?: string;
   triggerRef?: any;
+  required?: boolean;
 };
 
 const SelectTrigger: FC<TProps> = ({
@@ -21,6 +22,7 @@ const SelectTrigger: FC<TProps> = ({
   placeholder,
   className,
   triggerRef,
+  required = false,
 }) => {
   return (
     <div
@@ -47,6 +49,7 @@ const SelectTrigger: FC<TProps> = ({
         })}
       >
         {placeholder}
+        {required && <span className="text-error opacity-75">*</span>}
       </div>
 
       {/* Down Arrow Icon */}
