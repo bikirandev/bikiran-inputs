@@ -1,4 +1,9 @@
-# bik-inputs
+[![npm Version](https://img.shields.io/npm/v/@bikiran/inputs.svg?style=flat-square)](https://www.npmjs.com/package/@bikiran/inputs)
+[![npm Downloads](https://img.shields.io/npm/dt/@bikiran/inputs.svg?style=flat-square)](https://www.npmjs.com/package/@bikiran/inputs)
+[![GitHub License](https://img.shields.io/github/license/bikirandev/bikiran-inputs.svg?style=flat-square)](https://github.com/bikirandev/bikiran-inputs/blob/main/LICENSE)
+[![GitHub Issues](https://img.shields.io/github/issues/bikirandev/bikiran-inputs.svg?style=flat-square)](https://github.com/bikirandev/bikiran-inputs/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/bikirandev/bikiran-inputs.svg?style=flat-square)](https://github.com/bikirandev/bikiran-inputs/stargazers)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/bikirandev/bikiran-inputs.svg?style=flat-square)](https://github.com/bikirandev/bikiran-inputs/commits/main)
 
 ## Overview
 
