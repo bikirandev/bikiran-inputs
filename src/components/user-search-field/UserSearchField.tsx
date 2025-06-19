@@ -124,7 +124,7 @@ const UserSearchField: FC<TProps> = ({
           <span className="text-primary text-sm ">No user found</span>
           <div className="flex gap-2">
             <button
-              className="text-secondary font-medium bg-secondary-100 px-[15px] py-2 rounded-8 hover:bg-secondary hover:text-white transition-colors duration-300 flex-shrink-0"
+              className="text-secondary font-medium bg-secondary-100 px-[15px] py-2 rounded-[8px] hover:bg-secondary hover:text-white transition-colors duration-300 flex-shrink-0"
               onClick={btnClick}
             >
               Create New User

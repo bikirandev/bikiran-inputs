@@ -35,7 +35,7 @@
   @apply p-1 max-h-60 overflow-y-auto;
 }
 .option {
-  @apply w-full rounded-sm px-[10px] py-[7px] flex items-center gap-2 text-sm hover:bg-[#f3f3f5] cursor-pointer;
+  @apply w-full rounded-[4px] px-[10px] py-[7px] flex items-center gap-2 text-sm hover:bg-[#f3f3f5] cursor-pointer;
 }
 .optionNotValue {
   @apply bg-[#f7e6f8] hover:bg-[hsl(297,56%,94%)];
@@ -44,7 +44,7 @@
   @apply w-3;
 }
 .optionItem {
-  @apply w-full rounded-sm px-[10px] py-[7px] flex items-center text-sm hover:bg-[#f3f3f5] transition-colors cursor-pointer;
+  @apply w-full rounded-[4px] px-[10px] py-[7px] flex items-center text-sm hover:bg-[#f3f3f5] transition-colors cursor-pointer;
 }
 .optionItemIsActive {
   @apply bg-[#f7e6f8] hover:bg-[#f7e6f8];

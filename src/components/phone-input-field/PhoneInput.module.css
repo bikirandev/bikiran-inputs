@@ -24,7 +24,7 @@
 }
 
 .input {
-  @apply block w-full h-full px-[10px] caret-current rounded-8 text-base outline-none disabled:grayscale transition-colors;
+  @apply block w-full h-full px-[10px] caret-current rounded-[8px] text-base outline-none disabled:grayscale transition-colors;
 }
 
 .inputHasValue {
