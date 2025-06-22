@@ -3,6 +3,7 @@ import { ArrowIcon, CheckIcon } from "./Icons";
 import style from "./Select.module.css";
 import { useEffect, useRef } from "react";
 import { cn } from "../../lib/utils/cn";
+import capitalizeFirstLetter from "../../lib/utils/capitalizeFirstLetter";
 
 type TProps = {
   name: string;
@@ -90,7 +91,7 @@ const Select: FC<TProps> = ({
               value === placeholder ? style.placeholder : style.value
             )}
           >
-            {value}
+            {capitalizeFirstLetter(value)}
           </div>
           <div className={cn(style.iconWrapper, "iconWrapper")}>
             <ArrowIcon />
@@ -136,7 +137,7 @@ const Select: FC<TProps> = ({
                     <div className={cn(style.checkIcon, "checkIcon")}>
                       {isActive && <CheckIcon />}
                     </div>
-                    {option.title}
+                    {capitalizeFirstLetter(option?.title?.toLowerCase() || "")}
                   </div>
                 </div>
               );
