@@ -91,7 +91,7 @@ const Select: FC<TProps> = ({
               value === placeholder ? style.placeholder : style.value
             )}
           >
-            {capitalizeFirstLetter(value)}
+            {capitalizeFirstLetter(value || "")}
           </div>
           <div className={cn(style.iconWrapper, "iconWrapper")}>
             <ArrowIcon />
