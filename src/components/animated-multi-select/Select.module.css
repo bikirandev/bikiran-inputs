@@ -1,0 +1,54 @@
+.label {
+  @apply text-base font-medium text-primary;
+}
+.trigger {
+  @apply w-full relative p-0;
+}
+.triggerContainer {
+  @apply w-full h-[45px] text-sm border border-[#e5e7eb] rounded-[8px] px-[10px] flex items-center justify-between cursor-pointer relative overflow-visible;
+}
+.isValue {
+  @apply border-[#d0cfd9];
+}
+.show {
+  @apply !border-secondary;
+}
+.value {
+  @apply flex-1 font-normal whitespace-nowrap text-ellipsis overflow-hidden pr-4;
+}
+.placeholder {
+  @apply font-medium absolute top-1/2 transform -translate-y-1/2 left-2 text-[#b9b7c6] px-[4px] z-10 text-sm bg-white transition-all duration-300;
+}
+.placeholderShow {
+  @apply !text-secondary;
+}
+.placeholderIsValue {
+  @apply -top-3 left-4 transform-none text-[#5a577a];
+}
+.arrow {
+  @apply w-3 opacity-50;
+}
+.optionContainer {
+  @apply absolute z-[2000] bg-white rounded-[8px] shadow-md border border-[#e5e7eb] overflow-auto;
+}
+.placeholderOptionContainer {
+  @apply p-1 max-h-60 overflow-y-auto space-y-1;
+}
+.option {
+  @apply w-full rounded-sm px-[10px] py-[7px] flex items-center gap-2 text-sm hover:bg-[#f3f3f5] cursor-pointer;
+}
+.optionNotValue {
+  @apply bg-[#f7e6f8] hover:bg-[hsl(297,56%,94%)];
+}
+.checkIcon {
+  @apply w-3;
+}
+.optionItem {
+  @apply w-full rounded-sm px-[10px] py-[7px] flex items-center text-sm hover:bg-[#f3f3f5] transition-colors cursor-pointer;
+}
+.optionItemIsActive {
+  @apply bg-[#f7e6f8] hover:bg-[#f7e6f8];
+}
+.optionTitle {
+  @apply flex items-center gap-2;
+}
