@@ -125,7 +125,8 @@ const Select: FC<TProps> = ({
               {placeholder || "Select an option"}
             </div>
             {options.map((option: TSelectOption) => {
-              const isActive: boolean = formData[name] === option.value;
+              const isActive: boolean =
+                formData[name]?.toLowerCase() === option.value?.toLowerCase();
               return (
                 <div
                   key={option.id}
