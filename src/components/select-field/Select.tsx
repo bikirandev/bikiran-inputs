@@ -64,7 +64,9 @@ const Select: FC<TProps> = ({
 
   const isValue = formData[name]?.length > 0;
   const value = isValue
-    ? options.find((option) => option.value === formData[name])?.title
+    ? options
+        .find((option) => option.value?.toLowerCase() === formData[name])
+        ?.title?.toLowerCase()
     : placeholder;
 
   return (
