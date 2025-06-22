@@ -10,4 +10,5 @@ export { default as InputField } from "./components/input-field/InputField";
 export { default as DurationInput } from "./components/duration-input/DurationInput";
 export { default as DateInputField } from "./components/date-input-field/DateInputField";
 export { default as AnimatedSelect } from "./components/animated-select-field/AnimatedSelect";
+export { default as AnimatedMultiSelect } from "./components/animated-multi-select/AnimatedMultiSelect";
 export { default as Select } from "./components/select-field/Select";
