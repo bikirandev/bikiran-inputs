@@ -2,8 +2,15 @@ import { FC, useState } from "react";
 import { TInputChangeEvent } from "../../lib/types/InputType";
 import { isValidPassword } from "./PasswordValidation";
 import Copy from "../../lib/utils/Copy";
-import PasswordIcons from "./icons/PasswordIcons";
 import { cn } from "../../lib/utils/cn";
+import {
+  iconAlert,
+  iconCopy,
+  iconCPanel,
+  iconEmail,
+  iconTick,
+  iconUser,
+} from "./icons/PasswordIcons";
 
 type TPassword = "account" | "cp" | "email";
 type TInputFieldProps = {
@@ -38,12 +45,17 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
   const { copy, isCopied } = Copy();
   const [showPassword, setShowPassword] = useState(isCopied ? true : false);
 
-  const passwordTypeIcons: {
-    [key: string]: string;
-  } = {
-    account: userPhoto || PasswordIcons.iconUser,
-    cp: PasswordIcons.iconCp,
-    email: PasswordIcons.iconEmail,
+  const passwordTypeIcons = () => {
+    switch (passwordType) {
+      case "account":
+        return userPhoto || iconUser();
+      case "cp":
+        return iconCPanel();
+      case "email":
+        return iconEmail();
+      default:
+        return iconUser();
+    }
   };
 
   const valid = isValidPassword(formData[name]);
@@ -57,14 +69,26 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
           {passwordType && passwordType.length > 0 && (
             <div className="absolute top-1/2 left-2 transform -translate-y-1/2">
               <div className="w-7">
-                <ImageComponent
+                {passwordType === "account" && userPhoto ? (
+                  <ImageComponent
+                    src={userPhoto}
+                    alt="user"
+                    width={100}
+                    height={100}
+                    sizes="100vw"
+                    className="w-full h-auto rounded-full"
+                  />
+                ) : (
+                  passwordTypeIcons()
+                )}
+                {/* <ImageComponent
                   src={passwordTypeIcons[passwordType]}
                   alt={passwordType}
                   width={100}
                   height={100}
                   sizes="100vw"
                   className="w-full h-auto rounded-full"
-                />
+                /> */}
               </div>
             </div>
           )}
@@ -113,9 +137,7 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
                 >
                   <ImageComponent
                     alt="copy"
-                    src={
-                      isCopied ? PasswordIcons.iconTick : PasswordIcons.iconCopy
-                    }
+                    src={isCopied ? iconTick : iconCopy}
                     width={0}
                     height={0}
                     sizes="100vw"
@@ -161,7 +183,7 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
       {description === true ? (
         <div className={`flex items-start gap-1 mt-2 `}>
           <ImageComponent
-            src={valid ? PasswordIcons.iconTick : PasswordIcons.iconAlert}
+            src={valid ? iconTick : iconAlert}
             alt="Error"
             width={0}
             height={0}
