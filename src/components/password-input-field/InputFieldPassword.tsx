@@ -69,7 +69,7 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
           {passwordType && passwordType.length > 0 && (
             <div className="absolute top-1/2 left-2 transform -translate-y-1/2">
               <div className="w-7">
-                {passwordType === "account" && userPhoto ? (
+                {userPhoto ? (
                   <ImageComponent
                     src={userPhoto}
                     alt="user"
@@ -81,14 +81,6 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
                 ) : (
                   passwordTypeIcons()
                 )}
-                {/* <ImageComponent
-                  src={passwordTypeIcons[passwordType]}
-                  alt={passwordType}
-                  width={100}
-                  height={100}
-                  sizes="100vw"
-                  className="w-full h-auto rounded-full"
-                /> */}
               </div>
             </div>
           )}
