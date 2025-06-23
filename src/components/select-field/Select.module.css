@@ -62,6 +62,10 @@
   @apply bg-secondary;
 }
 
+.required {
+  @apply text-error opacity-75;
+}
+
 /* Hide scrollbar */
 .noScrollbar::-webkit-scrollbar {
   @apply hidden;

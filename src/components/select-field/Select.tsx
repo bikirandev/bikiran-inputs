@@ -14,6 +14,7 @@ type TProps = {
   className?: string;
   containerClassname?: string;
   label: string;
+  required?: boolean;
 };
 
 type TSelectOption = {
@@ -35,6 +36,7 @@ const Select: FC<TProps> = ({
   placeholder,
   containerClassname,
   className,
+  required = false,
 }) => {
   const [show, setShow] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -77,6 +79,7 @@ const Select: FC<TProps> = ({
     <div ref={ref} className={containerClassname}>
       <div>
         <label className={cn(style.label)}>{label}</label>
+        {required && <span className={cn(style.required)}>*</span>}
       </div>
       <div className={cn("container", style.container)}>
         <div
