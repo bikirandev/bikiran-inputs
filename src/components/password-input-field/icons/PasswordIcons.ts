@@ -1,4 +1,3 @@
-/// <reference types="vite/client" />
 import iconCopy from "./icons/icon-copy.svg";
 import iconTick from "./icons/icon-tick.svg";
 import iconAlert from "./icons/icon-alert-red.svg";
