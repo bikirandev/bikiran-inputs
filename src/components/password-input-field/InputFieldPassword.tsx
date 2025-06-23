@@ -127,14 +127,7 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
                   onClick={() => copy(formData[name] || "")}
                   className="h-4 w-4 text-primary-700 opacity-70"
                 >
-                  <ImageComponent
-                    alt="copy"
-                    src={isCopied ? iconTick : iconCopy}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    className="w-full h-auto"
-                  />
+                  {isCopied ? iconTick() : iconCopy()}
                 </button>
               </>
             ) : null}
@@ -174,13 +167,9 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
       </div>
       {description === true ? (
         <div className={`flex items-start gap-1 mt-2 `}>
-          <ImageComponent
-            src={valid ? iconTick : iconAlert}
-            alt="Error"
-            width={0}
-            height={0}
-            className="w-4 h-4 mt-[3px]"
-          />
+          <div className="w-4 h-4 mt-[3px]">
+            {valid ? iconTick() : iconAlert()}
+          </div>
           <span
             className={`text-sm  ${valid ? "text-green-600" : "text-red-600"}`}
           >
