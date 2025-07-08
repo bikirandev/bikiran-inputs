@@ -3,8 +3,8 @@ import { FC } from "react";
 export const iconAlert = () => {
   return (
     <svg
-      width="28"
-      height="28"
+      width="100%"
+      height="100%"
       viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -26,8 +26,8 @@ export const iconAlert = () => {
 export const iconCopy = () => {
   return (
     <svg
-      width="28"
-      height="28"
+      width="100%"
+      height="100%"
       viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -91,8 +91,8 @@ export const iconEmail = () => {
 export const iconTick = () => {
   return (
     <svg
-      width="28"
-      height="28"
+      width="100%"
+      height="100%"
       viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
