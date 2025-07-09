@@ -33,6 +33,7 @@ type TAnimatePassword = {
   description?: boolean;
   passwordType: TPassword;
   userPhoto?: string;
+  defaultShow?: boolean;
 };
 
 const AnimatePassword: FC<TAnimatePassword> = (props) => {
@@ -56,6 +57,7 @@ const AnimatePassword: FC<TAnimatePassword> = (props) => {
     description,
     passwordType,
     userPhoto,
+    defaultShow = false,
   } = props;
 
   const handleFocus = () => {
@@ -81,7 +83,9 @@ const AnimatePassword: FC<TAnimatePassword> = (props) => {
   }, [focused]);
 
   const { copy, isCopied } = Copy();
-  const [showPassword, setShowPassword] = useState(isCopied ? true : false);
+  const [showPassword, setShowPassword] = useState(
+    isCopied ? true : defaultShow
+  );
 
   const passwordTypeIcons = () => {
     switch (passwordType) {
