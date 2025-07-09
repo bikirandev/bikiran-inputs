@@ -1,9 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import styles from "./InputField.module.css";
 import { isValidPassword } from "./PasswordValidation";
-import { TInputChangeEvent } from "../../lib/types/InputType";
-import Copy from "../../lib/utils/Copy";
-import { cn } from "../../lib/utils/cn";
+
 import {
   iconAlert,
   iconCopy,
@@ -12,6 +10,9 @@ import {
   iconTick,
   iconUser,
 } from "../password-input-field/icons/PasswordIcons";
+import { TInputChangeEvent } from "../../lib/types/InputType";
+import Copy from "../../lib/utils/Copy";
+import { cn } from "../../lib/utils/cn";
 
 type TPassword = "account" | "cp" | "email";
 
@@ -221,13 +222,9 @@ const AnimatePassword: FC<TAnimatePassword> = (props) => {
 
       {description && (
         <div className={styles.passwordDescription}>
-          <ImageComponent
-            src={valid ? iconTick : iconAlert}
-            alt="Error"
-            width={0}
-            height={0}
-            className={styles.passwordDescriptionIcon}
-          />
+          <div className="w-4 h-4 mt-[3px]">
+            {valid ? iconTick() : iconAlert()}
+          </div>
           <span
             className={
               valid
