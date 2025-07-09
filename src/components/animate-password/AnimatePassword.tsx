@@ -1,16 +1,17 @@
 import { FC, useEffect, useRef, useState } from "react";
 import styles from "./InputField.module.css";
-
-import iconCopy from "./icons/icon-copy.svg";
-import iconTick from "./icons/icon-tick.svg";
-import iconAlert from "./icons/icon-alert-red.svg";
-import iconCp from "./icons/icon-cPanel.svg";
-import iconUser from "./icons/icon-user.svg";
-import iconEmail from "./icons/icon-email.svg";
 import { isValidPassword } from "./PasswordValidation";
 import { TInputChangeEvent } from "../../lib/types/InputType";
 import Copy from "../../lib/utils/Copy";
 import { cn } from "../../lib/utils/cn";
+import {
+  iconAlert,
+  iconCopy,
+  iconCPanel,
+  iconEmail,
+  iconTick,
+  iconUser,
+} from "../password-input-field/icons/PasswordIcons";
 
 type TPassword = "account" | "cp" | "email";
 
@@ -81,12 +82,17 @@ const AnimatePassword: FC<TAnimatePassword> = (props) => {
   const { copy, isCopied } = Copy();
   const [showPassword, setShowPassword] = useState(isCopied ? true : false);
 
-  const passwordTypeIcons: {
-    [key: string]: string;
-  } = {
-    account: userPhoto || iconUser,
-    cp: iconCp,
-    email: iconEmail,
+  const passwordTypeIcons = () => {
+    switch (passwordType) {
+      case "account":
+        return userPhoto || iconUser();
+      case "cp":
+        return iconCPanel();
+      case "email":
+        return iconEmail();
+      default:
+        return iconUser();
+    }
   };
 
   const valid = isValidPassword(formData[name]);
@@ -114,14 +120,18 @@ const AnimatePassword: FC<TAnimatePassword> = (props) => {
           {passwordType && passwordType.length > 0 && (
             <div className={styles.iconLeftWrapper}>
               <div className="w-7">
-                <ImageComponent
-                  src={passwordTypeIcons[passwordType]}
-                  alt={passwordType}
-                  width={100}
-                  height={100}
-                  sizes="100vw"
-                  className={styles.iconLeftImg}
-                />
+                {userPhoto ? (
+                  <ImageComponent
+                    src={userPhoto}
+                    alt="user"
+                    width={100}
+                    height={100}
+                    sizes="100vw"
+                    className="w-full h-auto rounded-full"
+                  />
+                ) : (
+                  passwordTypeIcons()
+                )}
               </div>
             </div>
           )}
@@ -175,14 +185,7 @@ const AnimatePassword: FC<TAnimatePassword> = (props) => {
                   onClick={() => copy(formData[name] || "")}
                   className={styles.copyBtn}
                 >
-                  <ImageComponent
-                    alt="copy"
-                    src={isCopied ? iconTick : iconCopy}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    className={styles.copyIcon}
-                  />
+                  {isCopied ? iconTick() : iconCopy()}
                 </button>
               </>
             )}
