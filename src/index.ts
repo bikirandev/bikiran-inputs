@@ -13,3 +13,4 @@ export { default as AnimatedSelect } from "./components/animated-select-field/An
 export { default as AnimatedMultiSelect } from "./components/animated-multi-select/AnimatedMultiSelect";
 export { default as Select } from "./components/select-field/Select";
 export { default as InputFieldPassword } from "./components/password-input-field/InputFieldPassword";
+export { default as AnimatePassword } from "./components/animate-password/AnimatePassword";
