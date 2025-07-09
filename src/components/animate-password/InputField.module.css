@@ -1,0 +1,93 @@
+.container {
+  @apply w-full;
+}
+
+.inputWrapper {
+  @apply w-full h-[45px] relative overflow-visible cursor-pointer;
+}
+
+.label {
+  @apply text-sm font-medium text-primary-300 leading-5 px-2 py-1 bg-white absolute top-1/2 left-[5px] -translate-y-1/2 transition-all duration-300 focus:bg-white z-10;
+}
+
+.labelFocused {
+  @apply text-secondary-700 -top-[10px] left-4 transform translate-x-0 translate-y-0 py-0 px-1;
+}
+
+.labelHasValue {
+  @apply text-[#5a577a];
+}
+
+.input {
+  @apply block w-full h-full px-[40px] border rounded-[8px] text-base outline-none transition-colors;
+}
+
+.inputFocused {
+  @apply border-secondary-700 caret-current;
+}
+
+.inputHasValue {
+  @apply border-[#d0cfd9];
+}
+
+.inputDisabled {
+  @apply grayscale cursor-not-allowed;
+}
+
+/* ✅ Newly Added Classes */
+
+.copyBtn {
+  @apply h-4 w-4 text-primary-700 opacity-70 select-none outline-none focus:outline-none;
+}
+
+.copyIcon {
+  @apply w-full h-auto;
+}
+
+.passwordToggleBtn {
+  @apply h-4 w-4 text-primary-700 opacity-70;
+}
+
+.passwordToggleIcon {
+  @apply w-full h-auto;
+}
+
+.iconLeftWrapper {
+  @apply absolute top-1/2 left-2 transform -translate-y-1/2;
+}
+
+.iconLeftImg {
+  @apply w-full h-auto rounded-full;
+}
+
+.generateBtn {
+  @apply size-[45px] relative  flex-shrink-0;
+}
+
+.generateIcon {
+  @apply size-full;
+}
+
+.generateIconHover {
+  @apply size-full hidden group-hover:block;
+}
+
+.generateIconInactive {
+  @apply size-full group-hover:hidden;
+}
+
+.passwordDescription {
+  @apply flex items-start gap-1 mt-2;
+}
+
+.passwordDescriptionTextValid {
+  @apply text-sm text-green-600;
+}
+
+.passwordDescriptionTextInvalid {
+  @apply text-sm text-red-600;
+}
+
+.passwordDescriptionIcon {
+  @apply w-4 h-4 mt-[3px];
+}
