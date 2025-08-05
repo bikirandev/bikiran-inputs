@@ -72,20 +72,15 @@ const OptionPopup: FC<{
     >
       <div className={cn(style.placeholderContainer, "placeholderContainer")}>
         {searchable && (
-          <div className="w-full h-7.5 relative border-b mb-1">
+          <div className={style.searchBar}>
             {/* Search bar close button */}
             {searchValue?.length !== 0 && (
-              <button
-                type="button"
-                className="w-5 absolute top-1/2 left-0 transform -translate-y-1/2"
-                onClick={closeClick}
-              >
+              <button type="button" onClick={closeClick}>
                 <CloseIcon className="w-5 text-error border rounded-full p-1" />
               </button>
             )}
             <input
               type="text"
-              className="w-full h-full pl-7 pr-2 text-sm focus:outline-none"
               placeholder="Search..."
               onChange={(e) => {
                 setSearchValue(e.target.value.toLowerCase());

@@ -75,3 +75,14 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* Search bar */
+.searchBar {
+  @apply w-full h-7.5 relative border-b mb-1;
+}
+.searchBar > button {
+  @apply w-5 absolute top-1/2 left-0 transform -translate-y-1/2;
+}
+.searchBar > input {
+  @apply w-full h-full pl-7 pr-2 text-sm focus:outline-none;
+}
