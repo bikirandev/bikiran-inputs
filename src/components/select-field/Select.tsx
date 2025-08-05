@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
-import { ArrowIcon, CheckIcon } from "./Icons";
-import style from "./Select.module.css";
 import { useEffect, useRef } from "react";
+import { ArrowIcon, CheckIcon, CloseIcon } from "./Icons";
+import style from "./Select.module.css";
 import { cn } from "../../lib/utils/cn";
 import capitalizeFirstLetter from "../../lib/utils/capitalizeFirstLetter";
 
@@ -15,6 +15,7 @@ type TProps = {
   containerClassname?: string;
   label: string;
   required?: boolean;
+  searchable?: boolean;
 };
 
 type TSelectOption = {
@@ -27,6 +28,122 @@ export const addOption = (id: any, title: any, value: any) => {
   return { id, title, value };
 };
 
+const OptionPopup: FC<{
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  show: boolean;
+  options: TSelectOption[];
+  formData: Record<string, any>;
+  name: string;
+  placeholder?: string;
+  handleSelect: (value: string) => void;
+  isValue: boolean;
+  searchable: boolean;
+}> = ({
+  setShow,
+  show,
+  options,
+  formData,
+  name,
+  placeholder,
+  handleSelect,
+  isValue,
+  searchable = false,
+}) => {
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  const closeClick = () => {
+    setTimeout(() => {
+      setSearchValue("");
+    }, 100); // 10ms delay to ensure the click event is processed before closing
+    setShow(false);
+  };
+
+  return (
+    <div
+      className={cn(
+        "select-option-container",
+        style.selectOptionContainer,
+        style.customScrollbar,
+        show ? `${style.show}  show` : ""
+      )}
+      style={{
+        top: searchable ? "0" : "12",
+      }}
+    >
+      <div className={cn(style.placeholderContainer, "placeholderContainer")}>
+        {searchable && (
+          <div className="w-full h-7.5 relative border-b mb-1">
+            {/* Search bar close button */}
+            {searchValue?.length !== 0 && (
+              <button
+                type="button"
+                className="w-5 absolute top-1/2 left-0 transform -translate-y-1/2"
+                onClick={closeClick}
+              >
+                <CloseIcon className="w-5 text-error border rounded-full p-1" />
+              </button>
+            )}
+            <input
+              type="text"
+              className="w-full h-full pl-7 pr-2 text-sm focus:outline-none"
+              placeholder="Search..."
+              onChange={(e) => {
+                setSearchValue(e.target.value.toLowerCase());
+                // const searchValue = e.target.value
+                // setFilteredOptions(
+                //   options.filter((option) =>
+                //     option.title.toLowerCase().includes(searchValue)
+                //   )
+                // );
+              }}
+              value={searchValue}
+            />
+          </div>
+        )}
+        {!searchable && (
+          <div
+            className={cn(
+              "select-option-placeholder",
+              style.selectOptionPlaceholder,
+              !isValue ? `${style.notIsValue} notIsValue` : ""
+            )}
+            onClick={() => handleSelect("")}
+          >
+            <div className={cn(style.checkIcon, "checkIcon")}>
+              {!isValue && <CheckIcon />}
+            </div>
+            {placeholder || "Select an option"}
+          </div>
+        )}
+        {options
+          .filter((op) => op.title.toLowerCase().includes(searchValue))
+          .map((option: TSelectOption) => {
+            const isActive: boolean =
+              formData[name]?.toLowerCase() === option.value?.toLowerCase();
+            return (
+              <div
+                key={option.id}
+                className={cn(
+                  "select-option",
+                  style.selectOption,
+                  isActive ? `${style.isActive} isActive` : ""
+                )}
+                onClick={() => handleSelect(option.value)}
+              >
+                <div className={cn(style.optionTitle, "optionTitle")}>
+                  <div className={cn(style.checkIcon, "checkIcon")}>
+                    {isActive && <CheckIcon />}
+                  </div>
+                  {capitalizeFirstLetter(option?.title?.toLowerCase() || "")}
+                </div>
+              </div>
+            );
+          })}
+      </div>
+    </div>
+  );
+};
+
 const Select: FC<TProps> = ({
   name,
   onChange,
@@ -37,6 +154,7 @@ const Select: FC<TProps> = ({
   containerClassname,
   className,
   required = false,
+  searchable = false,
 }) => {
   const [show, setShow] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -82,6 +200,7 @@ const Select: FC<TProps> = ({
         {required && <span className={cn(style.required)}>*</span>}
       </div>
       <div className={cn("container", style.container)}>
+        {/* Value Wrapper */}
         <div
           className={cn(
             "valueWrapper",
@@ -103,54 +222,19 @@ const Select: FC<TProps> = ({
             <ArrowIcon />
           </div>
         </div>
-        <div
-          className={cn(
-            "select-option-container",
-            style.selectOptionContainer,
-            style.customScrollbar,
-            show ? `${style.show}  show` : ""
-          )}
-        >
-          <div
-            className={cn(style.placeholderContainer, "placeholderContainer")}
-          >
-            <div
-              className={cn(
-                "select-option-placeholder",
-                style.selectOptionPlaceholder,
-                !isValue ? `${style.notIsValue} notIsValue` : ""
-              )}
-              onClick={() => handleSelect("")}
-            >
-              <div className={cn(style.checkIcon, "checkIcon")}>
-                {!isValue && <CheckIcon />}
-              </div>
-              {placeholder || "Select an option"}
-            </div>
-            {options.map((option: TSelectOption) => {
-              const isActive: boolean =
-                formData[name]?.toLowerCase() === option.value?.toLowerCase();
-              return (
-                <div
-                  key={option.id}
-                  className={cn(
-                    "select-option",
-                    style.selectOption,
-                    isActive ? `${style.isActive} isActive` : ""
-                  )}
-                  onClick={() => handleSelect(option.value)}
-                >
-                  <div className={cn(style.optionTitle, "optionTitle")}>
-                    <div className={cn(style.checkIcon, "checkIcon")}>
-                      {isActive && <CheckIcon />}
-                    </div>
-                    {capitalizeFirstLetter(option?.title?.toLowerCase() || "")}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+
+        {/* Options Popup */}
+        <OptionPopup
+          setShow={setShow}
+          show={show}
+          options={options}
+          formData={formData}
+          name={name}
+          placeholder={placeholder}
+          handleSelect={handleSelect}
+          isValue={isValue}
+          searchable={searchable}
+        />
       </div>
     </div>
   );
