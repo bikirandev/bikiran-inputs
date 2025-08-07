@@ -25,7 +25,7 @@ type TInputFieldProps = {
   generatePassword?: () => void;
   description?: boolean;
   passwordType: TPassword;
-  userPhoto?: string;
+  userPhoto?: string | "null";
 };
 // This is Input Field component with generate Password button and Copy button
 const InputFieldPassword: FC<TInputFieldProps> = ({
@@ -68,20 +68,22 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
           {/* Show when password type specified */}
           {passwordType && passwordType.length > 0 && (
             <div className="absolute top-1/2 left-2 transform -translate-y-1/2">
-              <div className="w-7">
-                {userPhoto ? (
-                  <ImageComponent
-                    src={userPhoto}
-                    alt="user"
-                    width={100}
-                    height={100}
-                    sizes="100vw"
-                    className="w-full h-auto rounded-full"
-                  />
-                ) : (
-                  passwordTypeIcons()
-                )}
-              </div>
+              {userPhoto !== "null" && (
+                <div className="w-7">
+                  {userPhoto ? (
+                    <ImageComponent
+                      src={userPhoto}
+                      alt="user"
+                      width={100}
+                      height={100}
+                      sizes="100vw"
+                      className="w-full h-auto rounded-full"
+                    />
+                  ) : (
+                    passwordTypeIcons()
+                  )}
+                </div>
+              )}
             </div>
           )}
           <input
@@ -95,7 +97,10 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
               "block w-full h-full px-2.5 border rounded-[8px] text-base outline-none disabled:grayscale pr-12",
               className,
               {
-                "pl-11": passwordType && passwordType.length > 0,
+                "pl-11":
+                  passwordType &&
+                  passwordType.length > 0 &&
+                  userPhoto !== "null",
               }
             )}
           />
