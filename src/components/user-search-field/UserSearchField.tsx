@@ -9,6 +9,7 @@ import ValidationInputField from "../validation-input-field/ValidationInputField
 import { IconRefresh } from "./icon";
 import AnimatedInputField from "../animated-input-field/AnimatedInputField";
 import { ValidationCheck } from "../validation-input-field/ValidationCheck";
+import style from "./style.module.css";
 
 type TProps = {
   selectedUser: any;
@@ -89,7 +90,7 @@ const UserSearchField: FC<TProps> = ({
           <ValidationCheck
             loading={loading}
             valid={valid()}
-            className="absolute top-1/2 right-[10px] flex items-center space-x-2 transform -translate-y-1/2"
+            className={style.validationCheck}
           />
         </div>
         <div className="absolute w-full" style={{ top: "50px", zIndex: 1000 }}>
@@ -123,10 +124,7 @@ const UserSearchField: FC<TProps> = ({
         <div className="flex justify-between items-center py-[15px]">
           <span className="text-primary text-sm ">No user found</span>
           <div className="flex gap-2">
-            <button
-              className="text-secondary font-medium bg-secondary-100 px-[15px] py-2 rounded-[8px] hover:bg-secondary hover:text-white transition-colors duration-300 flex-shrink-0"
-              onClick={btnClick}
-            >
+            <button className={style.createUserBtn} onClick={btnClick}>
               Create New User
             </button>
             <button
