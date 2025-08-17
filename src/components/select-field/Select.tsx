@@ -16,6 +16,7 @@ type TProps = {
   label: string;
   required?: boolean;
   searchable?: boolean;
+  defaultOption?: boolean;
 };
 
 type TSelectOption = {
@@ -38,6 +39,7 @@ const OptionPopup: FC<{
   handleSelect: (value: string) => void;
   isValue: boolean;
   searchable: boolean;
+  defaultOption: boolean;
 }> = ({
   setShow,
   show,
@@ -48,6 +50,7 @@ const OptionPopup: FC<{
   handleSelect,
   isValue,
   searchable = false,
+  defaultOption,
 }) => {
   const [searchValue, setSearchValue] = useState<string>("");
 
@@ -95,7 +98,7 @@ const OptionPopup: FC<{
             />
           </div>
         )}
-        {!searchable && (
+        {!searchable && defaultOption && (
           <div
             className={cn(
               "select-option-placeholder",
@@ -150,6 +153,7 @@ const Select: FC<TProps> = ({
   className,
   required = false,
   searchable = false,
+  defaultOption = true,
 }) => {
   const [show, setShow] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -229,6 +233,7 @@ const Select: FC<TProps> = ({
           handleSelect={handleSelect}
           isValue={isValue}
           searchable={searchable}
+          defaultOption={defaultOption}
         />
       </div>
     </div>
