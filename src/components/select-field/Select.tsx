@@ -184,13 +184,12 @@ const Select: FC<TProps> = ({
   };
 
   const isValue = formData[name]?.length > 0;
+
   const value = isValue
-    ? options
-        .find(
-          (option) =>
-            option.value?.toLowerCase() === formData[name]?.toLowerCase()
-        )
-        ?.title?.toLowerCase()
+    ? options.find(
+        (option) =>
+          option.value?.toLowerCase() === formData[name]?.toLowerCase()
+      )?.title
     : placeholder;
 
   return (
@@ -216,7 +215,7 @@ const Select: FC<TProps> = ({
               value === placeholder ? style.placeholder : style.value
             )}
           >
-            {capitalizeFirstLetter(value || "")}
+            {value || ""}
           </div>
           <div className={cn(style.iconWrapper, "iconWrapper")}>
             <ArrowIcon />
