@@ -132,7 +132,8 @@ const OptionPopup: FC<{
                   <div className={cn(style.checkIcon, "checkIcon")}>
                     {isActive && <CheckIcon />}
                   </div>
-                  {capitalizeFirstLetter(option?.title?.toLowerCase() || "")}
+                  {/* {capitalizeFirstLetter(option?.title?.toLowerCase() || "")} */}
+                  {option?.title || ""}
                 </div>
               </div>
             );
