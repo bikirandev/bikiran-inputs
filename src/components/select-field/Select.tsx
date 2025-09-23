@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { ArrowIcon, CheckIcon, CloseIcon } from "./Icons";
 import style from "./Select.module.css";
 import { cn } from "../../lib/utils/cn";
@@ -25,11 +26,19 @@ type TSelectOption = {
   value: string;
 };
 
+type TSelectPosition = {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+};
+
 export const addOption = (id: any, title: any, value: any) => {
   return { id, title, value };
 };
 
 const OptionPopup: FC<{
+  containerRef: React.RefObject<HTMLDivElement | null>;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   show: boolean;
   options: TSelectOption[];
@@ -40,7 +49,9 @@ const OptionPopup: FC<{
   isValue: boolean;
   searchable: boolean;
   defaultOption: boolean;
+  position: TSelectPosition;
 }> = ({
+  containerRef,
   setShow,
   show,
   options,
@@ -51,6 +62,7 @@ const OptionPopup: FC<{
   isValue,
   searchable = false,
   defaultOption,
+  position,
 }) => {
   const [searchValue, setSearchValue] = useState<string>("");
 
@@ -63,6 +75,7 @@ const OptionPopup: FC<{
 
   return (
     <div
+      ref={containerRef}
       className={cn(
         "select-option-container",
         style.selectOptionContainer,
@@ -70,8 +83,12 @@ const OptionPopup: FC<{
         show ? `${style.show}  show` : ""
       )}
       style={{
-        top: searchable ? "0" : "12",
+        top: position.top + 4,
+        left: position.left,
+        width: position.width,
+        pointerEvents: "auto",
       }}
+      onClick={(e) => e.stopPropagation()}
     >
       <div className={cn(style.placeholderContainer, "placeholderContainer")}>
         {searchable && (
@@ -157,11 +174,23 @@ const Select: FC<TProps> = ({
   defaultOption = true,
 }) => {
   const [show, setShow] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState<TSelectPosition>({
+    top: 0,
+    left: 0,
+    width: 0,
+    height: 0,
+  });
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node) &&
+        !event.defaultPrevented // Ensure clicks on options don't trigger close
+      ) {
         setShow(false);
       }
     };
@@ -170,10 +199,39 @@ const Select: FC<TProps> = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
+  }, []);
+
+  // Calculate position before showing dropdown
+  const updatePosition = () => {
+    if (triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setPosition({
+        top: rect.bottom + window.scrollY, // Account for scroll
+        left: rect.left + window.scrollX,
+        width: rect.width,
+        height: rect.height,
+      });
+    }
+  };
+
+  //  Scroll on dropdown
+  useEffect(() => {
+    const dropdown = containerRef.current;
+
+    if (!dropdown) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.stopPropagation();
+    };
+
+    dropdown.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      dropdown.removeEventListener("wheel", handleWheel);
+    };
+  }, [show]);
 
   const handleSelect = (val: any) => {
-    setShow((prev) => !prev);
     const ev = {
       target: {
         name,
@@ -181,6 +239,15 @@ const Select: FC<TProps> = ({
       },
     };
     onChange(ev);
+    setShow(false); // Close dropdown after selection
+  };
+
+  const handleToggleShow = () => {
+    if (!show) {
+      // Calculate position before showing
+      updatePosition();
+    }
+    setShow((prev) => !prev);
   };
 
   const isValue = formData[name]?.length > 0;
@@ -193,7 +260,7 @@ const Select: FC<TProps> = ({
     : placeholder;
 
   return (
-    <div ref={ref} className={containerClassname}>
+    <div className={containerClassname}>
       <div>
         <label className={cn(style.label)}>{label}</label>
         {required && <span className={cn(style.required)}>*</span>}
@@ -201,13 +268,14 @@ const Select: FC<TProps> = ({
       <div className={cn("container", style.container)}>
         {/* Value Wrapper */}
         <div
+          ref={triggerRef}
           className={cn(
             "valueWrapper",
             style.valueWrapper,
             isValue ? style.isValue : "",
             className
           )}
-          onClick={() => setShow((prev) => !prev)}
+          onClick={handleToggleShow}
         >
           <div
             className={cn(
@@ -222,19 +290,26 @@ const Select: FC<TProps> = ({
           </div>
         </div>
 
-        {/* Options Popup */}
-        <OptionPopup
-          setShow={setShow}
-          show={show}
-          options={options}
-          formData={formData}
-          name={name}
-          placeholder={placeholder}
-          handleSelect={handleSelect}
-          isValue={isValue}
-          searchable={searchable}
-          defaultOption={defaultOption}
-        />
+        {/* Options Popup using createPortal */}
+        {show &&
+          position.width > 0 && // Only render when position is calculated
+          createPortal(
+            <OptionPopup
+              containerRef={containerRef}
+              setShow={setShow}
+              show={show}
+              options={options}
+              formData={formData}
+              name={name}
+              placeholder={placeholder}
+              handleSelect={handleSelect}
+              isValue={isValue}
+              searchable={searchable}
+              defaultOption={defaultOption}
+              position={position}
+            />,
+            document.body
+          )}
       </div>
     </div>
   );
