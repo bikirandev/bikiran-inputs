@@ -14,6 +14,7 @@ type TProps = {
   placeholder?: string;
   className?: string;
   containerClassname?: string;
+  dropdownClassname?: string;
   label: string;
   required?: boolean;
   searchable?: boolean;
@@ -50,6 +51,7 @@ const OptionPopup: FC<{
   searchable: boolean;
   defaultOption: boolean;
   position: TSelectPosition;
+  dropdownClassname?: string;
 }> = ({
   containerRef,
   setShow,
@@ -63,6 +65,7 @@ const OptionPopup: FC<{
   searchable = false,
   defaultOption,
   position,
+  dropdownClassname,
 }) => {
   const [searchValue, setSearchValue] = useState<string>("");
 
@@ -80,6 +83,7 @@ const OptionPopup: FC<{
         "select-option-container",
         style.selectOptionContainer,
         style.customScrollbar,
+        dropdownClassname,
         show ? `${style.show}  show` : ""
       )}
       style={{
