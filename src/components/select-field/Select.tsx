@@ -176,6 +176,7 @@ const Select: FC<TProps> = ({
   required = false,
   searchable = false,
   defaultOption = true,
+  dropdownClassname,
 }) => {
   const [show, setShow] = useState<boolean>(false);
   const [position, setPosition] = useState<TSelectPosition>({
@@ -311,6 +312,7 @@ const Select: FC<TProps> = ({
               searchable={searchable}
               defaultOption={defaultOption}
               position={position}
+              dropdownClassname={dropdownClassname}
             />,
             document.body
           )}
