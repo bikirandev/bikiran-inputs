@@ -127,6 +127,7 @@ const OptionPopup: FC<{
               !isValue ? `${style.notIsValue} notIsValue` : ""
             )}
             onClick={() => handleSelect("")}
+            role="listbox"
           >
             <div className={cn(style.checkIcon, "checkIcon")}>
               {!isValue && <CheckIcon />}
@@ -148,6 +149,7 @@ const OptionPopup: FC<{
                   isActive ? `${style.isActive} isActive` : ""
                 )}
                 onClick={() => handleSelect(option.value)}
+                role="listbox"
               >
                 <div className={cn(style.optionTitle, "optionTitle")}>
                   <div className={cn(style.checkIcon, "checkIcon")}>
