@@ -162,7 +162,7 @@ const AnimatePassword: FC<TAnimatePassword> = (props) => {
             )}
           />
 
-          <div className="absolute top-1/2 right-2 flex items-center space-x-2 transform -translate-y-1/2">
+          <div className={cn(styles.iconPlacement, "icon-placement")}>
             {formData[name] !== "" && (
               <>
                 <button
