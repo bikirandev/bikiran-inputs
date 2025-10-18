@@ -3,6 +3,7 @@ import { TInputChangeEvent } from "../../lib/types/InputType";
 import { isValidPassword } from "./PasswordValidation";
 import Copy from "../../lib/utils/Copy";
 import { cn } from "../../lib/utils/cn";
+import style from "./InputFieldPassword.module.css";
 import {
   iconAlert,
   iconCopy,
@@ -61,15 +62,15 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
   const valid = isValidPassword(formData[name]);
 
   return (
-    <div className="parentClass">
-      <label className="text-base font-medium text-primary">{label}</label>
-      <div className="flex items-center gap-2 mt-2">
-        <div className="w-full h-[45px] relative">
+    <div className={cn(style.container, "parent-class")}>
+      <label className={cn(style.label)}>{label}</label>
+      <div className={cn(style.row)}>
+        <div className={cn(style.inputWrapper)}>
           {/* Show when password type specified */}
           {passwordType && passwordType.length > 0 && (
-            <div className="absolute top-1/2 left-2 transform -translate-y-1/2">
+            <div className={cn(style.iconLeftWrapper)}>
               {userPhoto !== "null" && (
-                <div className="w-7">
+                <div className={cn(style.leftIconSize)}>
                   {userPhoto ? (
                     <ImageComponent
                       src={userPhoto}
@@ -77,7 +78,7 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
                       width={100}
                       height={100}
                       sizes="100vw"
-                      className="w-full h-auto rounded-full"
+                      className={cn(style.leftIconImg)}
                     />
                   ) : (
                     passwordTypeIcons()
@@ -94,25 +95,22 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
             placeholder={placeholder}
             disabled={disabled}
             className={cn(
-              "block w-full h-full px-2.5 border rounded-[8px] text-base outline-none disabled:grayscale pr-12",
+              style.input,
               className,
-              {
-                "pl-11":
-                  passwordType &&
-                  passwordType.length > 0 &&
-                  userPhoto !== "null",
-              }
+              passwordType && passwordType.length > 0 && userPhoto !== "null"
+                ? style.inputWithLeftIcon
+                : ""
             )}
           />
           {/* Container for buttons */}
-          <div className="absolute top-1/2 right-2 flex items-center space-x-2 transform -translate-y-1/2">
+          <div className={cn(style.btns)}>
             {formData[name] !== "" ? (
               <>
                 <button
                   type="button"
                   tabIndex={-1}
                   onClick={() => setShowPassword((st) => !st)}
-                  className="h-4 w-4 text-primary-700 select-none outline-none focus:outline-none opacity-70"
+                  className={cn(style.iconBtn)}
                 >
                   <ImageComponent
                     src={
@@ -124,13 +122,13 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
                     width={100}
                     height={100}
                     // sizes="100vw"
-                    className="w-full h-auto"
+                    className={cn(style.iconImage)}
                   />
                 </button>
                 <button
                   type="button"
                   onClick={() => copy(formData[name] || "")}
-                  className="h-4 w-4 text-primary-700 opacity-70"
+                  className={cn(style.iconBtn)}
                 >
                   {isCopied ? iconTick() : iconCopy()}
                 </button>
@@ -147,7 +145,7 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
                 setShowPassword(true);
               }
             }}
-            className="size-[45px] relative group flex-shrink-0"
+            className={cn(style.generateBtn, "group")}
           >
             <ImageComponent
               alt="generate"
@@ -156,7 +154,7 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
               }
               width={0}
               height={0}
-              className="size-full group-hover:hidden"
+              className={cn(style.generateIconInactive, "group-hover:hidden")}
             />
             <ImageComponent
               alt="generate"
@@ -165,18 +163,18 @@ const InputFieldPassword: FC<TInputFieldProps> = ({
               }
               width={0}
               height={0}
-              className="size-full hidden group-hover:block"
+              className={cn(style.generateIconHover, "group-hover:block")}
             />
           </button>
         )}
       </div>
       {description === true ? (
-        <div className={`flex items-start gap-1 mt-2 `}>
-          <div className="w-4 h-4 mt-[3px]">
+        <div className={cn(style.desc)}>
+          <div className={cn(style.descIcon)}>
             {valid ? iconTick() : iconAlert()}
           </div>
           <span
-            className={`text-sm  ${valid ? "text-green-600" : "text-red-600"}`}
+            className={cn(valid ? style.descTextValid : style.descTextInvalid)}
           >
             Your Password should contain at least one uppercase letter, one
             lowercase letter, one digit and one special character.
